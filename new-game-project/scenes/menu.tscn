@@ -1,0 +1,178 @@
+[gd_scene load_steps=2 format=3 uid="uid://duevw8ikxn5kj"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_jf58a"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("main_menu", "resume_button", "restart_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
+process_mode = 3
+script = ExtResource("1_jf58a")
+main_menu = NodePath("CenterContainer/Main")
+resume_button = NodePath("CenterContainer/Main/Resume")
+restart_button = NodePath("CenterContainer/Main/Restart")
+options_button = NodePath("CenterContainer/Main/Options")
+controls_button = NodePath("CenterContainer/Main/Controls")
+credits_button = NodePath("CenterContainer/Main/Credits")
+quit_button = NodePath("CenterContainer/Main/Quit")
+options_menu = NodePath("CenterContainer/Options")
+options_master_slider = NodePath("CenterContainer/Options/Master/HSlider")
+options_sfx_slider = NodePath("CenterContainer/Options/Sfx/HSlider")
+options_music_slider = NodePath("CenterContainer/Options/Music/HSlider")
+options_display_dropdown = NodePath("CenterContainer/Options/OptionButton")
+options_back_button = NodePath("CenterContainer/Options/Back")
+controls_menu = NodePath("CenterContainer/Controls")
+controls_back_button = NodePath("CenterContainer/Controls/Back")
+credits_menu = NodePath("CenterContainer/Credits")
+credits_back_button = NodePath("CenterContainer/Credits/Back")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0509804, 0.0509804, 0.0509804, 0.913725)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "RESUME
+"
+icon_alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "RESTART"
+icon_alignment = 1
+
+[node name="Options" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "OPTIONS"
+icon_alignment = 1
+
+[node name="Controls" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "CONTROLS
+"
+icon_alignment = 1
+
+[node name="Credits" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "CREDITS
+"
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "QUIT"
+icon_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Master" type="Label" parent="CenterContainer/Options"]
+layout_mode = 2
+text = "MASTER:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/Master"]
+layout_mode = 2
+offset_left = 75.0
+offset_top = 5.0
+offset_right = 275.0
+offset_bottom = 21.0
+value = 100.0
+
+[node name="Sfx" type="Label" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/Sfx"]
+layout_mode = 2
+offset_left = 74.0
+offset_top = 4.0
+offset_right = 274.0
+offset_bottom = 20.0
+value = 100.0
+
+[node name="Music" type="Label" parent="CenterContainer/Options"]
+layout_mode = 2
+text = "MUSIC:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/Music"]
+layout_mode = 2
+offset_left = 74.0
+offset_top = 4.0
+offset_right = 274.0
+offset_bottom = 20.0
+value = 100.0
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/Options"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "FULLSCREEN"
+popup/item_1/text = "WINDOWED"
+popup/item_1/id = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Controls"]
+layout_mode = 2
+text = "CONTROLS GO HERE"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Credits" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Credits"]
+layout_mode = 2
+text = "CREDITS GO HERE 2025"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Credits"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back
+"
+icon_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
