@@ -1,4 +1,4 @@
-# Boss-Rush-Jame
+# Boss-Rush-Jam
 Boss Rush Jam 2025
 
-ClairdeLou / Cube / Nemo / RaposaBranca / Godot 4 / Blender 4
+Nemo / Godot 4 

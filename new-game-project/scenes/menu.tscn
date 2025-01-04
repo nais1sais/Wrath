@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_jf58a"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("main_menu", "resume_button", "restart_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("main_menu", "resume_button", "restart_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
 process_mode = 3
 script = ExtResource("1_jf58a")
 main_menu = NodePath("CenterContainer/Main")

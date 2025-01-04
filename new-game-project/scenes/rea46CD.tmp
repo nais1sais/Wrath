@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c63gb30rbqgem"]
+
+[ext_resource type="Script" path="res://scripts/reaper.gd" id="1_0b6a6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qswe2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5jjt4"]
+size = Vector3(0.655, 2, 0.29)
+
+[node name="Reaper" type="CharacterBody3D"]
+rotation_edit_mode = 1
+script = ExtResource("1_0b6a6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qswe2")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+rotation_edit_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.985034, 0.172359, 0, -0.172359, 0.985034, 0, 2.0118, 4.66888)
+fov = 80.0
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_5jjt4")
+skeleton = NodePath("../..")
