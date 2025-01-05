@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c63gb30rbqgem"]
+[gd_scene load_steps=10 format=3 uid="uid://c63gb30rbqgem"]
 
 [ext_resource type="Script" path="res://scripts/reaper.gd" id="1_0b6a6"]
 
 [sub_resource type="Animation" id="Animation_376u0"]
 resource_name = "Spin"
-length = 0.333337
+length = 0.400003
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,7 +37,7 @@ tracks/2/path = NodePath("Visual/Body:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.333333),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 7.85398, 0)]
@@ -56,7 +57,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_qldqy"]
 resource_name = "Windup"
-length = 0.600003
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,10 +65,10 @@ tracks/0/path = NodePath("Visual/Body:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.166667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.08205, 0), Vector3(0, -0.0208696, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -1.08205, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -88,10 +89,10 @@ tracks/2/path = NodePath("Visual/Body/Sythe:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 0.210224, 4.92458, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.633333),
+"transitions": PackedFloat32Array(1, 0.210224, 4.92458, 1),
 "update": 0,
-"values": [Vector3(1.01627e-08, -0.570566, 0.616747), Vector3(-0.519906, -1.25816, 0.516754), Vector3(-0.934963, -2.51498, -0.993401), Vector3(-1.1486, -1.27024, -1.20432), Vector3(-1.31654, -0.29175, -1.37012)]
+"values": [Vector3(1.01627e-08, -0.570566, 0.616747), Vector3(-0.519906, -1.25816, 0.516754), Vector3(-0.934963, -2.51498, -0.993401), Vector3(-1.31654, -0.29175, -1.37012)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -100,10 +101,10 @@ tracks/3/path = NodePath("Visual/Body/Sythe:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.177279, 0, -0.271903), Vector3(0.486745, 0.0795531, -0.172185), Vector3(0.664428, 0.150267, 0.257657), Vector3(0.664428, 0.150267, -0.157236), Vector3(0.664428, 0.150267, -0.209098)]
+"values": [Vector3(0.177279, 0, -0.271903), Vector3(0.486745, 0.0795531, -0.172185), Vector3(0.664428, 0.150267, 0.257657), Vector3(0.664428, 0.150267, -0.209098)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -112,10 +113,10 @@ tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.533333),
-"transitions": PackedFloat32Array(0.225313, 1.93187, 1),
+"times": PackedFloat32Array(0, 0.266667, 0.6),
+"transitions": PackedFloat32Array(0.225313, 6.72717, 1),
 "update": 0,
-"values": [80.0, 70.0, 110.0]
+"values": [80.0, 90.0, 80.0]
 }
 
 [sub_resource type="Animation" id="Animation_2to1h"]
@@ -181,140 +182,10 @@ tracks/4/keys = {
 "values": [80.0]
 }
 
-[sub_resource type="Animation" id="Animation_kk21r"]
-resource_name = "Idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Body:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visual/Body/Sythe:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.01627e-08, -0.570566, 0.616747)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visual/Body/Sythe:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.177279, 0, -0.271903)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [80.0]
-}
-
-[sub_resource type="Animation" id="Animation_od6d7"]
-resource_name = "Windown"
-length = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Body/Sythe:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.31654, -0.29175, -1.37012), Vector3(-1.31654, -0.29175, 1.59518), Vector3(1.01627e-08, -0.570566, 0.616747)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visual/Body:rotation")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 2.82743, 0), Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visual/Body/Sythe:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.664428, 0.150267, -0.209098), Vector3(-0.00719696, 0.12908, -0.325673), Vector3(0.177279, 0, -0.271903)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(4.59479, 1),
-"update": 0,
-"values": [110.0, 80.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2cvw"]
 _data = {
-"Idle": SubResource("Animation_kk21r"),
 "RESET": SubResource("Animation_2to1h"),
 "Spin": SubResource("Animation_376u0"),
-"Windown": SubResource("Animation_od6d7"),
 "Windup": SubResource("Animation_qldqy")
 }
 
@@ -328,14 +199,13 @@ size = Vector3(0.03, 3.495, 0.015)
 
 [sub_resource type="PrismMesh" id="PrismMesh_halkl"]
 
-[node name="Reaper" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA", "VISUAL", "PIVOT", "ANIM", "STAMINA_BAR")]
+[node name="Reaper" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA", "VISUAL", "PIVOT", "ANIM")]
 rotation_edit_mode = 1
 script = ExtResource("1_0b6a6")
 CAMERA = NodePath("Pivot/SpringArm3D/Camera3D")
 VISUAL = NodePath("Visual")
 PIVOT = NodePath("Pivot")
 ANIM = NodePath("AnimationPlayer")
-STAMINA_BAR = NodePath("Stamina")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -365,16 +235,9 @@ mesh = SubResource("BoxMesh_5jjt4")
 skeleton = NodePath("../../..")
 
 [node name="Sythe" type="MeshInstance3D" parent="Visual/Body"]
-transform = Transform3D(0.686543, -0.486766, -0.540108, 0.578384, 0.815765, -1.01627e-08, 0.440601, -0.31239, 0.841595, 0.177279, 0, -0.271903)
+transform = Transform3D(0.686543, -0.486766, -0.540108, 0.578384, 0.815765, -1.01627e-08, 0.440601, -0.31239, 0.841596, 0.177279, 0, -0.271903)
 mesh = SubResource("BoxMesh_24hr2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visual/Body/Sythe"]
 transform = Transform3D(0.00337155, -0.898873, -0.0156772, -0.00130538, 0.0682769, -0.198145, -0.0337691, -0.092384, 0.00609431, -0.42617, 1.63847, -0.0309335)
 mesh = SubResource("PrismMesh_halkl")
-
-[node name="Stamina" type="ColorRect" parent="."]
-offset_left = 14.0
-offset_top = 17.0
-offset_right = 407.0
-offset_bottom = 27.0
-color = Color(0.205117, 0.205117, 0.205117, 1)
