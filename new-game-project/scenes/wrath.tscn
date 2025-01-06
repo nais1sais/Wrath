@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=10 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 
@@ -66,6 +66,9 @@ _data = {
 [sub_resource type="BoxMesh" id="BoxMesh_3vp4v"]
 size = Vector3(2.225, 6.43, 0.35)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7o4y"]
+size = Vector3(2.33148, 5.42755, 0.300476)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijfr"]
 radius = 1.21148
 height = 6.0512
@@ -96,12 +99,13 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[node name="Wrath" type="CharacterBody3D" node_paths=PackedStringArray("ANIM", "NAV_AGENT", "HEALTHBAR", "MESH")]
+[node name="Wrath" type="CharacterBody3D" node_paths=PackedStringArray("ANIM", "NAV_AGENT", "HEALTH_BAR", "MESH", "ATTACK_AREA")]
 script = ExtResource("1_fvlx1")
 ANIM = NodePath("AnimationPlayer")
 NAV_AGENT = NodePath("NavigationAgent3D")
-HEALTHBAR = NodePath("Health")
+HEALTH_BAR = NodePath("Health")
 MESH = NodePath("Mesh")
+ATTACK_AREA = NodePath("Mesh/MeshInstance3D/Area3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -113,6 +117,13 @@ libraries = {
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68866, 0)
 mesh = SubResource("BoxMesh_3vp4v")
+
+[node name="Area3D" type="Area3D" parent="Mesh/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.68866, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0379333, 4.10519, 0.00125122)
+shape = SubResource("BoxShape3D_b7o4y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.49679, 0)
@@ -127,7 +138,7 @@ offset_right = 1009.0
 offset_bottom = 1004.0
 theme_override_colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Wrath Гнев"
+text = "Wrath - Гнев"
 horizontal_alignment = 1
 uppercase = true
 

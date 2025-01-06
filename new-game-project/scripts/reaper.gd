@@ -2,6 +2,7 @@ extends CharacterBody3D
 @export var SPEED = 4.0
 @export var SPRINT_MULTIPLIER = 2.0
 @export var MAX_STAMINA = 50.0
+@export var MAX_HEALTH = 50.0
 @export var STAMINA_RECOVERY_SPEED = 30.0
 @export var SPEED_FRICTION = 0.9999999999
 @export var JUMP_VELOCITY = 4.5
@@ -12,14 +13,18 @@ extends CharacterBody3D
 @export var PIVOT: Node3D
 @export var ANIM: AnimationPlayer
 @export var STAMINA_BAR: ProgressBar
+@export var HEALTH_BAR: ProgressBar
 @export var ATTACK_AREA: Area3D
-var speed_multiplier = 0
 var mouse_delta = Vector2.ZERO
+var health = 50
 var stamina = MAX_STAMINA
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
+
+func death() -> void:
+	get_tree().reload_current_scene()
 
 func _on_animation_finished(animation_name: String) -> void:
 
@@ -49,6 +54,9 @@ func _ready() -> void:
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	STAMINA_BAR.max_value = MAX_STAMINA
+	STAMINA_BAR.value = stamina
+	HEALTH_BAR.max_value = MAX_HEALTH
+	HEALTH_BAR.value = health
 
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
@@ -56,9 +64,11 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if not body.health: return
 	body.health -= 1;
 	if body.health > 0: return
-	if body.death: body.death()
+	if body.has_method("death"): body.death()
 
 func _physics_process(delta: float) -> void:
+
+	HEALTH_BAR.value = health
 
 	#ANIM.current_animation not in ["WINDUP", "WINDOWN", "SPIN"]:
 	if Input.is_action_just_pressed("attack"):
@@ -84,7 +94,7 @@ func _physics_process(delta: float) -> void:
 
 	var input_direction := Input.get_vector("left", "right", "forward", "back")
 	if input_direction.length() > 0:
-		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y) 
+		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y + global_transform.basis.get_euler().y)
 		if Input.is_action_pressed("sprint"): 
 			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER
 			velocity.z = mesh_direction.z * SPEED * SPRINT_MULTIPLIER
