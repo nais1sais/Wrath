@@ -1,0 +1,144 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3urcqmix8s8g"]
+
+[ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
+
+[sub_resource type="Animation" id="Animation_plb4y"]
+resource_name = "ATTACK"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.06667, 3),
+"transitions": PackedFloat32Array(0.133972, 1, 1, 0.133972),
+"update": 0,
+"values": [Vector3(0, 3.68866, 0), Vector3(0, 3.689, 0.68), Vector3(0, 0.742, -3.24), Vector3(0, 3.68866, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.06667, 3),
+"transitions": PackedFloat32Array(0.133972, 1, 1, 0.133972),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.29147, 0, 0), Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jojdm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.68866, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y10ku"]
+_data = {
+"ATTACK": SubResource("Animation_plb4y"),
+"RESET": SubResource("Animation_jojdm")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vp4v"]
+size = Vector3(2.225, 6.43, 0.35)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijfr"]
+radius = 1.21148
+height = 6.0512
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kstla"]
+bg_color = Color(0.0430392, 0.0430392, 0.0430392, 0.560784)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.78, 0.78, 0.207843)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6wii"]
+bg_color = Color(0.372557, 0.234805, 0.23701, 1)
+border_color = Color(0.534259, 0.352913, 0.352515, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="Wrath" type="CharacterBody3D" node_paths=PackedStringArray("ANIM", "NAV_AGENT", "HEALTHBAR", "MESH")]
+script = ExtResource("1_fvlx1")
+ANIM = NodePath("AnimationPlayer")
+NAV_AGENT = NodePath("NavigationAgent3D")
+HEALTHBAR = NodePath("Health")
+MESH = NodePath("Mesh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y10ku")
+}
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.68866, 0)
+mesh = SubResource("BoxMesh_3vp4v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.49679, 0)
+shape = SubResource("CapsuleShape3D_oijfr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 907.0
+offset_top = 981.0
+offset_right = 1009.0
+offset_bottom = 1004.0
+theme_override_colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Wrath Гнев"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Health" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = 587.0
+offset_top = 1009.0
+offset_right = 1335.0
+offset_bottom = 1018.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kstla")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h6wii")
+value = 50.0
+rounded = true
+show_percentage = false

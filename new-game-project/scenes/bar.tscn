@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0jvra8fxx5gd"]
+
+[ext_resource type="Script" path="res://scripts/bar.gd" id="1_r077y"]
+
+[node name="Bar" type="ColorRect"]
+color = Color(0.38, 0.213307, 0.2014, 1)
+script = ExtResource("1_r077y")
+
+[node name="Stamina" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 407.0
+offset_bottom = 27.0
+color = Color(0.205117, 0.205117, 0.205117, 1)
