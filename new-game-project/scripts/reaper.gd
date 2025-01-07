@@ -23,6 +23,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 
+func damage(amount: float) -> void:
+	CAMERA.shake += 3
+
 func death() -> void:
 	get_tree().reload_current_scene()
 
@@ -62,6 +65,7 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
 	if not body.health: return
+	if body.has_method("damage"): body.damage(1)
 	body.health -= 1;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
@@ -69,10 +73,10 @@ func _on_attack_area_body_entered(body: Node) -> void:
 func _physics_process(delta: float) -> void:
 
 	HEALTH_BAR.value = health
-
-	#ANIM.current_animation not in ["WINDUP", "WINDOWN", "SPIN"]:
+	
 	if Input.is_action_just_pressed("attack"):
-		ANIM.play("WINDUP")
+		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"]:
+			ANIM.play("WINDUP")
 		
 	if not Input.is_action_pressed("attack"):
 		stamina += STAMINA_RECOVERY_SPEED * delta

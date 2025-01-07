@@ -5,10 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="3_78svs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
-sky_top_color = Color(0.16838, 0.208319, 0.263861, 1)
-sky_horizon_color = Color(0.596394, 0.667184, 0.714555, 1)
-ground_bottom_color = Color(0.391947, 0.454023, 0.49046, 1)
-ground_horizon_color = Color(0.596078, 0.666667, 0.713726, 1)
+sky_top_color = Color(0.0829298, 0.108171, 0.122506, 1)
+sky_horizon_color = Color(0.37, 0.1517, 0.169892, 1)
+sky_curve = 0.0430765
+ground_bottom_color = Color(0.09, 0.09, 0.09, 1)
+ground_horizon_color = Color(0.419608, 0.298039, 0.294118, 1)
+ground_curve = 1e-05
+ground_energy_multiplier = 2.0
+sun_angle_max = 0.0
+sun_curve = 151.205
 
 [sub_resource type="Sky" id="Sky_1yw17"]
 sky_material = SubResource("ProceduralSkyMaterial_1oyht")
@@ -16,11 +21,13 @@ sky_material = SubResource("ProceduralSkyMaterial_1oyht")
 [sub_resource type="Environment" id="Environment_rnikm"]
 background_mode = 2
 sky = SubResource("Sky_1yw17")
-ambient_light_source = 3
+ambient_light_source = 2
+ambient_light_color = Color(0.29219, 0.29219, 0.29219, 1)
+ambient_light_energy = 1.1
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
-vertices = PackedVector3Array(-34.1319, 0.498941, -12.7767, -5.38192, 0.498941, -12.5267, -5.13192, 0.498941, -14.2767, -3.13192, 0.498941, -43.2767, -34.1319, 0.498941, -43.2767, -3.13192, 0.498941, -14.2767, -0.38192, 0.498941, -14.2767, -0.38192, 0.498941, -43.2767, 1.61808, 0.498941, -14.2767, 1.86808, 0.498941, -12.5267, 34.1181, 0.498941, -12.7767, 34.1181, 0.498941, -43.2767, -4.38192, 5.49894, -13.2767, -4.38192, 5.49894, -8.27671, 0.86808, 5.49894, -8.27671, 0.86808, 5.49894, -13.2767, -4.13192, 0.498941, -13.0267, -4.13192, 0.498941, -8.52671, 0.61808, 0.498941, -8.52671, 0.61808, 0.498941, -13.0267, -34.1319, 0.498941, -8.77671, -5.38192, 0.498941, -9.02671, 1.86808, 0.498941, -9.02671, 34.1181, 0.498941, -8.77671, -5.13192, 0.498941, -7.27671, -34.1319, 0.498941, 43.2233, -3.13192, 0.498941, 43.2233, -3.13192, 0.498941, -7.27671, 1.61808, 0.498941, -7.27671, -0.38192, 0.498941, 43.2233, 34.1181, 0.498941, 43.2233, -0.38192, 0.498941, -7.27671)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(3, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(8, 6, 7), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(21, 20, 1), PackedInt32Array(1, 20, 0), PackedInt32Array(9, 10, 22), PackedInt32Array(22, 10, 23), PackedInt32Array(21, 24, 20), PackedInt32Array(20, 24, 25), PackedInt32Array(25, 24, 26), PackedInt32Array(24, 27, 26), PackedInt32Array(22, 23, 28), PackedInt32Array(28, 23, 30), PackedInt32Array(28, 30, 29), PackedInt32Array(29, 31, 28), PackedInt32Array(27, 31, 26), PackedInt32Array(26, 31, 29)]
+vertices = PackedVector3Array(-34.1319, 0.369091, -13.2767, -26.1319, 0.369091, -13.2767, -25.8819, 0.369091, -15.5267, -34.1319, 0.369091, -43.2767, 25.8681, 0.369091, -15.5267, 26.1181, 0.369091, -13.2767, 34.1181, 0.369091, -13.2767, 34.1181, 0.369091, -43.2767, 23.8681, 0.369091, -15.2767, -24.1319, 0.369091, -15.5267, -23.8819, 0.369091, -13.5267, 23.8681, 0.369091, -13.5267, -23.8819, 0.369091, 33.9733, 23.8681, 0.369091, 33.9733, -34.1319, 0.369091, 33.4733, -26.1319, 0.369091, 33.4733, 26.1181, 0.369091, 33.4733, 34.1181, 0.369091, 33.4733, -23.3819, 0.369091, 43.2233, -23.3819, 0.369091, 36.2233, -25.3819, 0.369091, 36.2233, -26.1319, 0.369091, 35.4733, -34.1319, 0.369091, 43.2233, 25.3681, 0.369091, 36.2233, 23.3681, 0.369091, 36.2233, 23.3681, 0.369091, 43.2233, 26.1181, 0.369091, 35.4733, 34.1181, 0.369091, 43.2233)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(4, 8, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(7, 9, 3), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(9, 2, 3), PackedInt32Array(13, 12, 11), PackedInt32Array(11, 12, 10), PackedInt32Array(0, 1, 14), PackedInt32Array(14, 1, 15), PackedInt32Array(5, 6, 16), PackedInt32Array(16, 6, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 22), PackedInt32Array(21, 22, 14), PackedInt32Array(14, 15, 21), PackedInt32Array(25, 24, 23), PackedInt32Array(23, 26, 25), PackedInt32Array(25, 26, 27), PackedInt32Array(27, 26, 17), PackedInt32Array(26, 16, 17), PackedInt32Array(19, 24, 18), PackedInt32Array(18, 24, 25)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_waqol"]
 albedo_color = Color(0.197937, 0.197937, 0.197937, 1)
@@ -43,12 +50,18 @@ size = Vector3(2.08551, 1, 1.983)
 environment = SubResource("Environment_rnikm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.160295, 0.980091, -0.117164, -0.330308, 0.165117, 0.929319, 0.930163, -0.110264, 0.350199, 0, 6.68963, -2.81068)
-light_color = Color(0.81, 0.6966, 0.6966, 1)
-light_energy = 5.0
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566118, 0, 6.68963, -2.81068)
+light_color = Color(0.59, 0.4189, 0.413, 1)
+light_energy = 3.0
 shadow_enabled = true
 shadow_opacity = 0.4
 shadow_blur = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(1, 5.96046e-08, 1.49012e-08, -1.19209e-07, 1, -6.70552e-08, 2.79397e-08, 2.98023e-08, 1, 0.619693, 10.0956, 6.07527)
+light_color = Color(0.942946, 0.698235, 0.598764, 1)
+light_energy = 50.0
+omni_range = 37.5396
 
 [node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.978811, 0.334202, -24.5285)

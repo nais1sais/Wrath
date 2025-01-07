@@ -16,13 +16,21 @@ func _ready() -> void:
 	HEALTH_BAR.value = health
 	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 
+func damage(amount: float) -> void:
+	REAPER.CAMERA.shake += 1
+
 func death() -> void:
+	REAPER.CAMERA.shake += 5
 	queue_free()
+
+func shake_camera() -> void:
+	REAPER.CAMERA.shake += 5
 
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
 	if not body.health: return
+	if body.has_method("damage"): body.damage(10)
 	body.health -= 10;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
