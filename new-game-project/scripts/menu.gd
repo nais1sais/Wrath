@@ -45,6 +45,7 @@ func quit() -> void:
 @export var options_music_bus: String = "Music"
 @export var options_display_dropdown: OptionButton
 @export var options_back_button: Button
+
 func save_settings() -> void:
 	var config = ConfigFile.new()
 	if options_master_slider: config.set_value("audio", "master_volume", options_master_slider.value)
@@ -68,6 +69,7 @@ func load_settings() -> void:
 		music_changed(music_volume)
 		if options_master_slider: options_master_slider.value = master_volume
 		master_changed(master_volume)
+
 func options_back() -> void:
 	main_menu.visible = true
 	options_menu.visible = false

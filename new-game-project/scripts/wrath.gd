@@ -5,23 +5,27 @@ extends CharacterBody3D
 @export var NAV_AGENT: NavigationAgent3D
 @export var HEALTH_BAR: ProgressBar
 @export var MESH: Node3D
-@export var MAX_HEALTH = 50
+@export var MAX_HEALTH: int = 30
 @export var SPEED = 2.0
 @export var ATTACK_AREA: Area3D
+@export var TRIGGER_AREA: Area3D
+@export var DEATH_PARTICLE_SCENE: PackedScene
+@export var MUSIC: AudioStreamPlayer2D
 const JUMP_VELOCITY = 4.5
 var health = MAX_HEALTH
-
-func _ready() -> void:
-	HEALTH_BAR.max_value = MAX_HEALTH
-	HEALTH_BAR.value = health
-	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+var triggered = false;
 
 func damage(amount: float) -> void:
 	REAPER.CAMERA.shake += 1
 
 func death() -> void:
-	REAPER.CAMERA.shake += 5
-	queue_free()
+	ANIM.play("DEATH",0,1,false)
+
+func spawn_death_particles() -> void:
+	if DEATH_PARTICLE_SCENE:
+		var particles = DEATH_PARTICLE_SCENE.instantiate()
+		particles.global_transform = global_transform
+		get_parent().add_child(particles)
 
 func shake_camera() -> void:
 	REAPER.CAMERA.shake += 5
@@ -34,10 +38,28 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	body.health -= 10;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
+	
+func _on_trigger_area_body_entered(body: Node) -> void:
+	if body != REAPER: return
+	MUSIC.playing = true 
+	triggered = true
+	ANIM.play("INTRODUCTION")
+
+func _ready() -> void:
+	health = MAX_HEALTH
+	HEALTH_BAR.max_value = MAX_HEALTH
+	HEALTH_BAR.value = health
+	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	TRIGGER_AREA.connect("body_entered", Callable(self, "_on_trigger_area_body_entered"))
 
 func _physics_process(delta: float) -> void:
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	move_and_slide()
+	
+	if not triggered or health <= 0: return;
 		
 	HEALTH_BAR.value = health
 
@@ -54,5 +76,4 @@ func _physics_process(delta: float) -> void:
 	if global_transform.origin.distance_to(REAPER.global_transform.origin) < 2.0:  # Example distance threshold
 		ANIM.play("ATTACK")
 
-	move_and_slide()
 	

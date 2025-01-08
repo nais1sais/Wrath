@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://scripts/reaper.gd" id="1_0b6a6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_2s8up"]
 
-[sub_resource type="Animation" id="Animation_bx4xs"]
-resource_name = "DEATH"
-
 [sub_resource type="Animation" id="Animation_kk21r"]
 resource_name = "Idle"
 length = 0.001
@@ -360,6 +357,9 @@ tracks/4/keys = {
 "values": [80.0, 70.0, 110.0]
 }
 
+[sub_resource type="Animation" id="Animation_bx4xs"]
+resource_name = "DEATH"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2cvw"]
 _data = {
 "DEATH": SubResource("Animation_bx4xs"),
@@ -401,10 +401,10 @@ expand_margin_bottom = 2.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aab2c"]
-bg_color = Color(0.332881, 0.332881, 0.332881, 1)
+bg_color = Color(0.458405, 0.458405, 0.458405, 1)
 border_width_top = 3
 border_width_right = 3
-border_color = Color(0, 0, 0, 0.188235)
+border_color = Color(1, 1, 1, 0.172549)
 border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -433,7 +433,7 @@ anti_aliasing = false
 bg_color = Color(0.501961, 0.301961, 0.313726, 1)
 border_width_top = 3
 border_width_right = 3
-border_color = Color(0, 0, 0, 0.188235)
+border_color = Color(1, 1, 1, 0.172549)
 border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -443,7 +443,6 @@ anti_aliasing = false
 
 [node name="Reaper" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA", "MESH", "PIVOT", "ANIM", "STAMINA_BAR", "HEALTH_BAR", "ATTACK_AREA")]
 rotation_edit_mode = 1
-collision_layer = 2
 script = ExtResource("1_0b6a6")
 CAMERA = NodePath("Pivot/SpringArm3D/Camera3D")
 MESH = NodePath("Mesh")
@@ -463,7 +462,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_qswe2")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.972606, 0.232461, 0, -0.232461, 0.972606, 0, 2.412, 0)
+transform = Transform3D(1, 0, 0, 0, 0.972606, 0.232461, 0, -0.232461, 0.972606, 0, 1.78773, 0)
 rotation_edit_mode = 1
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Pivot"]

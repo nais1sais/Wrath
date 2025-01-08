@@ -1,11 +1,12 @@
 extends CharacterBody3D
-@export var SPEED = 4.0
+@export var SPEED = 5.3
 @export var SPRINT_MULTIPLIER = 2.0
 @export var MAX_STAMINA = 50.0
 @export var MAX_HEALTH = 50.0
 @export var STAMINA_RECOVERY_SPEED = 30.0
 @export var SPEED_FRICTION = 0.9999999999
-@export var JUMP_VELOCITY = 4.5
+@export var JUMP_VELOCITY = 14.0
+@export var GRAVITY_MULTIPLIER = 4
 @export var MOUSE_SENSITIVITY = 0.003
 @export var TURN_INFLUENCE: float = 1.0
 @export var CAMERA: Camera3D
@@ -16,7 +17,7 @@ extends CharacterBody3D
 @export var HEALTH_BAR: ProgressBar
 @export var ATTACK_AREA: Area3D
 var mouse_delta = Vector2.ZERO
-var health = 50
+var health = MAX_HEALTH
 var stamina = MAX_STAMINA
 
 func _input(event: InputEvent) -> void:
@@ -79,12 +80,13 @@ func _physics_process(delta: float) -> void:
 			ANIM.play("WINDUP")
 		
 	if not Input.is_action_pressed("attack"):
+
 		stamina += STAMINA_RECOVERY_SPEED * delta
 		if stamina > MAX_STAMINA: stamina = MAX_STAMINA
 		STAMINA_BAR.value = stamina
 		
 	if not is_on_floor(): # Gravity
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * GRAVITY_MULTIPLIER * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -99,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	var input_direction := Input.get_vector("left", "right", "forward", "back")
 	if input_direction.length() > 0:
 		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y + global_transform.basis.get_euler().y)
-		if Input.is_action_pressed("sprint"): 
+		if Input.is_action_pressed("sprint") and stamina > 0:
 			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER
 			velocity.z = mesh_direction.z * SPEED * SPRINT_MULTIPLIER
 		else:
@@ -112,5 +114,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0 
 		velocity.z = 0
-
+		
 	move_and_slide()
