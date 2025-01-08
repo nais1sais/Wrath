@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=15 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 [ext_resource type="PackedScene" uid="uid://srdha174fo73" path="res://scenes/particles/boss_death.tscn" id="2_brvm4"]
 [ext_resource type="AudioStream" uid="uid://f7dwuxrh87go" path="res://audio/music/wrath.ogg" id="3_6lmms"]
+[ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/bar_under_style.tres" id="3_lihbd"]
+[ext_resource type="FontFile" uid="uid://cg3g6bx1v1c8l" path="res://textures/fonts/Seagram tfb.ttf" id="3_ww6eg"]
+[ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/bar_progress.tres" id="4_qp71p"]
 
 [sub_resource type="Animation" id="Animation_plb4y"]
 resource_name = "ATTACK"
@@ -310,35 +313,6 @@ size = Vector3(2.33148, 5.42755, 0.300476)
 radius = 1.21148
 height = 6.0512
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kstla"]
-bg_color = Color(0, 0, 0, 0.266667)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 0.172549)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6wii"]
-bg_color = Color(0.501961, 0.301961, 0.313726, 1)
-border_width_top = 3
-border_width_right = 3
-border_color = Color(0, 0, 0, 0.188235)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
 [node name="Wrath" type="CharacterBody3D" node_paths=PackedStringArray("ANIM", "NAV_AGENT", "HEALTH_BAR", "MESH", "ATTACK_AREA", "MUSIC")]
 collision_layer = 3
 collision_mask = 3
@@ -377,18 +351,6 @@ shape = SubResource("CapsuleShape3D_oijfr")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = 910.0
-offset_top = 1021.0
-offset_right = 1021.0
-offset_bottom = 1044.0
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 0.690196)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.478431)
-text = "Wrath - Гнев"
-horizontal_alignment = 1
-uppercase = true
-
 [node name="Health" type="ProgressBar" parent="."]
 visible = false
 texture_filter = 1
@@ -396,11 +358,24 @@ offset_left = 590.0
 offset_top = 1049.0
 offset_right = 1338.0
 offset_bottom = 1058.0
-theme_override_styles/background = SubResource("StyleBoxFlat_kstla")
-theme_override_styles/fill = SubResource("StyleBoxFlat_h6wii")
+theme_override_styles/background = ExtResource("3_lihbd")
+theme_override_styles/fill = ExtResource("4_qp71p")
 value = 50.0
 rounded = true
 show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 910.0
+offset_top = 1021.0
+offset_right = 1049.0
+offset_bottom = 1044.0
+theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ww6eg")
+text = "Wrath - Гнев"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_6lmms")
