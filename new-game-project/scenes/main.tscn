@@ -44,12 +44,12 @@ _data = {
 }
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
-sky_top_color = Color(0.0605303, 0.0605304, 0.0605303, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-sky_curve = 0.487356
-ground_bottom_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
-ground_curve = 0.351199
+sky_top_color = Color(0.113725, 0.113725, 0.113725, 1)
+sky_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+sky_curve = 0.0861533
+ground_bottom_color = Color(0.113725, 0.113725, 0.113725, 1)
+ground_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+ground_curve = 0.0356579
 sun_angle_max = 0.0
 sun_curve = 151.205
 
@@ -58,14 +58,14 @@ sky_material = SubResource("ProceduralSkyMaterial_1oyht")
 
 [sub_resource type="Environment" id="Environment_rnikm"]
 background_mode = 2
-background_color = Color(1, 1, 1, 1)
+background_color = Color(0.860369, 0.860369, 0.860369, 1)
 sky = SubResource("Sky_1yw17")
 ambient_light_source = 2
-ambient_light_color = Color(0.41, 0.4925, 0.5, 1)
-ambient_light_energy = 0.56
+ambient_light_color = Color(0.192157, 0.192157, 0.192157, 1)
+ambient_light_energy = 4.0
 reflected_light_source = 2
 fog_enabled = true
-fog_light_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+fog_light_color = Color(0.114897, 0.114897, 0.114897, 1)
 fog_density = 0.0
 fog_sky_affect = 0.0
 fog_height_density = 0.0589
@@ -105,16 +105,24 @@ environment = SubResource("Environment_rnikm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -0.680692, 24.0903, -2.51908)
-light_color = Color(0.52, 0.45604, 0.4264, 1)
-light_energy = 50.0
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 80.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 omni_range = 102.0
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -31.6807, -4.9097, -62.4167)
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 50.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 16.0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.353553, -0.707107, -0.612372, -0.353553, -0.707107, 0.612373, -0.866025, -7.57103e-08, -0.5, 0, 29, 0)
-light_color = Color(0.600106, 0.445402, 0.38991, 1)
-light_energy = 2.72
+transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244807, -0.164633, 0, 29, 0)
+light_color = Color(0.51, 0.51, 0.51, 1)
+light_energy = 5.0
 
 [node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35.2945, -11.666, -64)
@@ -125,6 +133,7 @@ navigation_mesh = SubResource("NavigationMesh_jc5vn")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(50, 0, 0, 0, 1000, 0, 0, 0, 70, 0, -500, -3)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
@@ -135,6 +144,7 @@ shape = SubResource("BoxShape3D_5wica")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -502, -44)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
@@ -145,6 +155,7 @@ shape = SubResource("BoxShape3D_5wica")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -504, -54)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
@@ -155,6 +166,7 @@ shape = SubResource("BoxShape3D_5wica")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -506, -64)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D4"]
@@ -165,6 +177,7 @@ shape = SubResource("BoxShape3D_5wica")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -10, -508, -64)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D5"]
@@ -175,6 +188,7 @@ shape = SubResource("BoxShape3D_5wica")
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -20, -510, -64)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D6"]
@@ -192,6 +206,7 @@ shape = SubResource("BoxShape3D_6y2hy")
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(10, 0, 0, 0, 1000, 0, 0, 0, 10, -32, -512, -64)
 material_override = ExtResource("3_pdbih")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
 [node name="Trigger Area" type="Area3D" parent="."]
