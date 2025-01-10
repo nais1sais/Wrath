@@ -208,7 +208,7 @@ theme = ExtResource("3_vw818")
 bbcode_enabled = true
 text = "[center] [color=#ececec] Boss Rush Jam[/color][color=#858585] - 2025 \"Spin\" Entry [/color]
 [color=#ececec]ClairdeLou[/color][color=#858585] - Music - USA [/color]
-[color=#ececec]Jcmusik08 [/color][color=#858585]- Sound Design [/color]
+[color=#ececec]Jcmusik08 [/color][color=#858585]- Sound Design - USA [/color]
 [color=#ececec]Mallnasy[/color][color=#858585] - Modeling / Texturing - Russia [/color]
 [color=#ececec]Nemo [/color][color=#858585]- Animation / Programming - USA  [/color]
 [/center]"
@@ -220,7 +220,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme = ExtResource("3_vw818")
-text = "Back
+text = "BACK
 "
 icon_alignment = 1
 

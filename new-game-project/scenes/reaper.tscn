@@ -1,89 +1,65 @@
-[gd_scene load_steps=19 format=3 uid="uid://c63gb30rbqgem"]
+[gd_scene load_steps=34 format=3 uid="uid://c63gb30rbqgem"]
 
 [ext_resource type="Script" path="res://scripts/reaper.gd" id="1_0b6a6"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_2s8up"]
+[ext_resource type="AudioStream" uid="uid://dlxjdi5hk77yj" path="res://audio/sfx/Player_Jump_1.wav" id="2_4o1gs"]
+[ext_resource type="AudioStream" uid="uid://dv38k4hi68nft" path="res://audio/sfx/Player_Spawn.wav" id="2_ykn11"]
 [ext_resource type="PackedScene" uid="uid://xbs1vkc0kdgm" path="res://models/blender/reaper.blend" id="3_k4avc"]
 [ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/menu_style.tres" id="3_xeyp1"]
+[ext_resource type="AudioStream" uid="uid://b8lw32m587yq" path="res://audio/sfx/Player_Jump_2.wav" id="3_yqgys"]
+[ext_resource type="AudioStream" uid="uid://d2pln73wecwin" path="res://audio/sfx/Player_LandFromJump_1.wav" id="4_30dni"]
 [ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/bar_under_style.tres" id="4_nq6uo"]
 [ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/bar_progress.tres" id="5_k7wi7"]
+[ext_resource type="AudioStream" uid="uid://p73kng3nr073" path="res://audio/sfx/Player_LandFromJump_2.wav" id="5_t6b8x"]
+[ext_resource type="AudioStream" uid="uid://cww02b50taw61" path="res://audio/sfx/Player_Step_1.wav" id="7_erto2"]
+[ext_resource type="AudioStream" uid="uid://lr82bnpacd5v" path="res://audio/sfx/Player_Slash_1.wav" id="7_ke5vg"]
+[ext_resource type="AudioStream" uid="uid://c2w7qcyf0wxqe" path="res://audio/sfx/Player_Slash_2.wav" id="8_ju5er"]
+[ext_resource type="AudioStream" uid="uid://bt0ejti1ku0n4" path="res://audio/sfx/Player_Step_2.wav" id="8_wxf0g"]
+[ext_resource type="AudioStream" uid="uid://boh8nmwkjx2sf" path="res://audio/sfx/Player_Step_3.wav" id="9_rg8br"]
+[ext_resource type="AudioStream" uid="uid://djcnx55f2623u" path="res://audio/sfx/Player_Slash_3.wav" id="9_vjpbg"]
+[ext_resource type="AudioStream" uid="uid://b300m7uswnvvj" path="res://audio/sfx/Player_Slash_4.wav" id="10_b5llx"]
+[ext_resource type="AudioStream" uid="uid://bfa44eyn6q4vu" path="res://audio/sfx/Player_Step_4.wav" id="10_tro3i"]
 
 [sub_resource type="Animation" id="Animation_bx4xs"]
 resource_name = "DEATH"
 
 [sub_resource type="Animation" id="Animation_kk21r"]
 resource_name = "Idle"
-length = 0.001
+length = 0.96667
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Body:rotation")
+tracks/0/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [80.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Body:position")
+tracks/1/path = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1, 0)]
+"values": [true]
 }
-tracks/2/type = "value"
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/Body/Sythe:rotation")
+tracks/2/path = NodePath("Mesh/reaper/AnimationPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.01627e-08, -0.570566, 0.616747)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh/Body/Sythe:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.177279, 0, -0.271903)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [80.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Mesh/Body/Sythe/MeshInstance3D/Area3D/CollisionShape3D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"clips": PackedStringArray("Idle", "Idle"),
+"times": PackedFloat32Array(0, 0.866667)
 }
 
 [sub_resource type="Animation" id="Animation_2to1h"]
@@ -91,298 +67,347 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Body:rotation")
+tracks/0/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/Body/Sythe:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.01627e-08, -0.570566, 0.616747)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh/Body/Sythe:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.177279, 0, -0.271903)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [80.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Mesh/Body/Sythe/MeshInstance3D/Area3D/CollisionShape3D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:SPEED_MULTIPLIER")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:TURN_INFLUENCE")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_376u0"]
 resource_name = "Spin"
-length = 0.333337
+length = 0.375004
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Body/Sythe:rotation")
+tracks/0/path = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D/CollisionShape3D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.31654, -0.29175, -1.37012)]
+"values": [false]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Body:position")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
+"values": [{
+"args": [],
+"method": &"play_spin_sound"
+}]
 }
-tracks/2/type = "value"
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/Body:rotation")
+tracks/2/path = NodePath("Mesh/reaper/AnimationPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 7.85398, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh/Body/Sythe:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.664428, 0.150267, -0.209098)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Mesh/Body/Sythe/MeshInstance3D/Area3D/CollisionShape3D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"clips": PackedStringArray("Spin"),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_od6d7"]
 resource_name = "Windown"
+length = 0.625005
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Body/Sythe:rotation")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.625),
+"transitions": PackedFloat32Array(4.59479, 1),
 "update": 0,
-"values": [Vector3(-1.31654, -0.29175, -1.37012), Vector3(-1.31654, -0.29175, 1.59518), Vector3(1.01627e-08, -0.570566, 0.616747)]
+"values": [90.0, 80.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Body:position")
+tracks/1/path = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1, 0)]
+"values": [true]
 }
-tracks/2/type = "value"
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/Body:rotation")
-tracks/2/interp = 2
+tracks/2/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 2.82743, 0), Vector3(0, 0, 0)]
+"clips": PackedStringArray("Windown"),
+"times": PackedFloat32Array(0)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh/Body/Sythe:position")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.0833333, 0.291667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.664428, 0.150267, -0.209098), Vector3(-0.00719696, 0.12908, -0.325673), Vector3(0.177279, 0, -0.271903)]
+"values": [false, true]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(4.59479, 1),
-"update": 0,
-"values": [110.0, 80.0]
+"times": PackedFloat32Array(0.0416667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_spin_sound"
+}]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Mesh/Body/Sythe/MeshInstance3D/Area3D/CollisionShape3D:disabled")
+tracks/5/path = NodePath(".:SPEED_MULTIPLIER")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0416667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [0.2, 1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:TURN_INFLUENCE")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0416667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_qldqy"]
 resource_name = "Windup"
-length = 0.600003
+length = 0.500005
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Body:rotation")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.166667, 0.5),
+"transitions": PackedFloat32Array(0.225313, 1.93187, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.08205, 0), Vector3(0, -0.0208696, 0), Vector3(0, 0, 0)]
+"values": [80.0, 70.0, 90.0]
 }
-tracks/1/type = "value"
+tracks/1/type = "animation"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Body:position")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
+"clips": PackedStringArray("Windup"),
+"times": PackedFloat32Array(0)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/Body/Sythe:rotation")
-tracks/2/interp = 1
+tracks/2/path = NodePath(".:SPEED_MULTIPLIER")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 0.210224, 4.92458, 1, 1),
-"update": 0,
-"values": [Vector3(1.01627e-08, -0.570566, 0.616747), Vector3(-0.519906, -1.25816, 0.516754), Vector3(-0.934963, -2.51498, -0.993401), Vector3(-1.1486, -1.27024, -1.20432), Vector3(-1.31654, -0.29175, -1.37012)]
+"times": PackedFloat32Array(0, 0.333333, 0.458333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 1, 0.2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh/Body/Sythe:position")
+tracks/3/path = NodePath(".:TURN_INFLUENCE")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.4, 0.566667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.333333, 0.458333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.177279, 0, -0.271903), Vector3(0.486745, 0.0795531, -0.172185), Vector3(0.664428, 0.150267, 0.257657), Vector3(0.664428, 0.150267, -0.157236), Vector3(0.664428, 0.150267, -0.209098)]
+"values": [1.0, 0.2]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SpringArm3D/Camera3D:fov")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.533333),
-"transitions": PackedFloat32Array(0.225313, 1.93187, 1),
-"update": 0,
-"values": [80.0, 70.0, 110.0]
+
+[sub_resource type="Animation" id="Animation_4nekk"]
+resource_name = "WALK"
+length = 0.708338
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Walk"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.291667, 0.625),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep_sound"
+}, {
+"args": [],
+"method": &"play_footstep_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_w2nfg"]
+resource_name = "RUN"
+length = 0.708338
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Run"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.291667, 0.625),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep_sound"
+}, {
+"args": [],
+"method": &"play_footstep_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wfofs"]
+resource_name = "JUMP"
+length = 0.208338
+step = 0.0416667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Jump"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_7aqcu"]
+resource_name = "Fall"
+length = 0.166671
+step = 0.0416667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/reaper/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Fall"),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2cvw"]
 _data = {
 "DEATH": SubResource("Animation_bx4xs"),
+"Fall": SubResource("Animation_7aqcu"),
 "IDLE": SubResource("Animation_kk21r"),
+"JUMP": SubResource("Animation_wfofs"),
 "RESET": SubResource("Animation_2to1h"),
+"RUN": SubResource("Animation_w2nfg"),
 "SPIN": SubResource("Animation_376u0"),
+"WALK": SubResource("Animation_4nekk"),
 "WINDOWN": SubResource("Animation_od6d7"),
 "WINDUP": SubResource("Animation_qldqy")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qswe2"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_24hr2"]
-size = Vector3(0.03, 3.495, 0.015)
-
-[sub_resource type="PrismMesh" id="PrismMesh_halkl"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jko3"]
-size = Vector3(6.66406, 1, 1.79254)
+size = Vector3(18.085, 0.721558, 1.20326)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oey1r"]
 bg_color = Color(0.36, 0.36, 0.36, 1)
@@ -406,12 +431,19 @@ PIVOT = NodePath("Pivot")
 ANIM = NodePath("AnimationPlayer")
 STAMINA_BAR = NodePath("Stamina")
 HEALTH_BAR = NodePath("Health")
-ATTACK_AREA = NodePath("Mesh/Body/Sythe/MeshInstance3D/Area3D")
+ATTACK_AREA = NodePath("Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D")
+SPAWN_SOUND = ExtResource("2_ykn11")
+JUMP_SOUNDS = Array[AudioStream]([ExtResource("2_4o1gs"), ExtResource("3_yqgys")])
+LAND_SOUNDS = Array[AudioStream]([ExtResource("4_30dni"), ExtResource("5_t6b8x")])
+FOOTSTEP_SOUNDS = Array[AudioStream]([ExtResource("7_erto2"), ExtResource("8_wxf0g"), ExtResource("9_rg8br"), ExtResource("10_tro3i")])
+SPIN_SOUNDS = Array[AudioStream]([ExtResource("7_ke5vg"), ExtResource("8_ju5er"), ExtResource("9_vjpbg"), ExtResource("10_b5llx")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_b2cvw")
 }
+autoplay = "IDLE"
+movie_quit_on_finish = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -441,24 +473,55 @@ omni_range = 10.0
 
 [node name="reaper" parent="Mesh" instance=ExtResource("3_k4avc")]
 
-[node name="Body" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-skeleton = NodePath("../../..")
+[node name="Skeleton3D" parent="Mesh/reaper/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.707089, -0.00501628, 0.00501628, 0.707089)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0.707089, 0.00501628, -0.00501628, 0.707089)
+bones/1/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0705314, 0.00275743, 0.0302702, 0.997046)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.0496176, -0.0108584, 0.0303243, 0.998249)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.0447152, -0.00605531, -0.0713229, 0.996432)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.0157439, -0.00325057, -0.419001, 0.907843)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.011816, -0.00872441, -0.099983, 0.994881)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.0430273, -0.0475705, -0.725804, 0.684905)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0705314, -0.00275743, -0.0302702, 0.997046)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.0496177, 0.0108584, -0.0303243, 0.998249)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.0447152, 0.00605531, 0.0713229, 0.996432)
+bones/14/rotation = Quaternion(0.0157439, 0.00325058, 0.419002, 0.907843)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(0.000201691, 0.0121247, 0.999797, 0.0160928)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.0230632, 0.000157507, 0.00323349, 0.999729)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(-0.706787, -3.89189e-08, 0.0012981, 0.707425)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(-0.000201691, 0.0121247, 0.999797, -0.0160928)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.0230632, -0.000157508, -0.0032335, 0.999729)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(-0.706787, 3.89189e-08, -0.0012981, 0.707425)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/scale = Vector3(1, 1, 1)
 
-[node name="Sythe" type="MeshInstance3D" parent="Mesh/Body"]
-transform = Transform3D(0.686543, -0.486766, -0.540108, 0.578384, 0.815765, -1.01627e-08, 0.440601, -0.312391, 0.841595, 0.177279, 0, -0.271903)
-visible = false
-mesh = SubResource("BoxMesh_24hr2")
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.998841, 0.00591695, -0.0477684, -0.00559803, 0.999961, 0.00680751, 0.0478069, -0.00653219, 0.998835, -0.706043, 1.00072, 0.065557)
+bone_name = "staff_2"
+bone_idx = 22
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Body/Sythe"]
-transform = Transform3D(0.00337155, -0.898873, -0.0156772, -0.00130538, 0.0682769, -0.198145, -0.0337691, -0.092384, 0.00609431, -0.42617, 1.63847, -0.0309335)
-visible = false
-mesh = SubResource("PrismMesh_halkl")
+[node name="Area3D" type="Area3D" parent="Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(-0.0339621, 0, 0, 0, -0.906183, 0, 0, 0, -0.198858, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="Mesh/Body/Sythe/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Body/Sythe/MeshInstance3D/Area3D"]
-transform = Transform3D(1, -9.53674e-07, 2.38419e-07, 1.08033e-07, 1, 3.72529e-09, 1.2964e-06, 1.19209e-07, 1, -0.167972, 1.78814e-07, 0.0882292)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D"]
+transform = Transform3D(1, 2.38419e-07, -5.126e-06, 4.65661e-10, 1, 1.86265e-08, -7.45058e-09, 0, 0.999999, 0.460329, -0.904919, -0.489497)
 shape = SubResource("BoxShape3D_4jko3")
 disabled = true
 
@@ -487,3 +550,5 @@ theme_override_styles/fill = ExtResource("5_k7wi7")
 value = 50.0
 rounded = true
 show_percentage = false
+
+[editable path="Mesh/reaper"]

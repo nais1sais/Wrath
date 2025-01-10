@@ -11,12 +11,25 @@ extends CharacterBody3D
 @export var TRIGGER_AREA: Area3D
 @export var DEATH_PARTICLE_SCENE: PackedScene
 @export var MUSIC: AudioStreamPlayer2D
+
+@export var HIT_SOUNDS: Array[AudioStream] = []
 const JUMP_VELOCITY = 4.5
 var health = MAX_HEALTH
 var triggered = false;
 
-func damage(amount: float) -> void:
+func play_sound(sound: AudioStream, pitch_min: float, pitch_max: float) -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	player.pitch_scale = randf_range(pitch_min, pitch_max) 
+	player.bus = "SFX"
+	add_child(player)
+	player.play()
+	player.connect("finished", Callable(player, "queue_free"))
+
+func damage(_amount: float) -> void:
 	REAPER.CAMERA.shake += 1
+	if HIT_SOUNDS.size() > 0:
+		play_sound(HIT_SOUNDS[randi() % HIT_SOUNDS.size()], 0.9, 1.1)
 
 func death() -> void:
 	ANIM.play("DEATH",0,1,false)
@@ -41,6 +54,7 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	
 func _on_trigger_area_body_entered(body: Node) -> void:
 	if body != REAPER: return
+	if MUSIC.playing == true: return
 	MUSIC.playing = true 
 	triggered = true
 	ANIM.play("INTRODUCTION")

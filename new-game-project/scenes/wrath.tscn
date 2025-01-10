@@ -1,11 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=20 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 [ext_resource type="PackedScene" uid="uid://srdha174fo73" path="res://scenes/particles/boss_death.tscn" id="2_brvm4"]
 [ext_resource type="AudioStream" uid="uid://f7dwuxrh87go" path="res://audio/music/wrath.ogg" id="3_6lmms"]
 [ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/bar_under_style.tres" id="3_lihbd"]
+[ext_resource type="AudioStream" uid="uid://bebl8tujosm1y" path="res://audio/sfx/Enemy_OnHit_1.wav" id="3_nbwf2"]
 [ext_resource type="FontFile" uid="uid://cg3g6bx1v1c8l" path="res://textures/fonts/Seagram tfb.ttf" id="3_ww6eg"]
+[ext_resource type="AudioStream" uid="uid://b4dyx5m8hsynq" path="res://audio/sfx/Enemy_OnHit_2.wav" id="4_1aywb"]
 [ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/bar_progress.tres" id="4_qp71p"]
+[ext_resource type="AudioStream" uid="uid://bv7cgqlt3sbtb" path="res://audio/sfx/Enemy_OnHit_3.wav" id="5_26ndu"]
+[ext_resource type="AudioStream" uid="uid://hbnqqiop72uw" path="res://audio/sfx/Enemy_Roar_2.wav" id="6_5c1ct"]
+[ext_resource type="AudioStream" uid="uid://cf425758jfm2q" path="res://audio/sfx/Enemy_Despawn.wav" id="6_ew0re"]
 
 [sub_resource type="Animation" id="Animation_plb4y"]
 resource_name = "ATTACK"
@@ -48,6 +53,21 @@ tracks/2/keys = {
 "method": &"shake_camera"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_5c1ct")
+}],
+"times": PackedFloat32Array(1.13333)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_x1kl7"]
 resource_name = "DEATH"
@@ -168,6 +188,21 @@ tracks/8/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sfx")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ew0re")
+}],
+"times": PackedFloat32Array(0.166667)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_mlrdc"]
 resource_name = "INTRODUCTION"
@@ -324,6 +359,7 @@ MESH = NodePath("Mesh")
 ATTACK_AREA = NodePath("Mesh/MeshInstance3D/Area3D")
 DEATH_PARTICLE_SCENE = ExtResource("2_brvm4")
 MUSIC = NodePath("Music")
+HIT_SOUNDS = Array[AudioStream]([ExtResource("3_nbwf2"), ExtResource("4_1aywb"), ExtResource("5_26ndu")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -376,6 +412,8 @@ theme_override_fonts/font = ExtResource("3_ww6eg")
 text = "Wrath - Гнев"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_6lmms")

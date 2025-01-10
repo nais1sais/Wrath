@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY = 14.0
 @export var GRAVITY_MULTIPLIER = 4
 @export var MOUSE_SENSITIVITY = 0.003
+@export var TURN_SPEED: float = 16.0
 @export var TURN_INFLUENCE: float = 1.0
 @export var CAMERA: Camera3D
 @export var MESH: Node3D
@@ -16,15 +17,39 @@ extends CharacterBody3D
 @export var STAMINA_BAR: ProgressBar
 @export var HEALTH_BAR: ProgressBar
 @export var ATTACK_AREA: Area3D
+@export var SPAWN_SOUND: AudioStream
+@export var JUMP_SOUNDS: Array[AudioStream] = []
+@export var LAND_SOUNDS: Array[AudioStream] = []
+@export var FOOTSTEP_SOUNDS: Array[AudioStream] = []
+@export var SPIN_SOUNDS: Array[AudioStream] = []
+@export var SPEED_MULTIPLIER: float = 1.0
 var mouse_delta = Vector2.ZERO
 var health = MAX_HEALTH
 var stamina = MAX_STAMINA
+var previously_velocity = Vector3.ZERO
 
+func play_spin_sound() -> void:
+	if SPIN_SOUNDS.size() > 0:
+		play_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
+
+func play_footstep_sound() -> void:
+	if FOOTSTEP_SOUNDS.size() > 0:
+		play_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
+
+func play_sound(sound: AudioStream, pitch_min: float, pitch_max: float) -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	player.pitch_scale = randf_range(pitch_min, pitch_max) 
+	player.bus = "SFX"
+	add_child(player)
+	player.play()
+	player.connect("finished", Callable(player, "queue_free"))
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 
-func damage(amount: float) -> void:
+func damage(_amount: float) -> void:
 	CAMERA.shake += 3
 
 func death() -> void:
@@ -54,6 +79,7 @@ func _on_animation_finished(animation_name: String) -> void:
 		STAMINA_BAR.value = stamina
 
 func _ready() -> void:
+	play_sound(SPAWN_SOUND, 1.0, 1.0)
 	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
@@ -75,21 +101,29 @@ func _physics_process(delta: float) -> void:
 
 	HEALTH_BAR.value = health
 	
-	if Input.is_action_just_pressed("attack"):
-		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"]:
-			ANIM.play("WINDUP")
+	if Input.is_action_just_pressed("attack"): # ATTACK
+		if is_on_floor():
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"]:
+				ANIM.play("WINDUP")
 		
-	if not Input.is_action_pressed("attack"):
-
+	if not Input.is_action_pressed("attack"): # STAMINA RECOVERY
 		stamina += STAMINA_RECOVERY_SPEED * delta
 		if stamina > MAX_STAMINA: stamina = MAX_STAMINA
 		STAMINA_BAR.value = stamina
 		
-	if not is_on_floor(): # Gravity
+	if not is_on_floor(): # GRAVITY
 		velocity += get_gravity() * GRAVITY_MULTIPLIER * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if is_on_floor() and previously_velocity.y < -5:
+		if LAND_SOUNDS.size() > 0:
+			play_sound(LAND_SOUNDS[randi() % LAND_SOUNDS.size()], 0.9, 1.1)
+	previously_velocity = velocity
+
+	if Input.is_action_just_pressed("jump") and is_on_floor(): # JUMP
+		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"]:
+			if JUMP_SOUNDS.size() > 0:  
+				play_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
+			velocity.y = JUMP_VELOCITY
 
 	if mouse_delta.length() > 0:
 		var y_rot = Quaternion(Vector3.UP, -mouse_delta.x * MOUSE_SENSITIVITY)
@@ -98,21 +132,36 @@ func _physics_process(delta: float) -> void:
 
 		mouse_delta = Vector2.ZERO
 
+	if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"] and !is_on_floor():
+		if (velocity.y < 0):
+			ANIM.play("Fall")
+		else:
+			ANIM.play("JUMP")
+
 	var input_direction := Input.get_vector("left", "right", "forward", "back")
 	if input_direction.length() > 0:
 		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y + global_transform.basis.get_euler().y)
 		if Input.is_action_pressed("sprint") and stamina > 0:
-			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER
-			velocity.z = mesh_direction.z * SPEED * SPRINT_MULTIPLIER
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"] and is_on_floor():
+				ANIM.play("RUN", 0.0, 1, false)
+			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER * SPEED_MULTIPLIER
+			velocity.z = mesh_direction.z * SPEED * SPRINT_MULTIPLIER * SPEED_MULTIPLIER
 		else:
-			velocity.x = mesh_direction.x * SPEED
-			velocity.z = mesh_direction.z * SPEED
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"] and is_on_floor():
+				ANIM.play("WALK", 0.0, 1, false)
+			velocity.x = mesh_direction.x * SPEED * SPEED_MULTIPLIER
+			velocity.z = mesh_direction.z * SPEED * SPEED_MULTIPLIER
 
 		var direction = (Vector3(input_direction.x, 0, input_direction.y)).normalized()
 		var target_rotation = atan2(direction.x, direction.z) + PI
-		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, 16.0 * TURN_INFLUENCE * delta)
+		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, TURN_SPEED * TURN_INFLUENCE * delta)
 	else:
+		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"] and is_on_floor():
+			ANIM.play("IDLE", 0, 1, false)
 		velocity.x = 0 
 		velocity.z = 0
+		
+		
+	
 		
 	move_and_slide()

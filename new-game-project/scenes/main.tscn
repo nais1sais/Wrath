@@ -125,7 +125,7 @@ light_color = Color(0.51, 0.51, 0.51, 1)
 light_energy = 5.0
 
 [node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35.2945, -11.666, -64)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35.294, -12, -64)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_jc5vn")
