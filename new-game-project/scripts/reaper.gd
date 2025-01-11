@@ -79,6 +79,12 @@ func _on_animation_finished(animation_name: String) -> void:
 		STAMINA_BAR.value = stamina
 
 func _ready() -> void:
+	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
+		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
+	if Save.data.has("checkpoint_rotation_y"):
+		rotation.y = Save.data["checkpoint_rotation_y"]
+	
+	
 	play_sound(SPAWN_SOUND, 1.0, 1.0)
 	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))

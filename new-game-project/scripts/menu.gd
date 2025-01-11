@@ -21,7 +21,8 @@ func pause() -> void:
 	Engine.time_scale = 0
 	get_tree().paused = true
 func restart() -> void:
-	resume()
+	Save.data = {}
+	Save.save_game()
 	get_tree().reload_current_scene()
 func options() -> void:
 	main_menu.visible = false

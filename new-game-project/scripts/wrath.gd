@@ -33,6 +33,8 @@ func damage(_amount: float) -> void:
 
 func death() -> void:
 	ANIM.play("DEATH",0,1,false)
+	Save.data["wrath_defeated"] = true
+	Save.save_game()
 
 func spawn_death_particles() -> void:
 	if DEATH_PARTICLE_SCENE:
@@ -60,6 +62,10 @@ func _on_trigger_area_body_entered(body: Node) -> void:
 	ANIM.play("INTRODUCTION")
 
 func _ready() -> void:
+	
+	if Save.data.has("wrath_defeated") and Save.data["wrath_defeated"]:
+		queue_free()
+
 	health = MAX_HEALTH
 	HEALTH_BAR.max_value = MAX_HEALTH
 	HEALTH_BAR.value = health

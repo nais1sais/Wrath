@@ -19,6 +19,10 @@ boot_splash/show_image=false
 
 buses/default_bus_layout="res://audio/channels_layot.tres"
 
+[autoload]
+
+Save="*res://scripts/save.gd"
+
 [display]
 
 window/size/viewport_width=1920

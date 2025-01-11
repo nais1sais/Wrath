@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://srdha174fo73"]
+[gd_scene load_steps=12 format=3 uid="uid://3srleicf0vwk"]
 
-[ext_resource type="Texture2D" uid="uid://dp8db0hvnar21" path="res://textures/kenney free particles/smoke_04.png" id="1_frlwd"]
+[ext_resource type="Texture2D" uid="uid://bgteof0ua1pk6" path="res://textures/kenney free particles/scorch_02.png" id="1_veufe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij2o8"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.252028, 0.252028, 0.252028, 0.74902)
-albedo_texture = ExtResource("1_frlwd")
+albedo_color = Color(0.241156, 0.241156, 0.241156, 1)
+albedo_texture = ExtResource("1_veufe")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -16,38 +16,31 @@ particles_anim_loop = false
 grow_amount = -4.0
 
 [sub_resource type="Curve" id="Curve_eu71s"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0447284, 0.602548), 5.48835, 5.48835, 0, 0, Vector2(0.166134, 0.784713), 0.235611, 0.235611, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0197368, 0.794195), 5.48835, 5.48835, 0, 0, Vector2(0.223684, 0.305409), -1.85377, -1.85377, 0, 0, Vector2(0.99671, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_ao7lu"]
 curve = SubResource("Curve_eu71s")
 
 [sub_resource type="Curve" id="Curve_6r500"]
-max_value = 20.0
-_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+max_value = 4.0
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.105263, 2.49077), 0.0, 0.0, 0, 0, Vector2(0.230263, 0.948549), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_mliri"]
 curve = SubResource("Curve_6r500")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1a4pd"]
 particle_flag_damping_as_friction = true
-emission_shape = 3
-emission_box_extents = Vector3(5, 5, 5)
-angle_min = -918.5
-angle_max = 866.5
-direction = Vector3(1, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -158.0
+angle_max = 1.07288e-05
 spread = 180.0
-initial_velocity_max = 1.0
+initial_velocity_max = 0.1
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
-gravity = Vector3(0, 50, 0)
-radial_accel_min = -2.23517e-06
-radial_accel_max = -2.23517e-06
-tangential_accel_min = 76.31
-tangential_accel_max = 500.0
-damping_min = 27.09
-damping_max = 27.1
+gravity = Vector3(0, 0.2, 0)
 scale_curve = SubResource("CurveTexture_mliri")
 alpha_curve = SubResource("CurveTexture_ao7lu")
 
@@ -106,13 +99,10 @@ _data = {
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_ij2o8")
-transparency = 0.55
 emitting = false
-amount = 32
-lifetime = 12.3
-one_shot = true
+amount = 64
+lifetime = 12.0
 speed_scale = 2.0
-explosiveness = 1.0
 fixed_fps = 60
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_1a4pd")

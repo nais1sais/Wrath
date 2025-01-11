@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dotjha5xn604g"]
+[gd_scene load_steps=18 format=3 uid="uid://dotjha5xn604g"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menu.tscn" id="1_1rq46"]
 [ext_resource type="PackedScene" uid="uid://cgstmm4bvcn4r" path="res://scenes/kill_volume.tscn" id="1_kg4e1"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_fauf2"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="3_78svs"]
 [ext_resource type="Material" uid="uid://b83k3uwhm0d0e" path="res://shaders/brick.tres" id="3_pdbih"]
+[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="6_32w4m"]
 
 [sub_resource type="Animation" id="Animation_vbito"]
 length = 0.001
@@ -53,13 +54,13 @@ ground_curve = 0.0356579
 sun_angle_max = 0.0
 sun_curve = 151.205
 
-[sub_resource type="Sky" id="Sky_1yw17"]
+[sub_resource type="Sky" id="Sky_efxjq"]
 sky_material = SubResource("ProceduralSkyMaterial_1oyht")
 
 [sub_resource type="Environment" id="Environment_rnikm"]
 background_mode = 2
 background_color = Color(0.860369, 0.860369, 0.860369, 1)
-sky = SubResource("Sky_1yw17")
+sky = SubResource("Sky_efxjq")
 ambient_light_source = 2
 ambient_light_color = Color(0.192157, 0.192157, 0.192157, 1)
 ambient_light_energy = 4.0
@@ -85,6 +86,9 @@ size = Vector3(10, 500, 10)
 size = Vector3(50, 15.2804, 49)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Kill Floor" parent="." instance=ExtResource("1_kg4e1")]
+transform = Transform3D(227.6, 0, 0, 0, 500, 0, 0, 0, 217.95, 2, -274.136, -1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 2
@@ -196,33 +200,39 @@ mesh = SubResource("BoxMesh_2sx4i")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D6/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -512, -64)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
-shape = SubResource("BoxShape3D_6y2hy")
-
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(10, 0, 0, 0, 1000, 0, 0, 0, 10, -32, -512, -64)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
 
-[node name="Trigger Area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.12158, 22)
-collision_layer = 3
-collision_mask = 3
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D7"]
+transform = Transform3D(0.1, 0, 0, 0, 0.001, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
-shape = SubResource("BoxShape3D_ss4gr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
+shape = SubResource("BoxShape3D_6y2hy")
 
 [node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.13557, 19)
 REAPER = NodePath("../Reaper")
 NAV_REGION = NodePath("../NavigationRegion3D")
-TRIGGER_AREA = NodePath("../Trigger Area")
+TRIGGER_AREA = NodePath("Trigger Area")
 
-[node name="Area3D" parent="." instance=ExtResource("1_kg4e1")]
-transform = Transform3D(227.6, 0, 0, 0, 500, 0, 0, 0, 217.95, 2, -274.136, -1)
+[node name="Trigger Area" type="Area3D" parent="Wrath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wrath/Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_ss4gr")
+
+[node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("6_32w4m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0726547, 0, -31.8256)
+REAPER = NodePath("../Reaper")
+
+[node name="CollisionShape3D" parent="Checkpoint" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+
+[editable path="Checkpoint"]
