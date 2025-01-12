@@ -1,6 +1,6 @@
 extends Camera3D
 @export var shake = 0.0
-@export var decay_rate = 5.0
+@export var decay_rate = 8.0
 @export var max_shake = 10.0
 var noise := FastNoiseLite.new()
 var shake_offset := Vector3.ZERO

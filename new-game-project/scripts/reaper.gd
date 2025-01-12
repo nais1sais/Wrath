@@ -1,8 +1,8 @@
 extends CharacterBody3D
 @export var SPEED = 5.3
 @export var SPRINT_MULTIPLIER = 2.0
-@export var MAX_STAMINA = 50.0
-@export var MAX_HEALTH = 50.0
+@export var MAX_STAMINA = 25.0
+@export var MAX_HEALTH = 25.0
 @export var STAMINA_RECOVERY_SPEED = 30.0
 @export var SPEED_FRICTION = 0.9999999999
 @export var JUMP_VELOCITY = 14.0
@@ -16,12 +16,14 @@ extends CharacterBody3D
 @export var ANIM: AnimationPlayer
 @export var STAMINA_BAR: ProgressBar
 @export var HEALTH_BAR: ProgressBar
+@export var BAR_PIXEL_WIDTH = 2
 @export var ATTACK_AREA: Area3D
 @export var SPAWN_SOUND: AudioStream
 @export var JUMP_SOUNDS: Array[AudioStream] = []
 @export var LAND_SOUNDS: Array[AudioStream] = []
 @export var FOOTSTEP_SOUNDS: Array[AudioStream] = []
 @export var SPIN_SOUNDS: Array[AudioStream] = []
+@export var HURT_SOUNDS: Array[AudioStream] = []
 @export var SPEED_MULTIPLIER: float = 1.0
 var mouse_delta = Vector2.ZERO
 var health = MAX_HEALTH
@@ -30,27 +32,20 @@ var previously_velocity = Vector3.ZERO
 
 func play_spin_sound() -> void:
 	if SPIN_SOUNDS.size() > 0:
-		play_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
+		Audio.play_2d_oneshot_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
 
 func play_footstep_sound() -> void:
 	if FOOTSTEP_SOUNDS.size() > 0:
-		play_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
+		Audio.play_2d_oneshot_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
 
-func play_sound(sound: AudioStream, pitch_min: float, pitch_max: float) -> void:
-	var player = AudioStreamPlayer2D.new()
-	player.stream = sound
-	player.pitch_scale = randf_range(pitch_min, pitch_max) 
-	player.bus = "SFX"
-	add_child(player)
-	player.play()
-	player.connect("finished", Callable(player, "queue_free"))
-	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 
 func damage(_amount: float) -> void:
 	CAMERA.shake += 3
+	if HURT_SOUNDS.size() > 0:
+		Audio.play_2d_oneshot_sound(HURT_SOUNDS[randi() % HURT_SOUNDS.size()], 0.9, 1.1)
 
 func death() -> void:
 	get_tree().reload_current_scene()
@@ -83,17 +78,33 @@ func _ready() -> void:
 		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
 	if Save.data.has("checkpoint_rotation_y"):
 		rotation.y = Save.data["checkpoint_rotation_y"]
+		
+	if Save.data.has("max_health"):
+		HEALTH_BAR.max_value = Save.data["max_health"]
+		MAX_HEALTH = Save.data["max_health"]
+		health = MAX_HEALTH
+	else:
+		Save.data["max_health"] = MAX_HEALTH
+		
+	if Save.data.has("max_stamina"):
+		STAMINA_BAR.max_value = Save.data["max_stamina"]
+		MAX_STAMINA = Save.data["max_stamina"]
+		stamina = MAX_STAMINA
+	else:
+		Save.data["max_stamina"] = MAX_STAMINA
 	
-	
-	play_sound(SPAWN_SOUND, 1.0, 1.0)
-	ANIM.play("IDLE")
-	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
-	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	STAMINA_BAR.size.x = MAX_STAMINA * BAR_PIXEL_WIDTH
+	HEALTH_BAR.size.x = MAX_HEALTH * BAR_PIXEL_WIDTH
 	STAMINA_BAR.max_value = MAX_STAMINA
 	STAMINA_BAR.value = stamina
 	HEALTH_BAR.max_value = MAX_HEALTH
 	HEALTH_BAR.value = health
-
+	
+	Audio.play_2d_oneshot_sound(SPAWN_SOUND, 1.0, 1.0)
+	ANIM.play("IDLE")
+	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
@@ -122,13 +133,13 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor() and previously_velocity.y < -5:
 		if LAND_SOUNDS.size() > 0:
-			play_sound(LAND_SOUNDS[randi() % LAND_SOUNDS.size()], 0.9, 1.1)
+			Audio.play_2d_oneshot_sound(LAND_SOUNDS[randi() % LAND_SOUNDS.size()], 0.9, 1.1)
 	previously_velocity = velocity
 
 	if Input.is_action_just_pressed("jump") and is_on_floor(): # JUMP
 		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN"]:
 			if JUMP_SOUNDS.size() > 0:  
-				play_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
+				Audio.play_2d_oneshot_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
 			velocity.y = JUMP_VELOCITY
 
 	if mouse_delta.length() > 0:
@@ -166,8 +177,5 @@ func _physics_process(delta: float) -> void:
 			ANIM.play("IDLE", 0, 1, false)
 		velocity.x = 0 
 		velocity.z = 0
-		
-		
-	
-		
+
 	move_and_slide()

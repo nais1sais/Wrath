@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dotjha5xn604g"]
+[gd_scene load_steps=19 format=3 uid="uid://dotjha5xn604g"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menu.tscn" id="1_1rq46"]
 [ext_resource type="PackedScene" uid="uid://cgstmm4bvcn4r" path="res://scenes/kill_volume.tscn" id="1_kg4e1"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_fauf2"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="3_78svs"]
-[ext_resource type="Material" uid="uid://b83k3uwhm0d0e" path="res://shaders/brick.tres" id="3_pdbih"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/brick.tres" id="3_pdbih"]
+[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="6_4ydi5"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="6_32w4m"]
 
 [sub_resource type="Animation" id="Animation_vbito"]
@@ -87,9 +88,6 @@ size = Vector3(50, 15.2804, 49)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Kill Floor" parent="." instance=ExtResource("1_kg4e1")]
-transform = Transform3D(227.6, 0, 0, 0, 500, 0, 0, 0, 217.95, 2, -274.136, -1)
-
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 2
 offset_right = 1920.0
@@ -107,7 +105,18 @@ autoplay = "enter"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rnikm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35.294, -12, -64)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jc5vn")
+
+[node name="Kill Floor" parent="NavigationRegion3D" instance=ExtResource("1_kg4e1")]
+transform = Transform3D(227.6, 0, 0, 0, 500, 0, 0, 0, 217.95, 2, -274.136, -1)
+
+[node name="Lights" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
 transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -0.680692, 24.0903, -2.51908)
 light_color = Color(0.74, 0.54279, 0.4366, 1)
 light_energy = 80.0
@@ -115,7 +124,7 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 omni_range = 102.0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
 transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -31.6807, -4.9097, -62.4167)
 light_color = Color(0.74, 0.54279, 0.4366, 1)
 light_energy = 50.0
@@ -123,95 +132,118 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 omni_range = 16.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244807, -0.164633, 0, 29, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Lights"]
+transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
 light_energy = 5.0
 
-[node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35.294, -12, -64)
+[node name="Checkpoints" type="Node3D" parent="NavigationRegion3D"]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_jc5vn")
+[node name="1" parent="NavigationRegion3D/Checkpoints" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_32w4m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0726547, 0, -31.8256)
+REAPER = NodePath("../../../Reaper")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="CollisionShape3D" parent="NavigationRegion3D/Checkpoints/1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+
+[node name="Collison" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(50, 0, 0, 0, 1000, 0, 0, 0, 70, 0, -500, -3)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -502, -44)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -504, -54)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -506, -64)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -10, -508, -64)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D5/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -20, -510, -64)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D6"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D6/StaticBody3D"]
 shape = SubResource("BoxShape3D_5wica")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
 transform = Transform3D(10, 0, 0, 0, 1000, 0, 0, 0, 10, -32, -512, -64)
 material_override = ExtResource("3_pdbih")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D7"]
 transform = Transform3D(0.1, 0, 0, 0, 0.001, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D7/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
 shape = SubResource("BoxShape3D_6y2hy")
+
+[node name="Souls" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="1" parent="NavigationRegion3D/Souls" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_4ydi5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2638, 1.71911, -33.896)
+REAPER = NodePath("../../../Reaper")
+
+[node name="2" parent="NavigationRegion3D/Souls" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_4ydi5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.398, 1.71911, -33.896)
+REAPER = NodePath("../../../Reaper")
+HEALTH = false
 
 [node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.13557, 19)
@@ -228,11 +260,5 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
 shape = SubResource("BoxShape3D_ss4gr")
 
-[node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("6_32w4m")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0726547, 0, -31.8256)
-REAPER = NodePath("../Reaper")
-
-[node name="CollisionShape3D" parent="Checkpoint" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
-
-[editable path="Checkpoint"]
+[editable path="NavigationRegion3D/Checkpoints/1"]
+[editable path="NavigationRegion3D/Souls/2"]

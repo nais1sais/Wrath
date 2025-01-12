@@ -5,3 +5,5 @@
 [resource]
 default_font = ExtResource("1_t2mmj")
 default_font_size = 16
+Button/colors/font_color = Color(0.71213, 0.712129, 0.712129, 1)
+Label/colors/font_color = Color(0.713726, 0.713726, 0.713726, 1)

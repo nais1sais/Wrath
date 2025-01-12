@@ -1,5 +1,5 @@
 extends Node
-var game_file_path: String = ""
+var game_file_path: String = "user://save_data"
 var data: Dictionary = {}
 
 # unfinished
@@ -64,10 +64,10 @@ func get_save_files() -> Array:
 
 func _ready() -> void:
 	
-	var save_files = get_save_files(); 
-	print(save_files)
-	if (save_files.size() == 0):
-		new_game()
-	else:
-		game_file_path = save_files[0]
-		load_game()
+	#var save_files = get_save_files(); 
+	##print(save_files)
+	#if (save_files.size() == 0):
+		#new_game()
+	#else:
+		#game_file_path = save_files[0]
+	load_game()
