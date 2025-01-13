@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cplh0pg6a67dx"
-path.s3tc="res://.godot/imported/smoke_08.png-e2820dcb95f09569d8ff3c024146e420.s3tc.ctex"
+uid="uid://r506owuesv8d"
+path.s3tc="res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/kenney free particles/smoke_08.png"
-dest_files=["res://.godot/imported/smoke_08.png-e2820dcb95f09569d8ff3c024146e420.s3tc.ctex"]
+source_file="res://textures/Le Lu/T_VFX_lelu1_tiled.png"
+dest_files=["res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.s3tc.ctex"]
 
 [params]
 

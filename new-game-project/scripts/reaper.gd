@@ -25,10 +25,15 @@ extends CharacterBody3D
 @export var SPIN_SOUNDS: Array[AudioStream] = []
 @export var HURT_SOUNDS: Array[AudioStream] = []
 @export var SPEED_MULTIPLIER: float = 1.0
+@export var CLOAK_MATERIAL: ShaderMaterial
 var mouse_delta = Vector2.ZERO
 var health = MAX_HEALTH
 var stamina = MAX_STAMINA
 var previously_velocity = Vector3.ZERO
+
+func dissolve_cloak(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
 
 func play_spin_sound() -> void:
 	if SPIN_SOUNDS.size() > 0:
@@ -74,6 +79,7 @@ func _on_animation_finished(animation_name: String) -> void:
 		STAMINA_BAR.value = stamina
 
 func _ready() -> void:
+
 	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
 		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
 	if Save.data.has("checkpoint_rotation_y"):
@@ -115,6 +121,8 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if body.has_method("death"): body.death()
 
 func _physics_process(delta: float) -> void:
+
+	if ANIM.current_animation == "ESCAPE": return
 
 	HEALTH_BAR.value = health
 	
