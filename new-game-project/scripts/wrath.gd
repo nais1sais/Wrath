@@ -14,8 +14,13 @@ extends CharacterBody3D
 @export var JUMP_ATTACK_PERCENTAGE = 1.2
 @export var MUSIC: AudioStreamPlayer2D
 @export var HIT_SOUNDS: Array[AudioStream] = []
+@export var BODY_MATERIAL: ShaderMaterial
 var health = MAX_HEALTH
 var triggered = false;
+
+func dissolve_body(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(BODY_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
 
 func damage(_amount: float) -> void:
 	REAPER.CAMERA.shake += 1
@@ -53,6 +58,8 @@ func _on_trigger_area_body_entered(body: Node) -> void:
 	ANIM.play("INTRO")
 
 func _ready() -> void:
+	
+	dissolve_body(0,1)
 	
 	if Save.data.has("wrath_defeated") and Save.data["wrath_defeated"]:
 		queue_free()

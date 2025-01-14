@@ -80,6 +80,32 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_y5607"]
+resource_name = "FALL_DEATH"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_7aqcu"]
 resource_name = "Fall"
 length = 0.166671
@@ -459,32 +485,6 @@ tracks/3/keys = {
 "values": [1.0, 0.2]
 }
 
-[sub_resource type="Animation" id="Animation_y5607"]
-resource_name = "FALL_DEATH"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.333333, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2cvw"]
 _data = {
 "DEATH": SubResource("Animation_bx4xs"),
@@ -504,7 +504,7 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qswe2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jko3"]
-size = Vector3(18.085, 0.721558, 1.20326)
+size = Vector3(32.832, 1.29297, 1.20326)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cv2q"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
@@ -629,7 +629,7 @@ bones/22/scale = Vector3(1, 1, 1)
 material_override = SubResource("ShaderMaterial_jjsp8")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.636638, -0.662005, -0.395527, 0.703357, 0.70877, -0.0541693, 0.316198, -0.24371, 0.916856, 0.096412, 1.01652, -0.218454)
+transform = Transform3D(0.636638, -0.662004, -0.395527, 0.703356, 0.70877, -0.0541695, 0.316198, -0.24371, 0.916855, 0.0964115, 1.01652, -0.218454)
 bone_name = "staff_2"
 bone_idx = 22
 
@@ -637,7 +637,7 @@ bone_idx = 22
 transform = Transform3D(-0.0339621, 0, 0, 0, -0.906183, 0, 0, 0, -0.198858, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D"]
-transform = Transform3D(1, 2.38419e-07, -5.126e-06, 4.65661e-10, 1, 1.86265e-08, -7.45058e-09, 0, 0.999999, 0.460329, -0.904919, -0.489497)
+transform = Transform3D(1, 1.90735e-06, 3.09944e-06, -6.98492e-10, 1, -8.56817e-08, 7.45058e-09, -1.19209e-07, 1.00001, -1.46163, -0.941797, -0.441701)
 shape = SubResource("BoxShape3D_4jko3")
 disabled = true
 

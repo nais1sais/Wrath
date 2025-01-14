@@ -87,8 +87,7 @@ func _on_animation_finished(animation_name: String) -> void:
 		STAMINA_BAR.value = stamina
 		
 	if animation_name == "DEATH" or animation_name == "FALL_DEATH":
-		get_tree().call_deferred("reload_current_scene")
-		
+		get_tree().call_deferred("reload_current_scene")	
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
@@ -99,6 +98,8 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if body.has_method("death"): body.death()
 	
 func _ready() -> void:
+
+	dissolve_cloak(0,0)
 
 	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
 		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])

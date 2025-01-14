@@ -7,9 +7,9 @@ uniform vec3 inside_color: source_color;
 uniform float dissolve_amount: hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D noise_texture;
 
-uniform vec3 glow_color: source_color = vec3(1.0, 1.0, 1.0);
-uniform float glow_intensitiy = 5.0;
-uniform float glow_border_width: hint_range(0.0, 0.25) = 0.05;
+uniform vec3 glow_color: source_color = vec3(0.89, 0.694, 0.588);
+uniform float glow_intensitiy = 1.77;
+uniform float glow_border_width: hint_range(0.0, 0.25) = 0.04;
 uniform float glow_border_smoothness: hint_range(0.0, 0.1) = 0.04;
 
 void fragment() {

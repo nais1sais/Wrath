@@ -242,8 +242,8 @@ fog_height_density = 0.0589
 size = Vector3(50, 15.2804, 49)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
-vertices = PackedVector3Array(-36.5, -11.5, -68.5, -36.5, -11.5, -59.5, -27.5, -11.5, -59.5, -27.5, -11.5, -68.5, -22, -9.5, -66, -22, -9.5, -62, -18, -9.5, -62, -18, -9.5, -66, -12, -7.5, -66, -12, -7.5, -62, -8, -7.5, -62, -8, -7.5, -66, -2, -5.5, -66, -2, -5.5, -62, 2, -5.5, -62, 2, -5.5, -66, -2, -3.5, -56, -2, -3.5, -52, 2, -3.5, -52, 2, -3.5, -56, -2, -1.5, -46, -2, -1.5, -42, 2, -1.5, -42, 2, -1.5, -46, -24.5, 0.5, -37.5, -24.5, 0.5, 31.5, 24.5, 0.5, 31.5, 24.5, 0.5, -37.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25)]
+vertices = PackedVector3Array(-36.5658, -11.5, -68.5, -36.5658, -11.5, -59.5, -27.3158, -11.5, -59.5, -27.3158, -11.5, -68.5, -22.0658, -9.5, -66, -22.0658, -9.5, -62, -17.8158, -9.5, -62, -17.8158, -9.5, -66, -12.0658, -7.5, -66, -12.0658, -7.5, -62, -7.81577, -7.5, -62, -7.81577, -7.5, -66, -2.06577, -5.5, -66, -2.06577, -5.5, -62, 2.18423, -5.5, -62, 2.18423, -5.5, -66, -2.06577, -3.5, -56, -2.06577, -3.5, -52, 2.18423, -3.5, -52, 2.18423, -3.5, -56, -2.06577, -1.5, -46, -2.06577, -1.5, -42, 2.18423, -1.5, -42, 2.18423, -1.5, -46, -24.5658, 0.5, -37.5, -24.5658, 0.5, 31.5, 24.6842, 0.5, 31.5, 24.6842, 0.5, -37.5, -3.06577, 2.5, 42, 6.18423, 2.5, 42, 6.18423, 2.5, 35.5, -3.06577, 2.5, 35.5, 6.43423, 2.5, 44, -3.31577, 2.5, 44, -10.8158, 2.5, 68.25, 13.4342, 2.5, 68.25, 13.4342, 2.5, 44, -10.8158, 2.5, 44)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(29, 32, 28), PackedInt32Array(28, 32, 33), PackedInt32Array(32, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(32, 36, 35), PackedInt32Array(34, 37, 33)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2sx4i"]
 
@@ -269,7 +269,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(-0.82414, 0.100786, -0.557348, 1.19209e-07, 0.98404, 0.177946, 0.566388, 0.146652, -0.810987, -22.3984, 15.8314, 27.3213)
+transform = Transform3D(-0.824141, 0.100786, -0.557349, 1.1921e-07, 0.98404, 0.177946, 0.566388, 0.146652, -0.810987, -22.3984, 15.8314, 27.3213)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -287,8 +287,17 @@ environment = SubResource("Environment_rnikm")
 [node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -36.6544, -11.7427, -63.9433)
 
+[node name="Trigger Area" type="Area3D" parent="Reaper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Reaper/Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_ss4gr")
+
 [node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.13557, 19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
 REAPER = NodePath("../Reaper")
 NAV_REGION = NodePath("../NavigationRegion3D")
 TRIGGER_AREA = NodePath("Trigger Area")
