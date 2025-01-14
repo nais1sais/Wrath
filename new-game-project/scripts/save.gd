@@ -32,7 +32,7 @@ func load_game() -> void:
 		file.close()
 	else:
 		data = {}
-	get_tree().reload_current_scene()
+	get_tree().call_deferred("reload_current_scene")
 
 func delete_game(file_name: String) -> void:
 	var dir = DirAccess.open("user://")

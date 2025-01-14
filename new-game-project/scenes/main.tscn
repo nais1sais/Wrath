@@ -238,6 +238,9 @@ fog_density = 0.0
 fog_sky_affect = 0.0
 fog_height_density = 0.0589
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss4gr"]
+size = Vector3(50, 15.2804, 49)
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
 vertices = PackedVector3Array(-36.5, -11.5, -68.5, -36.5, -11.5, -59.5, -27.5, -11.5, -59.5, -27.5, -11.5, -68.5, -22, -9.5, -66, -22, -9.5, -62, -18, -9.5, -62, -18, -9.5, -66, -12, -7.5, -66, -12, -7.5, -62, -8, -7.5, -62, -8, -7.5, -66, -2, -5.5, -66, -2, -5.5, -62, 2, -5.5, -62, 2, -5.5, -66, -2, -3.5, -56, -2, -3.5, -52, 2, -3.5, -52, 2, -3.5, -56, -2, -1.5, -46, -2, -1.5, -42, 2, -1.5, -42, 2, -1.5, -46, -24.5, 0.5, -37.5, -24.5, 0.5, 31.5, 24.5, 0.5, 31.5, 24.5, 0.5, -37.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25)]
@@ -251,9 +254,6 @@ size = Vector3(10, 500, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ribux"]
 size = Vector3(57.0839, 19.7139, 27.1862)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ss4gr"]
-size = Vector3(50, 15.2804, 49)
 
 [node name="Node3D" type="Node3D"]
 
@@ -269,7 +269,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(-0.824139, 0.100786, -0.557348, 1.19209e-07, 0.98404, 0.177945, 0.566387, 0.146652, -0.810986, -22.3984, 15.8314, 27.3213)
+transform = Transform3D(-0.82414, 0.100786, -0.557348, 1.19209e-07, 0.98404, 0.177946, 0.566388, 0.146652, -0.810987, -22.3984, 15.8314, 27.3213)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -286,6 +286,21 @@ environment = SubResource("Environment_rnikm")
 
 [node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -36.6544, -11.7427, -63.9433)
+
+[node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.13557, 19)
+REAPER = NodePath("../Reaper")
+NAV_REGION = NodePath("../NavigationRegion3D")
+TRIGGER_AREA = NodePath("Trigger Area")
+
+[node name="Trigger Area" type="Area3D" parent="Wrath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wrath/Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_ss4gr")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_jc5vn")
@@ -476,21 +491,6 @@ REAPER = NodePath("../../../Reaper")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.398, 1.71911, -33.896)
 REAPER = NodePath("../../../Reaper")
 HEALTH = false
-
-[node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.13557, 19)
-REAPER = NodePath("../Reaper")
-NAV_REGION = NodePath("../NavigationRegion3D")
-TRIGGER_AREA = NodePath("Trigger Area")
-
-[node name="Trigger Area" type="Area3D" parent="Wrath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wrath/Trigger Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
-shape = SubResource("BoxShape3D_ss4gr")
 
 [editable path="NavigationRegion3D/Checkpoints/1"]
 [editable path="NavigationRegion3D/Checkpoints/2"]

@@ -5,7 +5,6 @@ func play_2d_oneshot_sound(sound: AudioStream, pitch_min: float, pitch_max: floa
 	player.stream = sound
 	player.pitch_scale = randf_range(pitch_min, pitch_max)
 	player.bus = "SFX"
-	get_tree().root.add_child(player)  # Add to the root
-	player.play()
+	player.connect("tree_entered", Callable(player, "play"))
 	player.connect("finished", Callable(player, "queue_free"))
-	
+	get_tree().root.call_deferred("add_child", player)

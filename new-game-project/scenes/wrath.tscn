@@ -528,6 +528,7 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_6lmms")

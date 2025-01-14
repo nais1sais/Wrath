@@ -5,5 +5,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is not CharacterBody3D: return
-	body.health = 0
-	if body.has_method("death"): body.death()
+	#body.health = 0
+	if body.has_method("fall_death"): 
+		body.fall_death() 
+		return
+	if body.has_method("death"): 
+		body.death()

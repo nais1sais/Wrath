@@ -14,7 +14,6 @@ extends CharacterBody3D
 @export var JUMP_ATTACK_PERCENTAGE = 1.2
 @export var MUSIC: AudioStreamPlayer2D
 @export var HIT_SOUNDS: Array[AudioStream] = []
-const JUMP_VELOCITY = 4.5
 var health = MAX_HEALTH
 var triggered = false;
 
