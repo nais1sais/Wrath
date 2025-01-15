@@ -1,0 +1,577 @@
+[gd_scene load_steps=23 format=3 uid="uid://dotjha5xn604g"]
+
+[ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menu.tscn" id="1_1rq46"]
+[ext_resource type="PackedScene" uid="uid://cgstmm4bvcn4r" path="res://scenes/kill_volume.tscn" id="1_kg4e1"]
+[ext_resource type="AudioStream" uid="uid://6cspmlqg3ega" path="res://audio/music/escape.ogg" id="1_kwbdf"]
+[ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_fauf2"]
+[ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="3_78svs"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/brick.tres" id="3_pdbih"]
+[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="6_4ydi5"]
+[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="6_32w4m"]
+[ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="8_cx747"]
+
+[sub_resource type="Animation" id="Animation_mqgcr"]
+resource_name = "ENTER"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cinematics/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.2, 2.2),
+"transitions": PackedFloat32Array(1, 0.0980731),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gllqw"]
+resource_name = "ESCAPE"
+length = 65.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cinematics/CinematicMusic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_kwbdf")
+}],
+"times": PackedFloat32Array(0.266667)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cinematics/Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.03333, 16.1667, 25, 34.7333, 40.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.876759, 3.05912, 67.4929), Vector3(-0.86283, 3.27229, 63.292), Vector3(-5.26471, 3.55141, 49.5048), Vector3(8.26602, 8.47662, 43.4697), Vector3(-1.17755, 20.0137, 110.875), Vector3(-0.635373, 15.3066, 131.151)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cinematics/Camera3D:quaternion")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.03333, 16.1667, 25.1, 34.9333, 40.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(-0.0686507, -0.297853, -0.0214811, 0.951898), Quaternion(0.0491807, 0.894909, 0.101962, -0.431652), Quaternion(0.00645259, 0.979836, 0.0320769, -0.197104), Quaternion(-0.00144056, 0.986246, 0.00860781, 0.165053), Quaternion(0.000141897, 0.999455, 0.03272, -0.00433436), Quaternion(0.000104114, 0.999703, 0.0239969, -0.00433734)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cinematics/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Reaper:SPEED_MULTIPLIER")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Reaper:TURN_INFLUENCE")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "animation"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Reaper/AnimationPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": PackedStringArray("ESCAPE"),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Reaper")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.63333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [10.0, 1.0],
+"method": &"dissolve_cloak"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vbito"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cinematics/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cinematics/Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-22.3984, 15.8314, 27.3213)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cinematics/Camera3D:quaternion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.0264891, 0.951205, 0.0853121, -0.295345)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cinematics/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Reaper:SPEED_MULTIPLIER")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Reaper:TURN_INFLUENCE")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_msoko"]
+_data = {
+"ENTER": SubResource("Animation_mqgcr"),
+"ESCAPE": SubResource("Animation_gllqw"),
+"RESET": SubResource("Animation_vbito")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
+sky_top_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+sky_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+sky_curve = 0.0861533
+ground_bottom_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+ground_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+ground_curve = 0.0356579
+sun_angle_max = 0.0
+sun_curve = 151.205
+
+[sub_resource type="Sky" id="Sky_efxjq"]
+sky_material = SubResource("ProceduralSkyMaterial_1oyht")
+
+[sub_resource type="Environment" id="Environment_rnikm"]
+background_mode = 2
+background_color = Color(0.860369, 0.860369, 0.860369, 1)
+sky = SubResource("Sky_efxjq")
+ambient_light_source = 2
+ambient_light_color = Color(0.192157, 0.192157, 0.192157, 1)
+ambient_light_energy = 4.0
+reflected_light_source = 2
+fog_enabled = true
+fog_light_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+fog_density = 0.0
+fog_sky_affect = 0.0
+fog_height_density = 0.0589
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.08, 0.08, 0.08, 1)
+volumetric_fog_emission = Color(0.187176, 0.187176, 0.187176, 1)
+volumetric_fog_detail_spread = 0.965936
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss4gr"]
+size = Vector3(50, 15.2804, 49)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
+vertices = PackedVector3Array(-36.5658, -11.5, -68.5, -36.5658, -11.5, -59.5, -27.3158, -11.5, -59.5, -27.3158, -11.5, -68.5, -22.0658, -9.5, -66, -22.0658, -9.5, -62, -17.8158, -9.5, -62, -17.8158, -9.5, -66, -12.0658, -7.5, -66, -12.0658, -7.5, -62, -7.81577, -7.5, -62, -7.81577, -7.5, -66, -2.06577, -5.5, -66, -2.06577, -5.5, -62, 2.18423, -5.5, -62, 2.18423, -5.5, -66, -2.06577, -3.5, -56, -2.06577, -3.5, -52, 2.18423, -3.5, -52, 2.18423, -3.5, -56, -2.06577, -1.5, -46, -2.06577, -1.5, -42, 2.18423, -1.5, -42, 2.18423, -1.5, -46, -24.5658, 0.5, -37.5, -24.5658, 0.5, 31.5, 24.6842, 0.5, 31.5, 24.6842, 0.5, -37.5, -3.06577, 2.5, 42, 6.18423, 2.5, 42, 6.18423, 2.5, 35.5, -3.06577, 2.5, 35.5, 6.43423, 2.5, 44, -3.31577, 2.5, 44, -10.8158, 2.5, 68.25, 13.4342, 2.5, 68.25, 13.4342, 2.5, 44, -10.8158, 2.5, 44)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(29, 32, 28), PackedInt32Array(28, 32, 33), PackedInt32Array(32, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(32, 36, 35), PackedInt32Array(34, 37, 33)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2sx4i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wica"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y2hy"]
+size = Vector3(10, 500, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ribux"]
+size = Vector3(57.0839, 19.7139, 27.1862)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Cinematics" type="Node" parent="."]
+
+[node name="CinematicMusic" type="AudioStreamPlayer2D" parent="Cinematics"]
+bus = &"Music"
+
+[node name="ColorRect" type="ColorRect" parent="Cinematics"]
+z_index = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="Cinematics"]
+transform = Transform3D(-0.824142, 0.100786, -0.557349, 1.1921e-07, 0.98404, 0.177946, 0.566389, 0.146652, -0.810988, -22.3984, 15.8314, 27.3213)
+rotation_edit_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_msoko")
+}
+autoplay = "ENTER"
+
+[node name="Menu" parent="." instance=ExtResource("1_1rq46")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rnikm")
+
+[node name="Reaper" parent="." instance=ExtResource("2_fauf2")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -36.6544, -11.7427, -63.9433)
+
+[node name="Trigger Area" type="Area3D" parent="Reaper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Reaper/Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_ss4gr")
+
+[node name="Wrath" parent="." node_paths=PackedStringArray("REAPER", "NAV_REGION", "TRIGGER_AREA") instance=ExtResource("3_78svs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
+REAPER = NodePath("../Reaper")
+NAV_REGION = NodePath("../NavigationRegion3D")
+TRIGGER_AREA = NodePath("Trigger Area")
+
+[node name="Trigger Area" type="Area3D" parent="Wrath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.98601, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wrath/Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.579712, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_ss4gr")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jc5vn")
+
+[node name="Kill Floor" parent="NavigationRegion3D" instance=ExtResource("1_kg4e1")]
+transform = Transform3D(227.6, 0, 0, 0, 500, 0, 0, 0, 217.95, 2, -274.136, -1)
+
+[node name="Lights" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -0.680692, 24.0903, -2.51908)
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 80.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 102.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -31.6807, -4.9097, -62.4167)
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 50.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 16.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Lights"]
+transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
+light_color = Color(0.51, 0.51, 0.51, 1)
+light_energy = 5.0
+
+[node name="Checkpoints" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="1" parent="NavigationRegion3D/Checkpoints" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_32w4m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0726547, 0, -31.8256)
+REAPER = NodePath("../../../Reaper")
+
+[node name="CollisionShape3D" parent="NavigationRegion3D/Checkpoints/1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+
+[node name="Node3D" parent="NavigationRegion3D/Checkpoints/1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0224069, 0)
+
+[node name="2" parent="NavigationRegion3D/Checkpoints" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_32w4m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.92734, 2.00375, 38.6536)
+REAPER = NodePath("../../../Reaper")
+
+[node name="CollisionShape3D" parent="NavigationRegion3D/Checkpoints/2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+
+[node name="Node3D" parent="NavigationRegion3D/Checkpoints/2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.425823, 0)
+
+[node name="Collison" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(50, 0, 0, 0, 1000, 0, 0, 0, 70, 0, -500, -3)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -502, -44)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -504, -54)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, 0, -506, -64)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -10, -508, -64)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 5, -20, -510, -64)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D6/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(10, 0, 0, 0, 1000, 0, 0, 0, 10, -32, -512, -64)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D7"]
+transform = Transform3D(0.1, 0, 0, 0, 0.001, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
+shape = SubResource("BoxShape3D_6y2hy")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(10, 0, 0, 0, 1000, 0, 0, 0, 10, 1.5, -498, 40)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D8"]
+transform = Transform3D(0.1, 0, 0, 0, 0.001, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
+shape = SubResource("BoxShape3D_6y2hy")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(25, 0, 0, 0, 1000, 0, 0, 0, 25, 1.301, -498, 56.129)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D9"]
+transform = Transform3D(0.1, 0, 0, 0, 0.001, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999996, 0, 0, 0, 1, 0, 250, 0)
+shape = SubResource("BoxShape3D_6y2hy")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(5, 0, 0, 0, 1000, 0, 0, 0, 58, -43, -514, -38)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D10/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(32, 0, 0, 0, 1000, 0, 0, 0, 18, -29.5, -514, 0)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D11/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(7, 0, 0, 0, 10, 0, 0, 0, 2, -28, -10, 5.5)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D13/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(9.39046, 0, 0, 0, -5.68248e-07, 2, 0, -13, -8.74228e-08, -28, -5, 0)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D14/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="NavigationRegion3D/Collison"]
+transform = Transform3D(7.17, 0, 0, 0, 10, 0, 0, 0, 2, -28, -10, -5.5)
+material_override = ExtResource("3_pdbih")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2sx4i")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Collison/MeshInstance3D15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Collison/MeshInstance3D15/StaticBody3D"]
+shape = SubResource("BoxShape3D_5wica")
+
+[node name="portal" parent="NavigationRegion3D" node_paths=PackedStringArray("AREA", "CUTSCENE_PLAYER", "REAPER", "PLAYER_SPOT") instance=ExtResource("8_cx747")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236291, 13.174, 145.21)
+AREA = NodePath("end")
+CUTSCENE_PLAYER = NodePath("../../Cinematics/AnimationPlayer")
+REAPER = NodePath("../../Reaper")
+PLAYER_SPOT = NodePath("Node3D")
+
+[node name="end" type="Area3D" parent="NavigationRegion3D/portal"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/portal/end"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02139, -4.37425, -69.257)
+shape = SubResource("BoxShape3D_ribux")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D/portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31915, -10.3532, -79.3911)
+
+[node name="Souls" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="1" parent="NavigationRegion3D/Souls" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_4ydi5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2638, 1.71911, -33.896)
+REAPER = NodePath("../../../Reaper")
+
+[node name="2" parent="NavigationRegion3D/Souls" node_paths=PackedStringArray("REAPER") instance=ExtResource("6_4ydi5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.398, 1.71911, -33.896)
+REAPER = NodePath("../../../Reaper")
+HEALTH = false
+
+[editable path="NavigationRegion3D/Checkpoints/1"]
+[editable path="NavigationRegion3D/Checkpoints/2"]
+[editable path="NavigationRegion3D/Souls/2"]
