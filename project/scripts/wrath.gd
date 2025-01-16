@@ -8,8 +8,9 @@ extends CharacterBody3D
 @export var MESH: Node3D
 @export var MAX_HEALTH: int = 30
 @export var SPEED = 9.0
-@export var RIGHT_ATTACK_AREA: Area3D
-@export var LEFT_ATTACK_AREA: Area3D
+@export var RIGHT_HAND_ATTACK_AREA: Area3D
+@export var LEFT_HAND_ATTACK_AREA: Area3D
+@export var TORSO_ATTACK_AREA: Area3D
 @export var TRIGGER_AREA: Area3D
 @export var DEATH_PARTICLE_SCENE: PackedScene
 @export var JUMP_ATTACK_PERCENTAGE = 1.2
@@ -76,8 +77,9 @@ func _ready() -> void:
 	health = MAX_HEALTH
 	HEALTH_BAR.max_value = MAX_HEALTH
 	HEALTH_BAR.value = health
-	RIGHT_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
-	LEFT_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	RIGHT_HAND_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	LEFT_HAND_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	TORSO_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	TRIGGER_AREA.connect("body_entered", Callable(self, "_on_trigger_area_body_entered"))
 
 func _physics_process(delta: float) -> void:

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dlwicer3j08q8"
-path="res://.godot/imported/Void.wav-19ea86819b6d80d28f4dc6c5ac446021.sample"
+path="res://.godot/imported/Spawn_Void.wav-a7b4905b9f2b158f29203b26f2f3a976.sample"
 
 [deps]
 
-source_file="res://audio/sfx/player/Void.wav"
-dest_files=["res://.godot/imported/Void.wav-19ea86819b6d80d28f4dc6c5ac446021.sample"]
+source_file="res://audio/sfx/player/Spawn_Void.wav"
+dest_files=["res://.godot/imported/Spawn_Void.wav-a7b4905b9f2b158f29203b26f2f3a976.sample"]
 
 [params]
 

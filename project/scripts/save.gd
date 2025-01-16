@@ -32,7 +32,9 @@ func load_game() -> void:
 		file.close()
 	else:
 		data = {}
-	get_tree().call_deferred("reload_current_scene")
+	
+	if data.has("tree") and data["tree"] and get_tree():
+		get_tree().call_deferred("reload_current_scene")
 
 func delete_game(file_name: String) -> void:
 	var dir = DirAccess.open("user://")
@@ -62,7 +64,7 @@ func get_save_files() -> Array:
 	save_files.reverse()
 	return save_files
 
-func _ready() -> void:
+func _init() -> void:
 	
 	#var save_files = get_save_files(); 
 	##print(save_files)

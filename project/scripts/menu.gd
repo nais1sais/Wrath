@@ -2,6 +2,18 @@
 # Make sure process mode for this node is 'always' so when game pauses it doesnt pause aswell
 extends CanvasLayer
 
+@export_subgroup("Audio")
+@export var hover_sound_player: AudioStreamPlayer2D
+@export var press_sound_player: AudioStreamPlayer2D
+@export var hover_sound: AudioStream
+@export var press_sound: AudioStream
+func play_hover_sound() -> void:
+	hover_sound_player.stream = hover_sound; 
+	hover_sound_player.play()
+func play_press_sound() -> void:
+	press_sound_player.stream = press_sound; 
+	press_sound_player.play()
+
 @export_subgroup("Main Menu")
 @export var main_menu: Control
 @export var resume_button: Button
@@ -35,6 +47,28 @@ func credits() -> void:
 	credits_menu.visible = true
 func quit() -> void:
 	get_tree().quit()
+func init_main_menu() -> void:
+	if resume_button: 
+		resume_button.connect("pressed", Callable(self, "resume"))
+		resume_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+	if restart_button: 
+		restart_button.connect("pressed", Callable(self, "restart"))
+		restart_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+	if options_button: 
+		options_button.connect("pressed", Callable(self, "options"))
+		options_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		options_button.connect("pressed", Callable(self, "play_press_sound"))	
+	if controls_button: 
+		controls_button.connect("pressed", Callable(self, "controls"))
+		controls_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		controls_button.connect("pressed", Callable(self, "play_press_sound"))	
+	if credits_button: 
+		credits_button.connect("pressed", Callable(self, "credits"))
+		credits_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		credits_button.connect("pressed", Callable(self, "play_press_sound"))
+	if quit_button: 
+		quit_button.connect("pressed", Callable(self, "quit"))  
+		quit_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
 
 @export_subgroup("Options")
 @export var options_menu: Control
@@ -46,31 +80,56 @@ func quit() -> void:
 @export var options_music_bus: String = "Music"
 @export var options_display_dropdown: OptionButton
 @export var options_back_button: Button
+var window_position : Vector2
+var window_size : Vector2
 
-func save_settings() -> void:
+func check_for_window_changes() -> void:
+	if window_position != Vector2(DisplayServer.window_get_position()):
+		window_position = Vector2(DisplayServer.window_get_position())
+		save_settings()
+	if window_size != Vector2(DisplayServer.window_get_size()):
+		window_size = Vector2(DisplayServer.window_get_size())
+		save_settings()
+
+func save_settings() -> void: 
 	var config = ConfigFile.new()
 	if options_master_slider: config.set_value("audio", "master_volume", options_master_slider.value)
 	if options_sfx_slider: config.set_value("audio", "sfx_volume", options_sfx_slider.value)
 	if options_music_slider: config.set_value("audio", "music_volume", options_music_slider.value)
-	if options_display_dropdown: config.set_value("options", "display", options_display_dropdown.selected)
+	config.set_value("window", "mode", DisplayServer.window_get_mode())
+	config.set_value("window", "position", DisplayServer.window_get_position())
+	config.set_value("window", "size", DisplayServer.window_get_size())
 	config.save("user://settings.cfg")
 func load_settings() -> void:
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
 	if err == OK:
-		var window_mode = config.get_value("options", "display", 0)
-		var sfx_volume = config.get_value("audio", "sfx_volume", 100)
-		var music_volume = config.get_value("audio", "music_volume", 100)
-		var master_volume = config.get_value("audio", "master_volume", 100)
-		if options_display_dropdown: options_display_dropdown.select(window_mode)
-		window_mode_changed(window_mode)
-		if options_sfx_slider: options_sfx_slider.value = sfx_volume
-		sfx_changed(sfx_volume)
-		if options_music_slider: options_music_slider.value = music_volume
-		music_changed(music_volume)
-		if options_master_slider: options_master_slider.value = master_volume
-		master_changed(master_volume)
-
+		
+		if options_sfx_slider: 
+			var sfx_volume = config.get_value("audio", "sfx_volume", 100)
+			options_sfx_slider.value = sfx_volume
+			sfx_changed(sfx_volume)
+			
+		if options_music_slider: 
+			var music_volume = config.get_value("audio", "music_volume", 100)
+			options_music_slider.value = music_volume
+			music_changed(music_volume)
+			
+		if options_master_slider: 
+			var master_volume = config.get_value("audio", "master_volume", 100)
+			options_master_slider.value = master_volume
+			master_changed(master_volume)
+		
+		DisplayServer.window_set_mode(config.get_value("window", "mode", DisplayServer.WINDOW_MODE_FULLSCREEN))
+		DisplayServer.window_set_position(config.get_value("window", "position", Vector2(100, 100)))
+		DisplayServer.window_set_size(config.get_value("window", "size", Vector2(1280, 720)))
+		
+		if options_display_dropdown:
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+				options_display_dropdown.select(1)
+			else:
+				options_display_dropdown.select(0)
+			
 func options_back() -> void:
 	main_menu.visible = true
 	options_menu.visible = false
@@ -95,12 +154,27 @@ func window_mode_changed(index: int) -> void:
 		1: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	save_settings()
 
+func init_options_menu() -> void:
+	if options_sfx_slider: options_sfx_slider.connect("value_changed", Callable(self, "sfx_changed"))
+	if options_music_slider: options_music_slider.connect("value_changed", Callable(self, "music_changed"))
+	if options_master_slider: options_master_slider.connect("value_changed", Callable(self, "master_changed"))
+	if options_display_dropdown: options_display_dropdown.connect("item_selected", Callable(self, "window_mode_changed"))
+	if options_back_button: 
+		options_back_button.connect("pressed", Callable(self, "options_back"))
+		options_back_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		options_back_button.connect("pressed", Callable(self, "play_press_sound"))
+
 @export_subgroup("Controls")
 @export var controls_menu: Control
 @export var controls_back_button: Button
 func controls_back() -> void:
 	main_menu.visible = true
 	controls_menu.visible = false
+func init_controls_menu() -> void:
+	if controls_back_button: 
+		controls_back_button.connect("pressed", Callable(self, "controls_back"))
+		controls_back_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		controls_back_button.connect("pressed", Callable(self, "play_press_sound"))
 
 @export_subgroup("Credits")
 @export var credits_menu: Control
@@ -108,55 +182,25 @@ func controls_back() -> void:
 func credits_back() -> void:
 	main_menu.visible = true
 	credits_menu.visible = false
-
-@export_subgroup("Audio")
-@export var hover_sound_player: AudioStreamPlayer2D
-@export var press_sound_player: AudioStreamPlayer2D
-@export var confirm_sound_player: AudioStreamPlayer2D
-@export var hover_sound: AudioStream
-@export var press_sound: AudioStream
-@export var confirm_sound: AudioStream
-
-func play_hover_sound() -> void:
-	hover_sound_player.stream = hover_sound; 
-	hover_sound_player.play()
-func play_press_sound() -> void:
-	press_sound_player.stream = press_sound; 
-	press_sound_player.play()
-func play_confirm_sound() -> void:
-	confirm_sound_player.stream = confirm_sound; 
-	confirm_sound_player.play()
+func init_credits_menu() -> void:
+	if credits_back_button: 
+		credits_back_button.connect("pressed", Callable(self, "credits_back"))
+		credits_back_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+		credits_back_button.connect("pressed", Callable(self, "play_press_sound"))
 
 func _ready() -> void:
 	load_settings()
 	resume()
-	if resume_button: resume_button.connect("pressed", Callable(self, "resume"))
-	if restart_button: restart_button.connect("pressed", Callable(self, "restart"))
-	if options_button: options_button.connect("pressed", Callable(self, "options"))
-	if controls_button: controls_button.connect("pressed", Callable(self, "controls"))
-	if credits_button: credits_button.connect("pressed", Callable(self, "credits"))
-	if quit_button: quit_button.connect("pressed", Callable(self, "quit"))  
-	if options_back_button: options_back_button.connect("pressed", Callable(self, "options_back"))
-	if controls_back_button: controls_back_button.connect("pressed", Callable(self, "controls_back"))
-	if credits_back_button: credits_back_button.connect("pressed", Callable(self, "credits_back"))
-	if options_sfx_slider: options_sfx_slider.connect("value_changed", Callable(self, "sfx_changed"))
-	if options_music_slider: options_music_slider.connect("value_changed", Callable(self, "music_changed"))
-	if options_master_slider: options_master_slider.connect("value_changed", Callable(self, "master_changed"))
-	if options_display_dropdown: options_display_dropdown.connect("item_selected", Callable(self, "window_mode_changed"))
-	
-	# Recursively connect hover and pressed sounds to buttons
-	var all_nodes = get_children(); while all_nodes.size() > 0:
-		var current_node = all_nodes.pop_back()
-		if current_node is Button:
-			current_node.connect("mouse_entered", Callable(self, "play_hover_sound"))
-			current_node.connect("pressed", Callable(self, "play_pressed_sound"))
-		all_nodes += current_node.get_children()
+	init_main_menu()
+	init_controls_menu()
+	init_options_menu()
+	init_credits_menu()
 		
 func _process(_delta: float) -> void:
+	check_for_window_changes()
 	if Input.is_action_just_pressed("menu"):
 		if self.visible:
-			play_press_sound()
 			resume()	
 		else :
-			play_confirm_sound()
+			play_press_sound()
 			pause()

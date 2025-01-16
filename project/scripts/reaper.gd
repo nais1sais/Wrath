@@ -30,6 +30,7 @@ extends CharacterBody3D
 @export var BAR_PIXEL_WIDTH = 2
 
 @export_group("Sounds")
+@export var NEW_GAME_SPAWN_SOUND: AudioStream
 @export var SPAWN_SOUND: AudioStream
 @export var FALL_SPAWN_SOUND: AudioStream
 @export var SPAWN_PLAYER: AudioStreamPlayer2D
@@ -68,11 +69,11 @@ func damage(_amount: float) -> void:
 	
 func death() -> void:
 	ANIM.play("DEATH")
-	Save.data["fall_death"] = false
+	Save.data["death_type"] = "regular"
 	Save.save_game()
 func fall_death() -> void:
 	ANIM.play("FALL_DEATH")	
-	Save.data["fall_death"] = true
+	Save.data["death_type"] = "fall"
 	Save.save_game()
 	
 func _on_animation_finished(animation_name: String) -> void:
@@ -131,10 +132,15 @@ func _ready() -> void:
 	else:
 		Save.data["max_stamina"] = MAX_STAMINA
 		
-	if Save.data.has("fall_death") and Save.data["fall_death"]:
-		SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
+	if Save.data.has("death_type"):
+		if Save.data["death_type"] == "fall":
+			SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
+		else:
+			SPAWN_PLAYER.stream = SPAWN_SOUND
 	else:
-		SPAWN_PLAYER.stream = SPAWN_SOUND
+		SPAWN_PLAYER.stream = NEW_GAME_SPAWN_SOUND
+		Save.data["death_type"] = "regular"
+		Save.save_game()
 	SPAWN_PLAYER.play()
 	
 	STAMINA_BAR.size.x = MAX_STAMINA * BAR_PIXEL_WIDTH
