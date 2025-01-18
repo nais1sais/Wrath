@@ -22,6 +22,7 @@ func new_game() -> void:
 	save_game()
 
 func load_game() -> void:
+	
 	var file = FileAccess.open(game_file_path, FileAccess.READ)
 	if file:
 		var json = JSON.new()

@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://wij2tlh0hh7j"]
+
+[ext_resource type="Shader" uid="uid://dydavnuhpkpw7" path="res://shaders/soul_level_up.tres" id="1_xrw6e"]
+[ext_resource type="Texture2D" uid="uid://cplh0pg6a67dx" path="res://textures/kenney free particles/smoke_08.png" id="2_qbj35"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_it0yu"]
+render_priority = 0
+shader = ExtResource("1_xrw6e")
+shader_parameter/Pan_Speed = 1.0
+shader_parameter/Alpha = 12.25
+shader_parameter/Texture2DParameter = ExtResource("2_qbj35")
+
+[sub_resource type="Curve" id="Curve_qo84o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.286184, 0.794195), 0.0, 0.0, 0, 0, Vector2(0.654605, 0.98285), 0.0, 0.0, 0, 0, Vector2(0.924342, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4g4h6"]
+curve = SubResource("Curve_qo84o")
+
+[sub_resource type="Curve" id="Curve_p5y7o"]
+min_value = 0.99
+max_value = 20.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.230263, 3.86156), 4.95564, 4.95564, 0, 0, Vector2(1, 5.00266), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yxa2y"]
+curve = SubResource("Curve_p5y7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4hkbg"]
+velocity_pivot = Vector3(6.365, -12.17, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yxa2y")
+color = Color(0.136826, 0.136826, 0.136826, 1)
+alpha_curve = SubResource("CurveTexture_4g4h6")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_whlm1"]
+height = 1.105
+radial_segments = 32
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Animation" id="Animation_l0sac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6ck62"]
+resource_name = "auto_free"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkv7x"]
+_data = {
+"RESET": SubResource("Animation_l0sac"),
+"auto_free": SubResource("Animation_6ck62")
+}
+
+[node name="Soul Level Up" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_it0yu")
+cast_shadow = 0
+amount = 1
+lifetime = 3.18
+one_shot = true
+preprocess = 0.21
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4hkbg")
+draw_pass_1 = SubResource("CylinderMesh_whlm1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qkv7x")
+}
+autoplay = "auto_free"

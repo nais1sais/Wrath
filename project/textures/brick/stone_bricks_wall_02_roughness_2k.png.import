@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqech0i1ckge5"
-path.s3tc="res://.godot/imported/slash_04.png-ae79448c8c959036f5a093bad86495fc.s3tc.ctex"
+uid="uid://bffibdvfre58i"
+path.s3tc="res://.godot/imported/stone_bricks_wall_02_roughness_2k.png-3e422cc32442c634cccec46e0d6c0fdd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/kenney free particles/slash_04.png"
-dest_files=["res://.godot/imported/slash_04.png-ae79448c8c959036f5a093bad86495fc.s3tc.ctex"]
+source_file="res://textures/brick/stone_bricks_wall_02_roughness_2k.png"
+dest_files=["res://.godot/imported/stone_bricks_wall_02_roughness_2k.png-3e422cc32442c634cccec46e0d6c0fdd.s3tc.ctex"]
 
 [params]
 

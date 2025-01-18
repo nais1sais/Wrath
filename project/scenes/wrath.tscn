@@ -474,7 +474,6 @@ bones/0/rotation = Quaternion(-0.707107, -7.55185e-17, -7.55185e-17, 0.707107)
 bones/1/position = Vector3(0.0058934, -0.078204, 0.723455)
 bones/1/rotation = Quaternion(0.54579, 0.000401542, -0.000640404, 0.837922)
 bones/2/rotation = Quaternion(0.35872, -0.0129457, -0.0081764, 0.93332)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.0484603, 0.343719, 0.75355, 0.558276)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(-0.518992, -0.453002, 0.177048, 0.702916)
@@ -494,7 +493,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_yqaem")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.754863, 0.363299, -0.546074, 0.387568, 0.918746, 0.075481, 0.529125, -0.154663, -0.83433, -1.81436, 4.16697, 0.292533)
+transform = Transform3D(-0.754863, 0.363297, -0.546074, 0.387568, 0.918746, 0.0754777, 0.529124, -0.154666, -0.83433, -1.81436, 4.16697, 0.292531)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -508,7 +507,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.26551, -0.27967, 0.922653, -0.420134, 0.894918, 0.150362, -0.867751, -0.347715, -0.355109, 2.02045, 4.94647, 0.559962)
+transform = Transform3D(-0.26551, -0.279671, 0.922653, -0.420134, 0.894918, 0.150363, -0.867751, -0.347715, -0.355109, 2.02045, 4.94647, 0.559962)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -522,7 +521,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999492, 0.00707942, -0.0310623, -0.0164294, 0.949887, -0.312161, 0.0272957, 0.312513, 0.949521, 0.00858418, 1.2517, 0.358612)
+transform = Transform3D(0.999492, 0.00707944, -0.0310622, -0.0164294, 0.949887, -0.312161, 0.0272956, 0.312513, 0.949521, 0.00858418, 1.2517, 0.358613)
 bone_name = "torso"
 bone_idx = 2
 

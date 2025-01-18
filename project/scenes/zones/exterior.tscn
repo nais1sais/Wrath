@@ -1,0 +1,352 @@
+[gd_scene load_steps=20 format=3 uid="uid://dsdh2bite7xv4"]
+
+[ext_resource type="AudioStream" uid="uid://6cspmlqg3ega" path="res://audio/music/escape.ogg" id="1_ye5dk"]
+[ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="2_ttjtk"]
+[ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
+[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="4_ynkt0"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/brick.tres" id="5_ct7j2"]
+[ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="6_4l1cq"]
+[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="7_c1476"]
+[ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/door.tscn" id="8_5d645"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
+sky_top_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+sky_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+sky_curve = 0.0861533
+ground_bottom_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+ground_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
+ground_curve = 0.0356579
+sun_angle_max = 0.0
+sun_curve = 151.205
+
+[sub_resource type="Sky" id="Sky_efxjq"]
+sky_material = SubResource("ProceduralSkyMaterial_1oyht")
+
+[sub_resource type="Environment" id="Environment_rnikm"]
+background_mode = 2
+background_color = Color(0.860369, 0.860369, 0.860369, 1)
+sky = SubResource("Sky_efxjq")
+ambient_light_source = 2
+ambient_light_color = Color(0.192157, 0.192157, 0.192157, 1)
+ambient_light_energy = 4.0
+reflected_light_source = 2
+ssao_radius = 0.65
+ssao_intensity = 45.65
+ssao_power = 4.87352
+fog_enabled = true
+fog_light_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+fog_density = 0.0
+fog_sky_affect = 0.0
+fog_height_density = 0.0589
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.08, 0.08, 0.08, 1)
+volumetric_fog_emission = Color(0.187176, 0.187176, 0.187176, 1)
+volumetric_fog_detail_spread = 0.965936
+
+[sub_resource type="Animation" id="Animation_gllqw"]
+resource_name = "ESCAPE"
+length = 65.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Exterior/Cinematics/CinematicMusic")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_ye5dk")
+}],
+"times": PackedFloat32Array(0.333333)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.03333, 16.1667, 25, 34.7333, 40.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.877, 6.059, 67.493), Vector3(-0.863, 6.272, 63.292), Vector3(-5.265, 6.551, 49.505), Vector3(8.266, 11.477, 43.47), Vector3(-1.17755, 20.0137, 110.875), Vector3(-0.635, 18.307, 131.151)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.03333, 16.1667, 25.1, 34.9333, 40.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(-0.0686507, -0.297853, -0.0214811, 0.951898), Quaternion(0.0491807, 0.894909, 0.101962, -0.431652), Quaternion(0.00645259, 0.979836, 0.0320769, -0.197104), Quaternion(-0.00144056, 0.986246, 0.00860781, 0.165053), Quaternion(0.000141897, 0.999455, 0.03272, -0.00433436), Quaternion(0.000104114, 0.999703, 0.0239969, -0.00433734)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Exterior/Cinematics/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exterior/Portal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_end_cutscene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vbito"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Exterior/Cinematics/Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_msoko"]
+_data = {
+"ESCAPE": SubResource("Animation_gllqw"),
+"RESET": SubResource("Animation_vbito")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15mrn"]
+size = Vector3(47.8303, 15.2804, 49)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
+vertices = PackedVector3Array(-47, -12, -60.75, -43, -12, -60.75, -43, -12, -62.75, -40.75, -11.75, -63, -40.75, -11.75, -67, -47, -12, -67, -4.25, -5, -63, -4.25, -5, -67, -2.25, -4.5, -63, -2, -4.5, -61.75, 2, -4.5, -62.5, 2, -4.5, -67, -1.75, -4.5, -67, -2, 0.25, -37.5, 2.25, 0.25, -37.5, -47, -12, -14.25, -43, -12, -14.25, -4.5, 1.25, 36.75, 4.5, 1.25, 36.75, 4.75, 0.5, 34.5, -4.75, 0.5, 34.5, 24.5, 0.5, -34.5, -24.5, 0.5, -34.5, 24.5, 0.5, 34.5, -24.5, 0.5, 34.5, 25.75, -12, -31.5, 25.75, -12, -17.5, 34.5, -12, -17.5, 34.5, -12, -31.5, -42.75, -12, -12, -47, -12, 7, -25.5, -12, 7, -25.5, -12, -12, -4.5, 4.5, 43.25, 4.5, 4.5, 43.25, 4.75, 5.5, 45.5, -4.75, 5.5, 45.5, -12, 5.5, 67, 12, 5.5, 67, -12, 5.5, 45.5, 12, 5.5, 45.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(4, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 6, 7), PackedInt32Array(7, 12, 8), PackedInt32Array(8, 12, 11), PackedInt32Array(8, 11, 10), PackedInt32Array(13, 9, 14), PackedInt32Array(14, 9, 10), PackedInt32Array(0, 1, 15), PackedInt32Array(15, 1, 16), PackedInt32Array(17, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(20, 22, 19), PackedInt32Array(19, 22, 21), PackedInt32Array(21, 23, 19), PackedInt32Array(20, 24, 22), PackedInt32Array(28, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(16, 29, 15), PackedInt32Array(15, 29, 30), PackedInt32Array(32, 31, 29), PackedInt32Array(29, 31, 30), PackedInt32Array(17, 18, 33), PackedInt32Array(33, 18, 34), PackedInt32Array(34, 35, 33), PackedInt32Array(33, 35, 36), PackedInt32Array(35, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(37, 39, 36), PackedInt32Array(35, 40, 38)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ope8t"]
+size = Vector3(180.103, 280.563, 241.819)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ribux"]
+size = Vector3(57.0839, 19.7139, 27.1862)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4nq3"]
+size = Vector3(7, 11, 2)
+
+[node name="Exterior" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rnikm")
+
+[node name="Cinematics" type="Node" parent="."]
+
+[node name="CinematicMusic" type="AudioStreamPlayer2D" parent="Cinematics"]
+bus = &"Music"
+
+[node name="Camera3D" type="Camera3D" parent="Cinematics"]
+transform = Transform3D(-0.769295, 0.132956, -0.62491, 0.0084877, 0.980147, 0.198088, 0.638842, 0.147083, -0.75515, -2.18294, 5.62204, 60.2768)
+rotation_edit_mode = 1
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_msoko")
+}
+autoplay = "RESET"
+
+[node name="Trigger Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46424, 0.89723, 22)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95932, 7.1402, -15.2056)
+shape = SubResource("BoxShape3D_15mrn")
+
+[node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA") instance=ExtResource("2_ttjtk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
+NAV_REGION = NodePath("../NavigationRegion3D")
+TRIGGER_AREA = NodePath("../Trigger Area")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -0.680692, 24.0903, -2.51908)
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 80.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 102.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -31.6807, -4.9097, -62.4167)
+light_color = Color(0.74, 0.54279, 0.4366, 1)
+light_energy = 50.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 16.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
+light_color = Color(0.51, 0.51, 0.51, 1)
+light_energy = 5.0
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jc5vn")
+
+[node name="Portal Platform" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -145, 56.25)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(25, 300, 22.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.25, -67.5, -2.5)
+material_override = ExtResource("5_ct7j2")
+snap = 0.25
+use_collision = true
+size = Vector3(22.5, 110, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -68.75, -40)
+material_override = ExtResource("5_ct7j2")
+snap = 0.25
+use_collision = true
+size = Vector3(5, 112.5, 55)
+
+[node name="LRamp" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+
+[node name="North" type="CSGPolygon3D" parent="NavigationRegion3D/LRamp"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 150, -40)
+use_collision = true
+polygon = PackedVector2Array(-22.5, -5, 5, 0, 5, -5, -22.5, -10)
+depth = 5.0
+material = ExtResource("5_ct7j2")
+
+[node name="East" type="CSGPolygon3D" parent="NavigationRegion3D/LRamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 145, -62.5)
+snap = 0.25
+use_collision = true
+polygon = PackedVector2Array(-37.5, -7.5, 2.5, 0, 2.5, -5, -37.5, -12.5)
+depth = 5.0
+material = ExtResource("5_ct7j2")
+
+[node name="Pillar" type="CSGBox3D" parent="NavigationRegion3D/LRamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 85, -65)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(5, 120, 5)
+
+[node name="Wrath Arena" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(50, 300, 70)
+
+[node name="Wrath Arena2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -156.25, -24.5)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(10, 287.5, 15)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 40)
+use_collision = true
+polygon = PackedVector2Array(-5, -5, -5, 0, 5, 5, 5, 0)
+depth = 10.0
+material = ExtResource("5_ct7j2")
+
+[node name="Kill Floor" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3_fqvjh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kill Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60646, -175.994, 12.7486)
+shape = SubResource("BoxShape3D_ope8t")
+
+[node name="Checkpoint1" parent="." node_paths=PackedStringArray("CHECKPOINT_NODE") instance=ExtResource("4_ynkt0")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0726547, 0, -31.8256)
+CHECKPOINT_NODE = NodePath("Node3D")
+CHECKPOINT_SCENE_PATH = "res://scenes/zones/exterior.tscn"
+
+[node name="CollisionShape3D" parent="Checkpoint1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+
+[node name="Node3D" parent="Checkpoint1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0224069, 0)
+
+[node name="Portal" parent="." node_paths=PackedStringArray("AREA", "CUTSCENE_PLAYER", "PLAYER_SPOT") instance=ExtResource("6_4l1cq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236291, 13.174, 145.21)
+AREA = NodePath("end")
+CUTSCENE_PLAYER = NodePath("../Cinematics/AnimationPlayer")
+PLAYER_SPOT = NodePath("Node3D")
+
+[node name="end" type="Area3D" parent="Portal"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portal/end"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02139, -4.37425, -69.257)
+shape = SubResource("BoxShape3D_ribux")
+
+[node name="Node3D" type="Node3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31915, -8.174, -79.3911)
+
+[node name="Soul1" parent="." instance=ExtResource("7_c1476")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2638, 1.71911, -33.896)
+
+[node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -14.329, -2.41369)
+DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
+NEW_POSITION_PATH = "TowerEast/NewPosition"
+AREA = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="TowerEast"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TowerEast/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_y4nq3")
+
+[node name="NewPosition" type="Node3D" parent="TowerEast"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5959e-07, 1.5, -6.20785)
+
+[node name="TowerWest" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.0826, -12.8662, -24.5036)
+DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
+NEW_POSITION_PATH = "TowerWest/NewPosition"
+AREA = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="TowerWest"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TowerWest/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_y4nq3")
+
+[node name="NewPosition" type="Node3D" parent="TowerWest"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.366223, 5.62108)
+
+[editable path="Checkpoint1"]

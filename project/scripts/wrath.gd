@@ -12,6 +12,8 @@ extends CharacterBody3D
 @export var LEFT_HAND_ATTACK_AREA: Area3D
 @export var TORSO_ATTACK_AREA: Area3D
 @export var TRIGGER_AREA: Area3D
+
+@export var PROGRESSION_AREA: Area3D #Enable for door or portal
 @export var DEATH_PARTICLE_SCENE: PackedScene
 @export var JUMP_ATTACK_PERCENTAGE = 1.2
 @export var MUSIC: AudioStreamPlayer2D
@@ -68,6 +70,8 @@ func _slam() -> void:
 		REAPER.damage(10)
 
 func _ready() -> void:
+	
+	REAPER = get_tree().root.get_node("Main/Reaper")
 	
 	dissolve_body(0,1)
 	

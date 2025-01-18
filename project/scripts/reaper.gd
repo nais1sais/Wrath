@@ -22,6 +22,8 @@ extends CharacterBody3D
 @export var PIVOT: Node3D
 @export var ATTACK_AREA: Area3D
 @export var ANIM: AnimationPlayer
+@export var COLLISON_SHAPE: CollisionShape3D
+@export var ZONES: Node
 @export var CLOAK_MATERIAL: ShaderMaterial
 
 @export_group("Hud")
@@ -111,7 +113,16 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	
 func _ready() -> void:
 
-	dissolve_cloak(0,0)
+	if Save.data.has("checkpoint_scene_path"): # loads checkpoint like door
+
+		var new_scene = ResourceLoader.load(Save.data["checkpoint_scene_path"])
+		if new_scene and new_scene is PackedScene:
+			var new_zone = new_scene.instantiate()
+			ZONES.add_child(new_zone)
+
+		var children = ZONES.get_children()
+		for i in range(len(children) - 1):  # Exclude the new added zone
+			children[i].queue_free()
 
 	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
 		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
@@ -131,7 +142,7 @@ func _ready() -> void:
 		stamina = MAX_STAMINA
 	else:
 		Save.data["max_stamina"] = MAX_STAMINA
-		
+
 	if Save.data.has("death_type"):
 		if Save.data["death_type"] == "fall":
 			SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
@@ -153,6 +164,9 @@ func _ready() -> void:
 	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	dissolve_cloak(0,0)
+	
+	
 	
 func _physics_process(delta: float) -> void:
 	

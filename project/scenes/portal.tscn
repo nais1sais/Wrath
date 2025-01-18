@@ -26,7 +26,7 @@ shader_parameter/Mask_Texture = ExtResource("3_10esi")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_msea1"]
 
-[node name="portal" type="Node3D"]
+[node name="Portal" type="Node3D"]
 script = ExtResource("1_7jlsn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwyvmebwu86xs"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_7q767"]
+[ext_resource type="PackedScene" uid="uid://c0pqtwl8b1uu4" path="res://models/blender/door.blend" id="1_kqrvq"]
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_7q767")
+
+[node name="Door" parent="." instance=ExtResource("1_kqrvq")]

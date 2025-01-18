@@ -5,6 +5,7 @@ extends Node3D
 
 @export var UPGRADE = 10.0
 @export var HEALTH = true
+@export var COLLECTED_PARTICLES : PackedScene
 
 func _on_body_entered(body: Node) -> void:
 	if not body == REAPER: return
@@ -12,7 +13,7 @@ func _on_body_entered(body: Node) -> void:
 	if Save.data.has("max_health"):
 
 		Audio.play_2d_sound(COLLECTION_SOUNDS[randi() % COLLECTION_SOUNDS.size()], 0.9, 1.1)
-		Save.data["soul" + self.name] = true
+		Save.data[self.name] = true
 
 		if HEALTH:
 			Save.data["max_health"] += UPGRADE
@@ -26,11 +27,18 @@ func _on_body_entered(body: Node) -> void:
 			REAPER.STAMINA_BAR.max_value = Save.data["max_stamina"]
 			REAPER.MAX_STAMINA = Save.data["max_stamina"]
 			REAPER.STAMINA_BAR.size.x = REAPER.MAX_STAMINA * REAPER.BAR_PIXEL_WIDTH
+		
+	if COLLECTED_PARTICLES:
+		var particles = COLLECTED_PARTICLES.instantiate()
+		particles.global_transform.origin = REAPER.global_transform.origin
+		get_parent().add_child(particles)
 
 		Save.save_game()
 
 func _ready() -> void:
-	if Save.data.has("soul" + self.name) and Save.data["soul" + self.name] == true:
+	REAPER = get_tree().root.get_node("Main/Reaper")
+	
+	if Save.data.has(self.name) and Save.data[self.name] == true:
 		queue_free()
 	
 	AREA.connect("body_entered", Callable(self, "_on_body_entered"))
