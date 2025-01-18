@@ -12,16 +12,18 @@ extends CharacterBody3D
 @export var LEFT_HAND_ATTACK_AREA: Area3D
 @export var TORSO_ATTACK_AREA: Area3D
 @export var TRIGGER_AREA: Area3D
-
-@export var PROGRESSION_AREA: Area3D #Enable for door or portal
+@export var PROGRESSION_AREA: Area3D 
 @export var DEATH_PARTICLE_SCENE: PackedScene
-@export var JUMP_ATTACK_PERCENTAGE = 1.2
+@export var JUMP_ATTACK_PERCENTAGE = 0.4
 @export var MUSIC: AudioStreamPlayer2D
 @export var HIT_SOUNDS: Array[AudioStream] = []
 @export var SLAM_SOUNDS: Array[AudioStream] = []
 @export var BODY_MATERIAL: ShaderMaterial
 var health = MAX_HEALTH
 var triggered = false;
+
+func unlock_progression() -> void:
+	PROGRESSION_AREA.monitoring = true
 
 func play_SLAM_sound() -> void:
 	if SLAM_SOUNDS.size() > 0:

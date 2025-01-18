@@ -648,14 +648,17 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jko3"]
 size = Vector3(32.832, 1.29297, 1.20326)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cv2q"]
-bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m0od"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_top = 4
+border_width_bottom = 4
 border_color = Color(0.13, 0.13, 0.13, 0.898039)
 border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.686275)
 anti_aliasing = false
 
 [node name="Reaper" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA", "MESH", "PIVOT", "ATTACK_AREA", "ANIM", "COLLISON_SHAPE", "STAMINA_BAR", "HEALTH_BAR", "SPAWN_PLAYER")]
@@ -805,7 +808,7 @@ offset_right = 137.0
 offset_bottom = 41.0
 theme = ExtResource("3_xeyp1")
 theme_override_styles/background = ExtResource("4_nq6uo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3cv2q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2m0od")
 value = 50.0
 rounded = true
 show_percentage = false

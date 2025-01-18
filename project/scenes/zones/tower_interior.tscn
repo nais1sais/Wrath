@@ -89,6 +89,10 @@ size = Vector3(46, 20, 65)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08563, 2.71911, -29.3764)
 HEALTH = false
 
+[node name="Soul4" parent="." instance=ExtResource("3_ygqaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9064, -7.71782, 28.0207)
+HEALTH = false
+
 [node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("10_0tr1y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23, -10, 1.00536e-06)
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"

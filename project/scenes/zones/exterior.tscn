@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dsdh2bite7xv4"]
 
-[ext_resource type="AudioStream" uid="uid://6cspmlqg3ega" path="res://audio/music/escape.ogg" id="1_ye5dk"]
+[ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/wrath.tscn" id="2_ttjtk"]
 [ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="4_ynkt0"]
@@ -161,7 +161,7 @@ environment = SubResource("Environment_rnikm")
 bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(-0.769295, 0.132956, -0.62491, 0.0084877, 0.980147, 0.198088, 0.638842, 0.147083, -0.75515, -2.18294, 5.62204, 60.2768)
+transform = Transform3D(-0.769294, 0.132956, -0.62491, 0.0084877, 0.980147, 0.198088, 0.638842, 0.147083, -0.75515, -2.18294, 5.62204, 60.2768)
 rotation_edit_mode = 1
 current = true
 
@@ -181,10 +181,11 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95932, 7.1402, -15.2056)
 shape = SubResource("BoxShape3D_15mrn")
 
-[node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA") instance=ExtResource("2_ttjtk")]
+[node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA", "PROGRESSION_AREA") instance=ExtResource("2_ttjtk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
 NAV_REGION = NodePath("../NavigationRegion3D")
 TRIGGER_AREA = NodePath("../Trigger Area")
+PROGRESSION_AREA = NodePath("../Portal/end")
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -212,20 +213,31 @@ light_energy = 5.0
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_jc5vn")
 
-[node name="Portal Platform" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Portal" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Ramp" type="CSGPolygon3D" parent="NavigationRegion3D/Portal"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 40)
+use_collision = true
+polygon = PackedVector2Array(-5, -5, -5, 0, 5, 5, 5, 0)
+depth = 10.0
+material = ExtResource("5_ct7j2")
+
+[node name="Platform" type="CSGBox3D" parent="NavigationRegion3D/Portal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -145, 56.25)
 material_override = ExtResource("5_ct7j2")
 use_collision = true
 size = Vector3(25, 300, 22.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Walkway" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Walkway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.25, -67.5, -2.5)
 material_override = ExtResource("5_ct7j2")
 snap = 0.25
 use_collision = true
 size = Vector3(22.5, 110, 20)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/Walkway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -68.75, -40)
 material_override = ExtResource("5_ct7j2")
 snap = 0.25
@@ -262,18 +274,45 @@ material_override = ExtResource("5_ct7j2")
 use_collision = true
 size = Vector3(50, 300, 70)
 
-[node name="Wrath Arena2" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Balcony" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -156.25, -24.5)
 material_override = ExtResource("5_ct7j2")
 use_collision = true
 size = Vector3(10, 287.5, 15)
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="NavigationRegion3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 40)
+[node name="Hidden Corner" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="1" type="CSGBox3D" parent="NavigationRegion3D/Hidden Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -162.5, 15)
+material_override = ExtResource("5_ct7j2")
 use_collision = true
-polygon = PackedVector2Array(-5, -5, -5, 0, 5, 5, 5, 0)
-depth = 10.0
-material = ExtResource("5_ct7j2")
+size = Vector3(5, 300, 5)
+
+[node name="2" type="CSGBox3D" parent="NavigationRegion3D/Hidden Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -162.5, 28.1985)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(5, 300, 7.5)
+
+[node name="3" type="CSGBox3D" parent="NavigationRegion3D/Hidden Corner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, -162.5, 37.5)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(42.5, 300, 5)
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="1" type="CSGBox3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -162.5, -26.25)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(5, 300, 27.5)
+
+[node name="2" type="CSGBox3D" parent="NavigationRegion3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -162.5, -37.5)
+material_override = ExtResource("5_ct7j2")
+use_collision = true
+size = Vector3(40, 300, 5)
 
 [node name="Kill Floor" type="Area3D" parent="."]
 collision_layer = 3
@@ -304,16 +343,23 @@ PLAYER_SPOT = NodePath("Node3D")
 [node name="end" type="Area3D" parent="Portal"]
 collision_layer = 3
 collision_mask = 3
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portal/end"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02139, -4.37425, -69.257)
 shape = SubResource("BoxShape3D_ribux")
 
 [node name="Node3D" type="Node3D" parent="Portal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31915, -8.174, -79.3911)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.899259, -8.174, -78.907)
 
 [node name="Soul1" parent="." instance=ExtResource("7_c1476")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2638, 1.71911, -33.896)
+
+[node name="Soul3" parent="." instance=ExtResource("7_c1476")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1656, -10.1917, 37.849)
+
+[node name="Soul5" parent="." instance=ExtResource("7_c1476")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7362, -10.7115, -37.4971)
 
 [node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -14.329, -2.41369)
