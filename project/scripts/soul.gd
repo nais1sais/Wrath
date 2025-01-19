@@ -3,7 +3,7 @@ extends Node3D
 @export var REAPER: CharacterBody3D
 @export var COLLECTION_SOUNDS: Array[AudioStream] = []
 
-@export var UPGRADE = 10.0
+@export var UPGRADE = 5.0
 @export var HEALTH = true
 @export var COLLECTED_PARTICLES : PackedScene
 

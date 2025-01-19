@@ -103,7 +103,7 @@ tracks/5/path = NodePath("CollisionShape3D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 3.53333),
+"times": PackedFloat32Array(0, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -457,10 +457,10 @@ RIGHT_HAND_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/RightHand/Area
 LEFT_HAND_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/LeftHand/Area3D")
 TORSO_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/Torso/Area3D")
 DEATH_PARTICLE_SCENE = ExtResource("2_brvm4")
+BODY_MATERIAL = SubResource("ShaderMaterial_yqaem")
 MUSIC = NodePath("Music")
 HIT_SOUNDS = Array[AudioStream]([ExtResource("3_nbwf2"), ExtResource("4_1aywb"), ExtResource("5_26ndu")])
 SLAM_SOUNDS = Array[AudioStream]([ExtResource("6_ay1ei")])
-BODY_MATERIAL = SubResource("ShaderMaterial_yqaem")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -473,22 +473,19 @@ autoplay = "RESET"
 [node name="wrath" parent="Mesh" instance=ExtResource("10_h46di")]
 
 [node name="Skeleton3D" parent="Mesh/wrath/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.707107, -7.55185e-17, -7.55185e-17, 0.707107)
-bones/1/position = Vector3(0.0058934, -0.078204, 0.723455)
-bones/1/rotation = Quaternion(0.54579, 0.000401542, -0.000640404, 0.837922)
-bones/2/rotation = Quaternion(0.35872, -0.0129457, -0.0081764, 0.93332)
-bones/3/rotation = Quaternion(-0.0484603, 0.343719, 0.75355, 0.558276)
+bones/1/rotation = Quaternion(0.520187, 5.55556e-17, 9.12122e-17, 0.854052)
+bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
+bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.518992, -0.453002, 0.177048, 0.702916)
-bones/5/rotation = Quaternion(-0.672997, -0.0996726, -0.0344217, 0.73209)
-bones/6/rotation = Quaternion(-0.189969, -0.00908366, 0.0815101, 0.978358)
+bones/4/rotation = Quaternion(-0.18941, 0.0856309, 0.344916, 0.915327)
+bones/6/rotation = Quaternion(-0.0822429, 0.000622959, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.037037, -0.0144376, -0.010287, 0.999157)
-bones/8/rotation = Quaternion(0.262493, 0.0857799, -0.731107, 0.623876)
+bones/7/rotation = Quaternion(-0.29291, -2.3223e-14, -6.98353e-08, 0.95614)
+bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.451995, 0.174823, -0.110468, 0.867718)
+bones/9/rotation = Quaternion(-0.18941, -0.085631, -0.344916, 0.915327)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.526159, 0.0382719, 0.105976, 0.842889)
+bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325445, 0.887213)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 
@@ -496,7 +493,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_yqaem")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.754863, 0.363297, -0.546074, 0.387568, 0.918746, 0.0754777, 0.529124, -0.154666, -0.83433, -1.81436, 4.16697, 0.292531)
+transform = Transform3D(-0.924673, -0.00872146, -0.380663, 0.348244, -0.42363, -0.836219, -0.153967, -0.905793, 0.394756, -2.01091, 1.84788, -0.0583947)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -510,7 +507,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.26551, -0.279671, 0.922653, -0.420134, 0.894918, 0.150363, -0.867751, -0.347715, -0.355109, 2.02045, 4.94647, 0.559962)
+transform = Transform3D(-0.924673, 0.00872123, 0.380663, -0.348245, -0.423631, -0.836219, 0.153968, -0.905793, 0.394757, 2.01091, 1.84788, -0.0583953)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -524,7 +521,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999492, 0.00707944, -0.0310622, -0.0164294, 0.949887, -0.312161, 0.0272956, 0.312513, 0.949521, 0.00858418, 1.2517, 0.358613)
+transform = Transform3D(1, 2.62901e-13, 2.38419e-07, 2.98741e-08, 0.992119, -0.125302, -2.3654e-07, 0.125302, 0.992119, -1.86629e-22, 1, 0.100295)
 bone_name = "torso"
 bone_idx = 2
 

@@ -3,9 +3,9 @@ extends CharacterBody3D
 @export_group("Movement")
 @export var SPEED = 5.3
 @export var SPRINT_MULTIPLIER = 2.0
-@export var MAX_STAMINA = 25.0
-@export var MAX_HEALTH = 25.0
-@export var STAMINA_RECOVERY_SPEED = 30.0
+@export var MAX_STAMINA = 10.0
+@export var MAX_HEALTH = 10.0
+@export var STAMINA_RECOVERY_SPEED = 20.0
 @export var SPEED_FRICTION = 0.9999999999
 @export var JUMP_VELOCITY = 14.0
 @export var GRAVITY_MULTIPLIER = 4
@@ -63,12 +63,12 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 func damage(_amount: float) -> void:
+	ANIM.play("HURT")
 	CAMERA.shake += 3
 	if HURT_SOUNDS.size() > 0:
 		Audio.play_2d_sound(HURT_SOUNDS[randi() % HURT_SOUNDS.size()], 0.9, 1.1)
 	if (health <= 0):
-		death()
-	
+		death()	
 func death() -> void:
 	ANIM.play("DEATH")
 	Save.data["death_type"] = "regular"
@@ -76,8 +76,7 @@ func death() -> void:
 func fall_death() -> void:
 	ANIM.play("FALL_DEATH")	
 	Save.data["death_type"] = "fall"
-	Save.save_game()
-	
+	Save.save_game()	
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "WINDOWN":
 		ANIM.play("IDLE", 0, 1, false)
@@ -166,8 +165,6 @@ func _ready() -> void:
 	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	dissolve_cloak(0,0)
 	
-	
-	
 func _physics_process(delta: float) -> void:
 	
 	if not was_on_floor and is_on_floor() and has_been_on_floor:
@@ -182,7 +179,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack"): # ATTACK
 		if is_on_floor():
-			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH"]:
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"]:
 				ANIM.play("WINDUP")
 		
 	if not Input.is_action_pressed("attack"): # STAMINA RECOVERY
@@ -205,7 +202,7 @@ func _physics_process(delta: float) -> void:
 			jump_buffer -= delta;
 
 	if jump_buffer > 0 and falling < COYOTE_TIME: # JUMP
-		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH"]:
+		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"]:
 			if JUMP_SOUNDS.size() > 0:  
 				Audio.play_2d_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
 			velocity.y = JUMP_VELOCITY
@@ -219,7 +216,7 @@ func _physics_process(delta: float) -> void:
 
 		mouse_delta = Vector2.ZERO
 
-	if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN","DEATH", "FALL_DEATH"] and !is_on_floor():
+	if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN","DEATH", "FALL_DEATH", "HURT"] and !is_on_floor():
 		if (velocity.y < 0):
 			ANIM.play("Fall")
 		else:
@@ -229,12 +226,12 @@ func _physics_process(delta: float) -> void:
 	if input_direction.length() > 0:
 		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y + global_transform.basis.get_euler().y)
 		if Input.is_action_pressed("sprint") and stamina > 0:
-			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH"] and is_on_floor():
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"] and is_on_floor():
 				ANIM.play("RUN", 0.0, 1, false)
 			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER * SPEED_MULTIPLIER
 			velocity.z = mesh_direction.z * SPEED * SPRINT_MULTIPLIER * SPEED_MULTIPLIER
 		else:
-			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH"] and is_on_floor():
+			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"] and is_on_floor():
 				ANIM.play("WALK", 0.0, 1, false)
 			velocity.x = mesh_direction.x * SPEED * SPEED_MULTIPLIER
 			velocity.z = mesh_direction.z * SPEED * SPEED_MULTIPLIER
@@ -243,7 +240,7 @@ func _physics_process(delta: float) -> void:
 		var target_rotation = atan2(direction.x, direction.z) + PI
 		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, TURN_SPEED * TURN_INFLUENCE * delta)
 	else:
-		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH"] and is_on_floor():
+		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"] and is_on_floor():
 			ANIM.play("IDLE", 0, 1, false)
 		velocity.x = 0 
 		velocity.z = 0
