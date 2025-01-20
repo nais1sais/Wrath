@@ -187,9 +187,10 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_vw818")
 bbcode_enabled = true
-text = "[center] [color=#ececec]GOAL[/color][color=#858585]- ESCAPE LIMBO AND REGAIN LIFE BY DEFEATING SINS INCARNATE[/color]
-[color=#ececec]WASD / ARROWS / MOUSE / SPACE [/color][color=#858585]- MOVE / LOOK / JUMP [/color]
-[color=#ececec]HOLD MOUSE [/color][color=#858585]- SPIN ATTACK  [/color]
+text = "[center] [color=#ececec]Goal[/color][color=#858585]- Escape limbo and regain life by defeating sin incarnate[/color]
+[color=#ececec]Wasd / Arrows / Mouse / Space [/color][color=#858585]- Move / Look / Jump [/color]
+[color=#ececec]Hold Mouse [/color][color=#858585]- Spin Attack  [/color]
+[color=#ececec]Middle Mouse[/color][color=#858585]- Camera lock on [/color]
 [/center] "
 fit_content = true
 autowrap_mode = 0
@@ -215,7 +216,7 @@ bbcode_enabled = true
 text = "[center] [color=#ececec] Boss Rush Jam[/color][color=#858585] - 2025 \"Spin\" Entry [/color]
 [color=#ececec]ClairdeLou[/color][color=#858585] - Music - USA [/color]
 [color=#ececec]Jcmusik08 [/color][color=#858585]- Sound Design - USA [/color]
-[color=#ececec]Mallnasy[/color][color=#858585] - Modeling / Texturing - Russia [/color]
+[color=#ececec]NaisSais[/color][color=#858585] - Modeling / Texturing - Russia [/color]
 [color=#ececec]Nemo [/color][color=#858585]- Animation / Programming - USA  [/color]
 [color=#ececec]Kenney / Le Lu / DisplacedFikaDev [/color][color=#858585]- Shaders / Free Resources  [/color]
 [/center]"

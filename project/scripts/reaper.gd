@@ -15,12 +15,14 @@ extends CharacterBody3D
 @export var SPEED_MULTIPLIER: float = 1.0
 @export var COYOTE_TIME: float = .4
 @export var JUMP_BUFFER_TIME: float = .2
+@export var LOCK_ON_SPEED = 7
 
 @export_group("References")
 @export var CAMERA: Camera3D
 @export var MESH: Node3D
 @export var PIVOT: Node3D
 @export var ATTACK_AREA: Area3D
+@export var LOCK_ON_AREA: Area3D
 @export var ANIM: AnimationPlayer
 @export var COLLISON_SHAPE: CollisionShape3D
 @export var ZONES: Node
@@ -49,6 +51,8 @@ var falling = COYOTE_TIME;
 var was_on_floor = true
 var has_been_on_floor = false
 var jump_buffer = 0;
+var lock_on_activated = false
+var lock_on_target: CharacterBody3D
 
 func dissolve_cloak(speed: float, amount: float) -> void:
 	var tween = create_tween()
@@ -101,6 +105,12 @@ func _on_animation_finished(animation_name: String) -> void:
 		
 	if animation_name == "DEATH" or animation_name == "FALL_DEATH":
 		get_tree().call_deferred("reload_current_scene")	
+
+func _on_lock_on_area_body_entered(body: Node) -> void:
+	if body == self: return
+	if body is not CharacterBody3D: return
+	lock_on_target = body
+
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
@@ -113,35 +123,29 @@ func _on_attack_area_body_entered(body: Node) -> void:
 func _ready() -> void:
 
 	if Save.data.has("checkpoint_scene_path"): # loads checkpoint like door
-
 		var new_scene = ResourceLoader.load(Save.data["checkpoint_scene_path"])
 		if new_scene and new_scene is PackedScene:
 			var new_zone = new_scene.instantiate()
 			ZONES.add_child(new_zone)
-
 		var children = ZONES.get_children()
 		for i in range(len(children) - 1):  # Exclude the new added zone
 			children[i].queue_free()
-
 	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
 		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
 	if Save.data.has("checkpoint_rotation_y"):
-		rotation.y = Save.data["checkpoint_rotation_y"]
-		
+		rotation.y = Save.data["checkpoint_rotation_y"]	
 	if Save.data.has("max_health"):
 		HEALTH_BAR.max_value = Save.data["max_health"]
 		MAX_HEALTH = Save.data["max_health"]
 		health = MAX_HEALTH
 	else:
 		Save.data["max_health"] = MAX_HEALTH
-		
 	if Save.data.has("max_stamina"):
 		STAMINA_BAR.max_value = Save.data["max_stamina"]
 		MAX_STAMINA = Save.data["max_stamina"]
 		stamina = MAX_STAMINA
 	else:
 		Save.data["max_stamina"] = MAX_STAMINA
-
 	if Save.data.has("death_type"):
 		if Save.data["death_type"] == "fall":
 			SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
@@ -162,7 +166,8 @@ func _ready() -> void:
 	
 	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
-	ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	if ATTACK_AREA: ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	if LOCK_ON_AREA: LOCK_ON_AREA.connect("body_entered", Callable(self, "_on_lock_on_area_body_entered"))
 	dissolve_cloak(0,0)
 	
 func _physics_process(delta: float) -> void:
@@ -208,6 +213,20 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 			falling = COYOTE_TIME
 			jump_buffer = 0
+
+	if Input.is_action_just_pressed("lock_on"):
+		lock_on_activated = !lock_on_activated
+		
+	if lock_on_activated:
+		if lock_on_target and is_instance_valid(lock_on_target):
+			var target_position = lock_on_target.global_transform.origin
+			var current_rotation = PIVOT.global_transform.basis.get_rotation_quaternion()
+			PIVOT.look_at(target_position + PIVOT.position, Vector3.UP)
+			var new_rotation = PIVOT.global_transform.basis.get_rotation_quaternion()
+			
+			PIVOT.global_transform.basis = Basis(current_rotation.slerp(new_rotation, LOCK_ON_SPEED * delta))
+
+			mouse_delta = Vector2.ZERO
 
 	if mouse_delta.length() > 0:
 		var y_rot = Quaternion(Vector3.UP, -mouse_delta.x * MOUSE_SENSITIVITY)
