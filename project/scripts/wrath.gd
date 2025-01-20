@@ -7,6 +7,9 @@ extends CharacterBody3D
 @export var SLAM_ATTACK_PERCENTAGE = 2.2
 @export var TRACKING_SPEED: float = 5.0
 @export var TRACKING_MULTIPLIER: float = 1.0
+@export var ATTACK_ANIMATION: Array[String] = []
+@export var ATTACK_RADIUS: Array[float] = []
+@export var ATTACK_LIKELEHOOD: Array[Curve] = []
 
 @export_group("References")
 @export var REAPER: CharacterBody3D
@@ -36,9 +39,9 @@ var target_direction = Vector3.ZERO
 func track_towards_direction(delta: float) -> void:
 	if target_direction.length_squared() > 0:
 		target_direction = target_direction.normalized()
-	var target_basis = Basis.looking_at(target_direction, Vector3.UP).orthonormalized()
+	var target_basis = Basis.looking_at(target_direction, Vector3.UP)
 	var interpolated_basis = $Mesh.global_transform.basis.slerp(target_basis, TRACKING_SPEED * TRACKING_MULTIPLIER * delta)
-	$Mesh.global_transform.basis = interpolated_basis
+	$Mesh.global_transform.basis = interpolated_basis.orthonormalized()
 func unlock_progression() -> void:
 	PROGRESSION_AREA.monitoring = true
 func play_SLAM_sound() -> void:
@@ -120,14 +123,17 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
-		
+
 	if not ANIM.current_animation in ["CHASE"]: return
-
-	if randf() < JUMP_ATTACK_PERCENTAGE * delta:
-
-		ANIM.play("JUMP_ATTACK")
-
-	if global_transform.origin.distance_to(REAPER.global_transform.origin) < 5.0:  # Example distance threshold
 		
-		if randf() < SLAM_ATTACK_PERCENTAGE * delta:
-			ANIM.play("SLAM_ATTACK")
+	var indices = range(ATTACK_ANIMATION.size())  # Create array of indices
+	indices.shuffle();  #print(indices)
+	for i in indices:
+		var normalized_distance = clamp(global_transform.origin.distance_to(REAPER.global_transform.origin) / ATTACK_RADIUS[i], 0.0, 1.0)
+		var attack_likelihood = ATTACK_LIKELEHOOD[i].sample(randf()) * (1.0 - normalized_distance)
+		attack_likelihood *= delta 
+		attack_likelihood *= (1 / delta)
+		if randf() < attack_likelihood and global_transform.origin.distance_to(REAPER.global_transform.origin) > 2.0:
+			ANIM.play(ATTACK_ANIMATION[i])
+			break
+		
