@@ -4,8 +4,9 @@ extends CharacterBody3D
 @export var MAX_HEALTH: int = 30
 @export var SPEED = 9.0
 @export var JUMP_ATTACK_PERCENTAGE = 0.8
+@export var SLAM_ATTACK_PERCENTAGE = 2.2
 @export var TRACKING_SPEED: float = 5.0
-@export var TRACKING_MULTIPLIER: int = 1
+@export var TRACKING_MULTIPLIER: float = 1.0
 
 @export_group("References")
 @export var REAPER: CharacterBody3D
@@ -16,6 +17,7 @@ extends CharacterBody3D
 @export var MESH: Node3D
 @export var RIGHT_HAND_ATTACK_AREA: Area3D
 @export var LEFT_HAND_ATTACK_AREA: Area3D
+@export var JUMP_ATTACK_AREA: Area3D
 @export var TORSO_ATTACK_AREA: Area3D
 @export var TRIGGER_AREA: Area3D
 @export var PROGRESSION_AREA: Area3D 
@@ -34,7 +36,7 @@ var target_direction = Vector3.ZERO
 func track_towards_direction(delta: float) -> void:
 	if target_direction.length_squared() > 0:
 		target_direction = target_direction.normalized()
-	var target_basis = Basis.looking_at(target_direction, Vector3.UP)  
+	var target_basis = Basis.looking_at(target_direction, Vector3.UP).orthonormalized()
 	var interpolated_basis = $Mesh.global_transform.basis.slerp(target_basis, TRACKING_SPEED * TRACKING_MULTIPLIER * delta)
 	$Mesh.global_transform.basis = interpolated_basis
 func unlock_progression() -> void:
@@ -69,10 +71,11 @@ func _on_attack_area_body_entered(body: Node) -> void:
 func _on_trigger_area_body_entered(body: Node) -> void:
 	if body != REAPER: return
 	if MUSIC.playing == true: return
-	MUSIC.playing = true 
+	MUSIC.playing = true  
 	triggered = true
 	ANIM.play("INTRO")
-func _slam() -> void:
+func _on_jump_attack_area_body_entered(body: Node) -> void:	
+	if body != REAPER: return
 	if REAPER.is_on_floor():
 		REAPER.health -= 10;
 		REAPER.damage(10)
@@ -92,6 +95,7 @@ func _ready() -> void:
 	LEFT_HAND_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	TORSO_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	TRIGGER_AREA.connect("body_entered", Callable(self, "_on_trigger_area_body_entered"))
+	JUMP_ATTACK_AREA.connect("body_entered", Callable(self, "_on_jump_attack_area_body_entered"))
 
 func _physics_process(delta: float) -> void:
 
@@ -100,13 +104,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector3(0, 0, 0)
 	if not is_on_floor(): velocity += get_gravity() * delta
-	if not triggered or health <= 0 or ANIM.current_animation == "INTRO": return;
+	if not triggered or health <= 0: return;
 	HEALTH_BAR.value = health
 	if REAPER.health <= 0: MUSIC.stop()
 	track_towards_direction(delta)
 	target_direction = (REAPER.global_transform.origin - global_transform.origin).normalized()
 
-	if ANIM.current_animation not in ["SLAM_ATTACK", "JUMP_ATTACK"]: # MOVE towards player
+	if ANIM.current_animation == "CHASE" and global_transform.origin.distance_to(REAPER.global_transform.origin) > 2.0:
 		NAV_AGENT.target_position = REAPER.global_transform.origin
 		var direction = NAV_AGENT.get_next_path_position() - global_transform.origin
 		direction.y = 0  # Ignore vertical movement
@@ -116,11 +120,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
+		
+	if not ANIM.current_animation in ["CHASE"]: return
 
 	if randf() < JUMP_ATTACK_PERCENTAGE * delta:
-		if not ANIM.current_animation in ["SLAM_ATTACK"]:
-			ANIM.play("JUMP_ATTACK")
+
+		ANIM.play("JUMP_ATTACK")
 
 	if global_transform.origin.distance_to(REAPER.global_transform.origin) < 5.0:  # Example distance threshold
-		if not ANIM.current_animation in ["JUMP_ATTACK"]:
+		
+		if randf() < SLAM_ATTACK_PERCENTAGE * delta:
 			ANIM.play("SLAM_ATTACK")
