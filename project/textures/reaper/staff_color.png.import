@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpvuokdr1ciil"
-path.s3tc="res://.godot/imported/staff_color.png-006308339a92a89b2947d2a96b4eb2e6.s3tc.ctex"
+path.s3tc="res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/staff_color.png"
-dest_files=["res://.godot/imported/staff_color.png-006308339a92a89b2947d2a96b4eb2e6.s3tc.ctex"]
+source_file="res://textures/reaper/staff_color.png"
+dest_files=["res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.s3tc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://81lvolbdi6bv"
-path.s3tc="res://.godot/imported/cloak_color.png-edac888859bc3af768626181d21804cf.s3tc.ctex"
+path.s3tc="res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/cloak_color.png"
-dest_files=["res://.godot/imported/cloak_color.png-edac888859bc3af768626181d21804cf.s3tc.ctex"]
+source_file="res://textures/reaper/cloak_color.png"
+dest_files=["res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.s3tc.ctex"]
 
 [params]
 

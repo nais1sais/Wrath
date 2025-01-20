@@ -16,7 +16,7 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://textures/Splash.png"
+config/icon="res://textures/icon/Icon.png"
 config/windows_native_icon="res://textures/wrath.ico"
 
 [audio]
