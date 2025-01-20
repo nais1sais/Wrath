@@ -14,10 +14,11 @@ extends CharacterBody3D
 @export_group("References")
 @export var REAPER: CharacterBody3D
 @export var ANIM: AnimationPlayer
+@export var MESH_ANIM: AnimationPlayer
+@export var MESH: Node3D
 @export var NAV_REGION: NavigationRegion3D 
 @export var NAV_AGENT: NavigationAgent3D
 @export var HEALTH_BAR: ProgressBar
-@export var MESH: Node3D
 @export var RIGHT_HAND_ATTACK_AREA: Area3D
 @export var LEFT_HAND_ATTACK_AREA: Area3D
 @export var JUMP_ATTACK_AREA: Area3D
@@ -36,12 +37,16 @@ var health = MAX_HEALTH
 var triggered = false;
 var target_direction = Vector3.ZERO
 
+func root_motion() -> void: # Make sure mesh anim uses physics callback or will not be moving enough
+	var root_motion_position = MESH_ANIM.get_root_motion_position() 
+	var transformed_root_motion = MESH.global_transform.basis * root_motion_position
+	global_transform.origin += transformed_root_motion; 
 func track_towards_direction(delta: float) -> void:
 	if target_direction.length_squared() > 0:
 		target_direction = target_direction.normalized()
 	var target_basis = Basis.looking_at(target_direction, Vector3.UP)
-	var interpolated_basis = $Mesh.global_transform.basis.slerp(target_basis, TRACKING_SPEED * TRACKING_MULTIPLIER * delta)
-	$Mesh.global_transform.basis = interpolated_basis.orthonormalized()
+	var interpolated_basis = MESH.global_transform.basis.slerp(target_basis, TRACKING_SPEED * TRACKING_MULTIPLIER * delta)
+	MESH.global_transform.basis = interpolated_basis.orthonormalized()
 func unlock_progression() -> void:
 	PROGRESSION_AREA.monitoring = true
 func play_SLAM_sound() -> void:
@@ -102,6 +107,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+
+	root_motion()
 	if health > 0: 
 		move_and_slide()
 	else:
