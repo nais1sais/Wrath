@@ -133,14 +133,14 @@ func _physics_process(delta: float) -> void:
 
 	if not ANIM.current_animation in ["CHASE"]: return
 		
-	var indices = range(ATTACK_ANIMATION.size())  # Create array of indices
-	indices.shuffle();  #print(indices)
+	var indices = range(ATTACK_ANIMATION.size())  
+	indices.shuffle();  #print(indices) # randomly sort attacks to distrubte priorty
 	for i in indices:
 		var normalized_distance = clamp(global_transform.origin.distance_to(REAPER.global_transform.origin) / ATTACK_RADIUS[i], 0.0, 1.0)
 		var attack_likelihood = ATTACK_LIKELEHOOD[i].sample(randf()) * (1.0 - normalized_distance)
 		attack_likelihood *= delta 
 		attack_likelihood *= (1 / delta)
-		if randf() < attack_likelihood and global_transform.origin.distance_to(REAPER.global_transform.origin) > 2.0:
+		if randf() < attack_likelihood:
 			ANIM.play(ATTACK_ANIMATION[i])
 			break
 		
