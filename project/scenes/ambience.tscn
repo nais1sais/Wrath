@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cat4e2my2so35"]
+
+[ext_resource type="Script" path="res://scripts/ambience.gd" id="1_8uadp"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ENTER_AREA", "EXIT_AREA")]
+script = ExtResource("1_8uadp")
+ENTER_AREA = NodePath("")
+EXIT_AREA = NodePath("")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -80.0

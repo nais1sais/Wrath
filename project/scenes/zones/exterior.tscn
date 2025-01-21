@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=39 format=3 uid="uid://dsdh2bite7xv4"]
 
 [ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="6_4l1cq"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="7_c1476"]
 [ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/door.tscn" id="8_5d645"]
+[ext_resource type="PackedScene" uid="uid://cat4e2my2so35" path="res://scenes/ambience.tscn" id="10_ykp4i"]
+[ext_resource type="AudioStream" uid="uid://dihsmt30mdqcm" path="res://audio/music/gluttony.ogg" id="11_0eica"]
+[ext_resource type="AudioStream" uid="uid://5u0ecm0d8hx8" path="res://audio/music/ambience.ogg" id="12_mgjjb"]
+[ext_resource type="AudioStream" uid="uid://f7dwuxrh87go" path="res://audio/music/wrath.ogg" id="13_puej5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
 sky_top_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
@@ -157,11 +161,145 @@ size = Vector3(51.7317, 6.81735, 0.861012)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ope8t"]
 size = Vector3(240, 280.563, 297.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wnvso"]
+size = Vector3(11.7198, 14.9762, 9.77417)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ribux"]
 size = Vector3(57.0839, 19.7139, 27.1862)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4nq3"]
 size = Vector3(7, 11, 2)
+
+[sub_resource type="Animation" id="Animation_vtj5q"]
+resource_name = "ENTERED"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rdmac"]
+resource_name = "EXITED"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -60.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2kb3h"]
+_data = {
+"ENTERED": SubResource("Animation_vtj5q"),
+"EXITED": SubResource("Animation_rdmac")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egoas"]
+size = Vector3(15.6733, 8.16028, 17.0186)
+
+[sub_resource type="Animation" id="Animation_t7qrg"]
+resource_name = "ENTERED"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vbbts"]
+resource_name = "EXITED"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -60.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.96667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfamd"]
+_data = {
+"ENTERED": SubResource("Animation_t7qrg"),
+"EXITED": SubResource("Animation_vbbts")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nd6ia"]
+size = Vector3(120.222, 16.3293, 132.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bryq3"]
+size = Vector3(60.1604, 35, 107.815)
 
 [node name="Exterior" type="Node3D"]
 
@@ -176,7 +314,6 @@ bus = &"Music"
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
 transform = Transform3D(0.821646, 0.081791, -0.564102, 7.4506e-09, 0.989651, 0.143493, 0.570002, -0.1179, 0.813142, 0.877, 6.059, 67.493)
 rotation_edit_mode = 1
-current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
 root_node = NodePath("../../..")
@@ -194,11 +331,12 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05826, 7.1402, -15.2056)
 shape = SubResource("BoxShape3D_15mrn")
 
-[node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA", "PROGRESSION_AREA") instance=ExtResource("2_ttjtk")]
+[node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA", "PROGRESSION_AREA", "MUSIC") instance=ExtResource("2_ttjtk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
 NAV_REGION = NodePath("../NavigationRegion3D")
 TRIGGER_AREA = NodePath("../Trigger Area")
 PROGRESSION_AREA = NodePath("../Portal/end")
+MUSIC = NodePath("../WrathMusic")
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -405,7 +543,8 @@ CHECKPOINT_NODE = NodePath("Node3D")
 CHECKPOINT_SCENE_PATH = "res://scenes/zones/exterior.tscn"
 
 [node name="CollisionShape3D" parent="Checkpoint1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00450516, 3.30356, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339145, 0.179446, -0.115173)
+shape = SubResource("BoxShape3D_wnvso")
 
 [node name="Node3D" parent="Checkpoint1" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0224069, 0)
@@ -471,4 +610,79 @@ shape = SubResource("BoxShape3D_y4nq3")
 [node name="NewPosition" type="Node3D" parent="TowerWest"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.366223, 5.62108)
 
+[node name="StatueMusic" parent="." node_paths=PackedStringArray("ANIM", "ENTER_AREA", "EXIT_AREA") instance=ExtResource("10_ykp4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.3575, -20, -5.80582)
+ANIM = NodePath("AnimationPlayer")
+ENTER_AREA = NodePath("Area")
+EXIT_AREA = NodePath("Area")
+
+[node name="AudioStreamPlayer2D" parent="StatueMusic" index="0"]
+stream = ExtResource("11_0eica")
+volume_db = -60.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StatueMusic"]
+libraries = {
+"": SubResource("AnimationLibrary_2kb3h")
+}
+
+[node name="Area" type="Area3D" parent="StatueMusic"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatueMusic/Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85311, 3.58014, 3.46924)
+shape = SubResource("BoxShape3D_egoas")
+
+[node name="AmbientMusic" parent="." node_paths=PackedStringArray("ANIM", "ENTER_AREA", "EXIT_AREA") instance=ExtResource("10_ykp4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.5014, -20, -5.80582)
+ANIM = NodePath("AnimationPlayer")
+ENTER_AREA = NodePath("Area")
+EXIT_AREA = NodePath("Area")
+
+[node name="AudioStreamPlayer2D" parent="AmbientMusic" index="0"]
+stream = ExtResource("12_mgjjb")
+volume_db = -60.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AmbientMusic"]
+libraries = {
+"": SubResource("AnimationLibrary_kfamd")
+}
+
+[node name="Area" type="Area3D" parent="AmbientMusic"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AmbientMusic/Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7117, 7.66467, -0.460053)
+shape = SubResource("BoxShape3D_nd6ia")
+
+[node name="WrathMusic" parent="." node_paths=PackedStringArray("ANIM", "ENTER_AREA", "EXIT_AREA") instance=ExtResource("10_ykp4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.3575, -20, -5.80582)
+ANIM = NodePath("AnimationPlayer")
+ENTER_AREA = NodePath("../Trigger Area")
+EXIT_AREA = NodePath("Exit")
+
+[node name="AudioStreamPlayer2D" parent="WrathMusic" index="0"]
+stream = ExtResource("13_puej5")
+volume_db = -60.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WrathMusic"]
+libraries = {
+"": SubResource("AnimationLibrary_2kb3h")
+}
+
+[node name="Exit" type="Area3D" parent="WrathMusic"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WrathMusic/Exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5303, 35.4003, 22.2378)
+shape = SubResource("BoxShape3D_bryq3")
+
 [editable path="Checkpoint1"]
+[editable path="StatueMusic"]
+[editable path="AmbientMusic"]
+[editable path="WrathMusic"]

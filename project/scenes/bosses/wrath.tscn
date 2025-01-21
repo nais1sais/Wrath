@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=33 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 [ext_resource type="PackedScene" uid="uid://srdha174fo73" path="res://scenes/particles/boss_death.tscn" id="2_brvm4"]
-[ext_resource type="AudioStream" uid="uid://f7dwuxrh87go" path="res://audio/music/wrath.ogg" id="3_6lmms"]
 [ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/bar_under_style.tres" id="3_lihbd"]
 [ext_resource type="AudioStream" uid="uid://bebl8tujosm1y" path="res://audio/sfx/enemy/Hit_1.wav" id="3_nbwf2"]
 [ext_resource type="FontFile" uid="uid://cg3g6bx1v1c8l" path="res://textures/fonts/Seagram tfb.ttf" id="3_ww6eg"]
@@ -79,32 +78,32 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/0/use_blend = true
-tracks/1/type = "value"
+tracks/1/type = "animation"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Music:volume_db")
+tracks/1/path = NodePath("Mesh/wrath/AnimationPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(4.4, 9.83333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -80.0]
+"clips": PackedStringArray("Death"),
+"times": PackedFloat32Array(0.133333)
 }
-tracks/2/type = "animation"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh/wrath/AnimationPlayer")
+tracks/2/path = NodePath("Health:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"clips": PackedStringArray("Death"),
-"times": PackedFloat32Array(0.133333)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Health:visible")
+tracks/3/path = NodePath("Label:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -116,34 +115,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Label:visible")
+tracks/4/path = NodePath("CollisionShape3D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CollisionShape3D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 4.06667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(1.26667, 9.23333, 9.93333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
@@ -322,31 +309,31 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Music:volume_db")
+tracks/2/path = NodePath("CollisionShape3D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/path = NodePath("Mesh/wrath/Armature/Skeleton3D/LeftHand/Area3D/CollisionShape3D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Mesh/wrath/Armature/Skeleton3D/LeftHand/Area3D/CollisionShape3D:disabled")
+tracks/4/path = NodePath("Mesh/wrath/Armature/Skeleton3D/RightHand/Area3D/CollisionShape3D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -358,7 +345,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Mesh/wrath/Armature/Skeleton3D/RightHand/Area3D/CollisionShape3D:disabled")
+tracks/5/path = NodePath("Mesh/wrath/Armature/Skeleton3D/Torso/Area3D/CollisionShape3D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -370,34 +357,22 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Mesh/wrath/Armature/Skeleton3D/Torso/Area3D/CollisionShape3D:disabled")
+tracks/6/path = NodePath(".:TRACKING_MULTIPLIER")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [1]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".:TRACKING_MULTIPLIER")
+tracks/7/path = NodePath("Mesh/Jump/CollisionShape3D:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Mesh/Jump/CollisionShape3D:disabled")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -562,13 +537,14 @@ height = 0.892645
 radius = 16.6351
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijfr"]
-radius = 1.21148
-height = 6.0512
+radius = 0.830904
+height = 4.80709
 
 [node name="Wrath" type="CharacterBody3D" node_paths=PackedStringArray("ANIM", "MESH_ANIM", "MESH", "NAV_AGENT", "HEALTH_BAR", "RIGHT_HAND_ATTACK_AREA", "LEFT_HAND_ATTACK_AREA", "JUMP_ATTACK_AREA", "TORSO_ATTACK_AREA", "MUSIC")]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_fvlx1")
+MAX_HEALTH = 5
 ATTACK_ANIMATION = Array[String](["SLAM_ATTACK", "JUMP_ATTACK", "SPIN_ATTACK"])
 ATTACK_RADIUS = Array[float]([5.0, 10.0, 10.0])
 ATTACK_LIKELEHOOD = Array[Curve]([SubResource("Curve_4iunx"), SubResource("Curve_hhdhn"), SubResource("Curve_q1yl6")])
@@ -583,7 +559,7 @@ JUMP_ATTACK_AREA = NodePath("Mesh/Jump")
 TORSO_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/Torso/Area3D")
 DEATH_PARTICLE_SCENE = ExtResource("2_brvm4")
 BODY_MATERIAL = SubResource("ShaderMaterial_yqaem")
-MUSIC = NodePath("Music")
+MUSIC = NodePath("")
 HIT_SOUNDS = Array[AudioStream]([ExtResource("3_nbwf2"), ExtResource("4_1aywb"), ExtResource("5_26ndu")])
 SLAM_SOUNDS = Array[AudioStream]([ExtResource("6_ay1ei")])
 
@@ -603,19 +579,21 @@ blend_times = [&"INTRO", &"CHASE", 0.4]
 [node name="wrath" parent="Mesh" instance=ExtResource("10_h46di")]
 
 [node name="Skeleton3D" parent="Mesh/wrath/Armature" index="0"]
-bones/1/rotation = Quaternion(0.520187, 5.55556e-17, 9.12122e-17, 0.854052)
-bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
+bones/1/position = Vector3(0.003896, -0.723172, 0.986276)
+bones/1/rotation = Quaternion(0.25735, 8.11288e-17, 7.05286e-17, 0.966318)
+bones/2/rotation = Quaternion(0.347629, 1.11774e-07, 4.14406e-08, 0.937632)
 bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.18941, 0.0856309, 0.344916, 0.915327)
-bones/6/rotation = Quaternion(-0.0822429, 0.000622959, 0.134669, 0.987472)
+bones/4/rotation = Quaternion(0.133097, 0.385149, 0.190128, 0.893195)
+bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325446, 0.887213)
+bones/6/rotation = Quaternion(-0.0822429, 0.000622982, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.29291, -2.3223e-14, -6.98353e-08, 0.95614)
+bones/7/rotation = Quaternion(-0.136309, -2.93099e-14, -3.24986e-08, 0.990666)
 bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.18941, -0.085631, -0.344916, 0.915327)
+bones/9/rotation = Quaternion(0.18255, -0.0376967, -0.180838, 0.965687)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325445, 0.887213)
+bones/10/rotation = Quaternion(-0.239191, 0.243902, -0.292818, 0.893061)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 
@@ -623,7 +601,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_yqaem")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.924673, -0.00872155, -0.380663, 0.348245, -0.423631, -0.836219, -0.153967, -0.905793, 0.394757, -2.01091, 1.84788, -0.0583954)
+transform = Transform3D(-0.923684, -0.195083, -0.329774, 0.0905006, -0.947408, 0.306964, -0.372314, 0.253694, 0.892761, -2.20948, 2.29441, 1.09425)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -637,7 +615,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.924673, 0.00872161, 0.380663, -0.348245, -0.423631, -0.836219, 0.153967, -0.905793, 0.394757, 2.01091, 1.84788, -0.0583956)
+transform = Transform3D(-0.699442, 0.46057, -0.546495, -0.405411, -0.885417, -0.227331, -0.588577, 0.0625504, 0.806018, 2.21669, 2.22442, 1.16983)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -651,7 +629,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, 3.55271e-14, 2.38419e-07, 2.98741e-08, 0.992119, -0.125301, -2.3654e-07, 0.125301, 0.992119, 3.71946e-23, 1, 0.100295)
+transform = Transform3D(1, 1.43363e-14, 2.38419e-07, -7.95448e-08, 0.942702, 0.333635, -2.24758e-07, -0.333635, 0.942702, 0.003896, 0.771668, 0.178798)
 bone_name = "torso"
 bone_idx = 2
 
@@ -678,7 +656,7 @@ shape = SubResource("CylinderShape3D_4usqi")
 disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.49679, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49679, 0)
 shape = SubResource("CapsuleShape3D_oijfr")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -711,10 +689,6 @@ uppercase = true
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6lmms")
-bus = &"Music"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 

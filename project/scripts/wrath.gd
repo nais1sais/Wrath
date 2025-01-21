@@ -29,7 +29,7 @@ extends CharacterBody3D
 @export var BODY_MATERIAL: ShaderMaterial
 
 @export_group("Sounds")
-@export var MUSIC: AudioStreamPlayer2D
+@export var MUSIC: Node
 @export var HIT_SOUNDS: Array[AudioStream] = []
 @export var SLAM_SOUNDS: Array[AudioStream] = []
 
@@ -63,6 +63,7 @@ func death() -> void:
 	ANIM.play("DEATH",0,1,false)
 	Save.data["wrath_defeated"] = true
 	Save.save_game()
+	MUSIC._connect_exit_queue_free()
 func spawn_death_particles() -> void:
 	if DEATH_PARTICLE_SCENE:
 		var particles = DEATH_PARTICLE_SCENE.instantiate()
@@ -78,8 +79,7 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if body.has_method("damage"): body.damage(10)	
 func _on_trigger_area_body_entered(body: Node) -> void:
 	if body != REAPER: return
-	if MUSIC.playing == true: return
-	MUSIC.playing = true  
+	if triggered: return
 	triggered = true
 	ANIM.play("INTRO")
 func _on_jump_attack_area_body_entered(body: Node) -> void:	
@@ -95,6 +95,7 @@ func _ready() -> void:
 	dissolve_body(0,1)
 	if Save.data.has("wrath_defeated") and Save.data["wrath_defeated"]:
 		queue_free()
+		MUSIC.queue_free()
 
 	health = MAX_HEALTH
 	HEALTH_BAR.max_value = MAX_HEALTH
@@ -107,7 +108,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
-
 	root_motion()
 	if health > 0: 
 		move_and_slide()
@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor(): velocity += get_gravity() * delta
 	if not triggered or health <= 0: return;
 	HEALTH_BAR.value = health
-	if REAPER.health <= 0: MUSIC.stop()
+	if REAPER.health <= 0: MUSIC._connect_exit_queue_free()
 	track_towards_direction(delta)
 	target_direction = (REAPER.global_transform.origin - global_transform.origin).normalized()
 

@@ -207,9 +207,10 @@ func _physics_process(delta: float) -> void:
 			jump_buffer -= delta;
 
 	if jump_buffer > 0 and falling < COYOTE_TIME: # JUMP
-		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"]:
+		if ANIM.current_animation not in ["WINDOWN", "WINDUP", "SPIN", "DEATH", "FALL_DEATH", "HURT"]:
 			if JUMP_SOUNDS.size() > 0:  
 				Audio.play_2d_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
+			ANIM.play("JUMP")
 			velocity.y = JUMP_VELOCITY
 			falling = COYOTE_TIME
 			jump_buffer = 0
