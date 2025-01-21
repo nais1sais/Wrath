@@ -17,11 +17,11 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
 sky_top_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
-sky_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
-sky_curve = 0.0861533
+sky_horizon_color = Color(0.101961, 0.12549, 0.129412, 1)
+sky_curve = 0.204909
 ground_bottom_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
-ground_horizon_color = Color(0.192157, 0.192157, 0.192157, 1)
-ground_curve = 0.0356579
+ground_horizon_color = Color(0.100316, 0.123598, 0.128771, 1)
+ground_curve = 0.00699421
 sun_angle_max = 0.0
 sun_curve = 151.205
 
@@ -33,7 +33,7 @@ background_mode = 2
 background_color = Color(0.860369, 0.860369, 0.860369, 1)
 sky = SubResource("Sky_efxjq")
 ambient_light_source = 2
-ambient_light_color = Color(0.192157, 0.192157, 0.192157, 1)
+ambient_light_color = Color(0.29219, 0.29219, 0.29219, 1)
 ambient_light_energy = 4.0
 reflected_light_source = 2
 ssao_radius = 0.65
@@ -341,34 +341,18 @@ MUSIC = NodePath("../WrathMusic")
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -0.680692, 24.0903, -2.51908)
-light_color = Color(0.74, 0.54279, 0.4366, 1)
-light_energy = 80.0
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-omni_range = 102.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566114, -31.6807, -4.9097, -62.4167)
-light_color = Color(0.74, 0.54279, 0.4366, 1)
-light_energy = 50.0
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-omni_range = 16.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Lights/OmniLight3D2"]
-transform = Transform3D(-0.724853, 0.338228, -0.600158, -0.572427, 0.189003, 0.797875, 0.383296, 0.921889, 0.0566115, 69.8425, 33.8247, 32.5777)
-light_color = Color(0.74, 0.54279, 0.4366, 1)
-light_energy = 50.0
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-omni_range = 16.0
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
 light_energy = 5.0
+
+[node name="Lust" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.1764, -13.2506, -2.63919)
+light_color = Color(0.5, 0.42, 0.46, 1)
+light_energy = 40.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 40.285
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_jc5vn")
@@ -594,8 +578,11 @@ shape = SubResource("BoxShape3D_y4nq3")
 [node name="NewPosition" type="Node3D" parent="TowerEast"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5959e-07, 1.5, -6.20785)
 
-[node name="archway" parent="." instance=ExtResource("10_mfui3")]
+[node name="Archway" parent="." instance=ExtResource("10_mfui3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267229, -0.318179, -34.8064)
+
+[node name="archlow" parent="Archway" index="0"]
+material_override = ExtResource("5_ct7j2")
 
 [node name="TowerWest" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.0826, -12.8662, -24.5036)
@@ -687,6 +674,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5303, 35.4003, 22.2378)
 shape = SubResource("BoxShape3D_bryq3")
 
 [editable path="Checkpoint1"]
+[editable path="Archway"]
 [editable path="StatueMusic"]
 [editable path="AmbientMusic"]
 [editable path="WrathMusic"]

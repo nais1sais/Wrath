@@ -2,12 +2,14 @@ shader_type spatial;
 
 //credit DisplacedFikaDev
 
-uniform vec3 base_color: source_color;
+uniform sampler2D base_texture : source_color;
+uniform sampler2D emission_texture : source_color;
+uniform float emission_texture_intensity : hint_range(0.0, 10.0) = 1.0;
 uniform vec3 inside_color: source_color;
 uniform float dissolve_amount: hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D noise_texture;
 
-uniform vec3 glow_color: source_color = vec3(0.89, 0.694, 0.588);
+uniform vec3 glow_color: source_color = vec3(0.533, 0.533, 0.533);
 uniform float glow_intensitiy = 1.77;
 uniform float glow_border_width: hint_range(0.0, 0.25) = 0.04;
 uniform float glow_border_smoothness: hint_range(0.0, 0.1) = 0.04;
@@ -26,8 +28,9 @@ void fragment() {
 	}
 	
 	vec3 surface_emisson = mix(vec3(0.0), glow_color, border_mask);
+	surface_emisson += texture(emission_texture, UV).rgb * emission_texture_intensity;
 	
-	vec3 surface_color = base_color;
+	vec3 surface_color = texture(base_texture, UV).rgb;
 	ALBEDO = surface_color;
 	//ALBEDO = vec3(border_mask);
 	EMISSION = surface_emisson * glow_intensitiy;

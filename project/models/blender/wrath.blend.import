@@ -1832,6 +1832,12 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"wrath": {
+"use_external/enabled": false,
+"use_external/path": "res://shaders/wrath.tres"
+}
 }
 }
 blender/nodes/visible=0

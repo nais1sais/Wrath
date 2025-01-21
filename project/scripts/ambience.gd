@@ -19,7 +19,10 @@ func _on_body_exited(body: Node) -> void:
 	
 func _connect_exit_queue_free() -> void:
 	if ANIM: ANIM.queue("EXITED")
-	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
+	if ANIM:
+		ANIM.queue("EXITED")
+		if not ANIM.is_connected("animation_finished", Callable(self, "_on_animation_finished")):
+			ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	
 func _on_animation_finished(_anim_name: String) -> void:
 	queue_free()	
