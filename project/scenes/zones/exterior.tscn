@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=40 format=3 uid="uid://dsdh2bite7xv4"]
 
 [ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="6_4l1cq"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="7_c1476"]
 [ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/door.tscn" id="8_5d645"]
+[ext_resource type="PackedScene" uid="uid://ca68xt1knlt4" path="res://models/blender/archway.blend" id="10_mfui3"]
 [ext_resource type="PackedScene" uid="uid://cat4e2my2so35" path="res://scenes/ambience.tscn" id="10_ykp4i"]
 [ext_resource type="AudioStream" uid="uid://dihsmt30mdqcm" path="res://audio/music/gluttony.ogg" id="11_0eica"]
 [ext_resource type="AudioStream" uid="uid://5u0ecm0d8hx8" path="res://audio/music/ambience.ogg" id="12_mgjjb"]
@@ -592,6 +593,9 @@ shape = SubResource("BoxShape3D_y4nq3")
 
 [node name="NewPosition" type="Node3D" parent="TowerEast"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5959e-07, 1.5, -6.20785)
+
+[node name="archway" parent="." instance=ExtResource("10_mfui3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267229, -0.318179, -34.8064)
 
 [node name="TowerWest" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.0826, -12.8662, -24.5036)

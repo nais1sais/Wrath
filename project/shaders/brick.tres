@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bffibdvfre58i" path="res://textures/brick/stone_bricks_wall_02_roughness_2k.png" id="3_2mhox"]
 
 [resource]
-albedo_color = Color(0.493545, 0.493546, 0.493545, 1)
+albedo_color = Color(0.3953, 0.476425, 0.59, 1)
 albedo_texture = ExtResource("1_s44f4")
 metallic_specular = 0.4
 roughness = 0.65
@@ -13,6 +13,6 @@ roughness_texture = ExtResource("3_2mhox")
 normal_enabled = true
 normal_scale = 2.45
 normal_texture = ExtResource("2_off67")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_scale = Vector3(0.07, 0.07, 0.07)
 uv1_triplanar = true
 uv1_world_triplanar = true
