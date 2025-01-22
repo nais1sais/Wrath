@@ -21,7 +21,7 @@ sky_horizon_color = Color(0.101961, 0.12549, 0.129412, 1)
 sky_curve = 0.204909
 ground_bottom_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 ground_horizon_color = Color(0.100316, 0.123598, 0.128771, 1)
-ground_curve = 0.00699421
+ground_curve = 0.0941029
 sun_angle_max = 0.0
 sun_curve = 151.205
 
@@ -34,7 +34,7 @@ background_color = Color(0.860369, 0.860369, 0.860369, 1)
 sky = SubResource("Sky_efxjq")
 ambient_light_source = 2
 ambient_light_color = Color(0.29219, 0.29219, 0.29219, 1)
-ambient_light_energy = 4.0
+ambient_light_energy = 2.0
 reflected_light_source = 2
 ssao_radius = 0.65
 ssao_intensity = 45.65
@@ -192,7 +192,7 @@ tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.533333),
+"times": PackedFloat32Array(0, 0.633333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-60.0, 0.0]
@@ -313,7 +313,7 @@ environment = SubResource("Environment_rnikm")
 bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.821646, 0.081791, -0.564102, 7.4506e-09, 0.989651, 0.143493, 0.570002, -0.1179, 0.813142, 0.877, 6.059, 67.493)
+transform = Transform3D(0.821646, 0.081791, -0.564102, 1.11759e-08, 0.989651, 0.143493, 0.570002, -0.1179, 0.813142, 0.877, 6.059, 67.493)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -344,11 +344,11 @@ MUSIC = NodePath("../WrathMusic")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
-light_energy = 5.0
+light_energy = 4.0
 
 [node name="Lust" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.1764, -13.2506, -2.63919)
-light_color = Color(0.5, 0.42, 0.46, 1)
+light_color = Color(0.82, 0.6724, 0.6724, 1)
 light_energy = 40.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -560,6 +560,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1656, -10.1917, 37.849)
 
 [node name="Soul5" parent="." instance=ExtResource("7_c1476")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7362, -10.7115, -37.4971)
+
+[node name="Soul6" parent="." instance=ExtResource("7_c1476")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5284, -18.9186, -2.35139)
 
 [node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -14.329, -2.41369)

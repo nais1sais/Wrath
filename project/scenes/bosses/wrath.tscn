@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=37 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 [ext_resource type="PackedScene" uid="uid://srdha174fo73" path="res://scenes/particles/boss_death.tscn" id="2_brvm4"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b0t7a64rsk4nk" path="res://models/blender/wrath.blend" id="10_h46di"]
 [ext_resource type="Shader" path="res://shaders/disolve.gdshader" id="11_57ti3"]
 [ext_resource type="Texture2D" uid="uid://chgom45rhh51o" path="res://textures/wrath/color.png" id="11_f1r54"]
+[ext_resource type="AudioStream" uid="uid://2r6c4ytgkm4u" path="res://audio/sfx/enemy/Cry.wav" id="12_kqq76"]
+[ext_resource type="AudioStream" uid="uid://cnqmjqai7521j" path="res://audio/sfx/enemy/Spin.wav" id="13_367wx"]
 
 [sub_resource type="Curve" id="Curve_4iunx"]
 max_value = 5.0
@@ -21,7 +23,7 @@ _data = [Vector2(0, 8.9011), 0.0, 0.0, 0, 0, Vector2(1e-05, 3.35165), -18.9164, 
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_hhdhn"]
-_data = [Vector2(0, 0.10989), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_q1yl6"]
@@ -261,7 +263,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.16667),
+"times": PackedFloat32Array(1.45833),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -275,7 +277,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.16667),
+"times": PackedFloat32Array(1.45833),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -289,7 +291,7 @@ tracks/3/path = NodePath("Mesh/Jump/CollisionShape3D:disabled")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.16667, 1.20833),
+"times": PackedFloat32Array(0, 1.5, 1.54166),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -547,6 +549,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true, false, true, false, true]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_kqq76")
+}, {
+"end_offset": 1.28601,
+"start_offset": 0.0,
+"stream": ExtResource("13_367wx")
+}],
+"times": PackedFloat32Array(0.0416667, 0.5)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y10ku"]
 _data = {
@@ -635,16 +656,16 @@ bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.359535, 0.0106007, 0.152414, 0.920539)
-bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325445, 0.887213)
+bones/4/rotation = Quaternion(-0.18941, 0.0856309, 0.344916, 0.915327)
+bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325446, 0.887213)
 bones/6/rotation = Quaternion(-0.0822429, 0.000622969, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.114974, -2.79969e-08, -6.39776e-08, 0.993369)
+bones/7/rotation = Quaternion(-0.29291, -1.6637e-14, -6.98353e-08, 0.95614)
 bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.24812, 0.000525553, -0.14623, 0.957629)
+bones/9/rotation = Quaternion(-0.18941, -0.085631, -0.344916, 0.915327)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325445, 0.887213)
+bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325446, 0.887213)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 
@@ -652,7 +673,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_lp57m")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.653425, 0.0696916, -0.753777, 0.732638, -0.192318, -0.652882, -0.190465, -0.978855, 0.0746065, -2.23058, 2.65431, -0.610167)
+transform = Transform3D(-0.924673, -0.0087216, -0.380663, 0.348245, -0.423631, -0.836219, -0.153967, -0.905792, 0.394757, -2.01091, 1.84788, -0.0583955)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -666,7 +687,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.685293, 0.149883, 0.712677, -0.722862, -0.259, -0.640617, 0.0885656, -0.954177, 0.285835, 2.5137, 2.56799, -0.234136)
+transform = Transform3D(-0.924673, 0.00872163, 0.380663, -0.348245, -0.423631, -0.836219, 0.153967, -0.905793, 0.394757, 2.01091, 1.84788, -0.0583954)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -696,7 +717,6 @@ disabled = true
 [node name="AnimationPlayer" parent="Mesh/wrath" index="1"]
 root_motion_track = NodePath("Armature/Skeleton3D:root")
 callback_mode_process = 0
-playback_default_blend_time = 0.3
 
 [node name="Jump" type="Area3D" parent="Mesh"]
 collision_layer = 3

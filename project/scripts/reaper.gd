@@ -11,7 +11,7 @@ extends CharacterBody3D
 @export var GRAVITY_MULTIPLIER = 4
 @export var MOUSE_SENSITIVITY = 0.003
 @export var TURN_SPEED: float = 16.0
-@export var TURN_INFLUENCE: float = 1.0
+@export var TURN_MULTIPLIER: float = 1.0
 @export var SPEED_MULTIPLIER: float = 1.0
 @export var COYOTE_TIME: float = .4
 @export var JUMP_BUFFER_TIME: float = .2
@@ -238,7 +238,7 @@ func _physics_process(delta: float) -> void:
 
 	if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN","DEATH", "FALL_DEATH", "HURT"] and !is_on_floor():
 		if (velocity.y < 0):
-			ANIM.play("Fall")
+			ANIM.play("FALL")
 		else:
 			ANIM.play("JUMP")
 
@@ -258,7 +258,7 @@ func _physics_process(delta: float) -> void:
 
 		var direction = (Vector3(input_direction.x, 0, input_direction.y)).normalized()
 		var target_rotation = atan2(direction.x, direction.z) + PI
-		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, TURN_SPEED * TURN_INFLUENCE * delta)
+		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, TURN_SPEED * TURN_MULTIPLIER * delta)
 	else:
 		if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"] and is_on_floor():
 			ANIM.play("IDLE", 0, 1, false)

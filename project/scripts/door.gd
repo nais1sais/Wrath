@@ -4,6 +4,7 @@ extends Node3D
 @export var DESTINATION_SCENE_PATH: String
 @export var NEW_POSITION_PATH: String
 @export var AREA: Area3D
+@export var DOOR_SOUNDS: Array[AudioStream] = []
 
 func _change_scene(path: String) -> void:
 	get_tree().change_scene_to_file(path)
@@ -17,7 +18,7 @@ func _on_area_body_entered(body: Node) -> void:
 		var new_zone = new_scene.instantiate()
 		
 		ZONES.add_child(new_zone)
-
+		Audio.play_2d_sound(DOOR_SOUNDS[randi() % DOOR_SOUNDS.size()], 0.9, 1.1)
 		if NEW_POSITION_PATH:
 			var NEW_POSITION = new_zone.get_node(NEW_POSITION_PATH)
 			if NEW_POSITION:

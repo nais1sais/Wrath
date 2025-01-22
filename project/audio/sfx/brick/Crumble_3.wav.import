@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cawtjrru8ho7x"
-path="res://.godot/imported/Hurt.wav-c7d2c397b8760f1e107247b7a775f3a6.sample"
+uid="uid://do7uftfsmyrp0"
+path="res://.godot/imported/Crumble_3.wav-575c9c72ee0b2bbd3c4e87cfb87a9be9.sample"
 
 [deps]
 
-source_file="res://audio/sfx/player/Hurt.wav"
-dest_files=["res://.godot/imported/Hurt.wav-c7d2c397b8760f1e107247b7a775f3a6.sample"]
+source_file="res://audio/sfx/brick/Crumble_3.wav"
+dest_files=["res://.godot/imported/Crumble_3.wav-575c9c72ee0b2bbd3c4e87cfb87a9be9.sample"]
 
 [params]
 

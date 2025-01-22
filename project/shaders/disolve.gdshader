@@ -16,7 +16,7 @@ uniform float glow_border_smoothness: hint_range(0.0, 0.1) = 0.04;
 
 void fragment() {
 	float dissolve_noise = texture(noise_texture, UV).r;
-	
+
 	float border_mask = 0.0;
 	if (dissolve_amount > 0.0) {
 		float border_size = dissolve_amount + glow_border_width;
@@ -26,16 +26,16 @@ void fragment() {
 			dissolve_noise
 		);
 	}
-	
+
 	vec3 surface_emisson = mix(vec3(0.0), glow_color, border_mask);
 	surface_emisson += texture(emission_texture, UV).rgb * emission_texture_intensity;
-	
+
 	vec3 surface_color = texture(base_texture, UV).rgb;
 	ALBEDO = surface_color;
 	//ALBEDO = vec3(border_mask);
 	EMISSION = surface_emisson * glow_intensitiy;
 	ALPHA = dissolve_noise;
 	ALPHA_SCISSOR_THRESHOLD = dissolve_amount;
-	
+
 }
 

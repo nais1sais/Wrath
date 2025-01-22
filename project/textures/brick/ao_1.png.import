@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds0vfgs364184"
-path.s3tc="res://.godot/imported/stone_bricks_wall_02_color_2k.png-92341162712a7b672c29e4545e4a426d.s3tc.ctex"
+uid="uid://ddvan0axx7svx"
+path.s3tc="res://.godot/imported/ao_1.png-29b9d24aeeb299993c426f4c4ee17055.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/brick/stone_bricks_wall_02_color_2k.png"
-dest_files=["res://.godot/imported/stone_bricks_wall_02_color_2k.png-92341162712a7b672c29e4545e4a426d.s3tc.ctex"]
+source_file="res://textures/brick/ao_1.png"
+dest_files=["res://.godot/imported/ao_1.png-29b9d24aeeb299993c426f4c4ee17055.s3tc.ctex"]
 
 [params]
 
