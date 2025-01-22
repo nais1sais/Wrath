@@ -653,7 +653,6 @@ blend_times = [&"INTRO", &"CHASE", 0.4]
 bones/1/position = Vector3(-7.12175e-17, 0.0829432, 0.518257)
 bones/1/rotation = Quaternion(0.520187, 5.55556e-17, 9.12122e-17, 0.854052)
 bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(-0.18941, 0.0856309, 0.344916, 0.915327)
