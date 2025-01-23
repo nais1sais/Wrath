@@ -110,7 +110,6 @@ transparency = 0.55
 emitting = false
 amount = 32
 lifetime = 12.3
-one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 60

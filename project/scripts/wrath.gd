@@ -25,6 +25,7 @@ extends CharacterBody3D
 @export var TORSO_ATTACK_AREA: Area3D
 @export var TRIGGER_AREA: Area3D
 @export var PROGRESSION_AREA: Area3D 
+@export var HURT_PARTICLE_SCENE: PackedScene
 @export var DEATH_PARTICLE_SCENE: PackedScene
 @export var BODY_MATERIAL: ShaderMaterial
 
@@ -59,20 +60,21 @@ func unlock_progression() -> void:
 func dissolve_body(speed: float, amount: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(BODY_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
-func damage(_amount: float) -> void:
-	REAPER.CAMERA.shake += 1
+func damage(_amount: float, attacker_position: Vector3 = Vector3.ZERO) -> void:
+	REAPER.CAMERA.shake += 2
 	if HIT_SOUNDS.size() > 0:
 		Audio.play_2d_sound(HIT_SOUNDS[randi() % HIT_SOUNDS.size()], 0.9, 1.1)
+	spawn_particles(attacker_position, HURT_PARTICLE_SCENE)
 func death() -> void:
 	ANIM.play("DEATH",0,1,false)
 	Save.data["wrath_defeated"] = true
 	Save.save_game()
 	MUSIC._connect_exit_queue_free()
-func spawn_death_particles() -> void:
-	if DEATH_PARTICLE_SCENE:
-		var particles = DEATH_PARTICLE_SCENE.instantiate()
-		particles.global_transform = global_transform
-		get_parent().add_child(particles)
+func spawn_particles(particle_position: Vector3, particle_scene: PackedScene) -> void:
+	if particle_scene == null: return
+	var particles = particle_scene.instantiate()
+	get_parent().add_child(particles)
+	particles.global_transform.origin = particle_position
 func shake_camera() -> void:
 	REAPER.CAMERA.shake += 3
 func _on_attack_area_body_entered(body: Node) -> void:

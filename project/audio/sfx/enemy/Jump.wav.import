@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bpb0gi25bda85"
-path="res://.godot/imported/Dodge.wav-ee16bbc1e0826fa1e4c5ee6a0402aed5.sample"
+path="res://.godot/imported/Jump.wav-9a4e017df37be700b572d59d32def47f.sample"
 
 [deps]
 
-source_file="res://audio/sfx/player/Dodge.wav"
-dest_files=["res://.godot/imported/Dodge.wav-ee16bbc1e0826fa1e4c5ee6a0402aed5.sample"]
+source_file="res://audio/sfx/enemy/Jump.wav"
+dest_files=["res://.godot/imported/Jump.wav-9a4e017df37be700b572d59d32def47f.sample"]
 
 [params]
 

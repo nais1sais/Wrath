@@ -124,7 +124,7 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
 	if not body.health: return
-	if body.has_method("damage"): body.damage(1)
+	body.damage(1, ATTACK_AREA.global_position)
 	body.health -= 1;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()

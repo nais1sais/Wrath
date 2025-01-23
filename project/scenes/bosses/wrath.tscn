@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b3urcqmix8s8g"]
+[gd_scene load_steps=43 format=3 uid="uid://b3urcqmix8s8g"]
 
 [ext_resource type="Script" path="res://scripts/wrath.gd" id="1_fvlx1"]
 [ext_resource type="PackedScene" uid="uid://srdha174fo73" path="res://scenes/particles/boss_death.tscn" id="2_brvm4"]
@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://bg0rsvkfwvyq1" path="res://audio/sfx/brick/Crumble_4.wav" id="13_wxkwy"]
 [ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="15_uwbrs"]
 [ext_resource type="StyleBox" uid="uid://bosm3016yuwg3" path="res://shaders/ui/wrath_fill.tres" id="16_x2rmd"]
+[ext_resource type="AudioStream" uid="uid://dia2v1hr7kneb" path="res://audio/sfx/enemy/Cry_2.wav" id="19_ewgrb"]
+[ext_resource type="PackedScene" uid="uid://d0ifk8wbwkr3w" path="res://scenes/particles/wrath_hurt.tscn" id="22_1df88"]
 
 [sub_resource type="Curve" id="Curve_4iunx"]
 max_value = 5.0
@@ -327,6 +329,21 @@ tracks/5/keys = {
 "update": 1,
 "values": [1, 0, 0, 1]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SFX")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 4.42048,
+"start_offset": 0.0,
+"stream": ExtResource("19_ewgrb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jojdm"]
 length = 0.001
@@ -543,6 +560,21 @@ tracks/7/keys = {
 "update": 1,
 "values": [1.0, 0.2, 0.2, 1.0]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SFX")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 4.80368,
+"start_offset": 0.0,
+"stream": ExtResource("12_kqq76")
+}],
+"times": PackedFloat32Array(0.125)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jiut6"]
 resource_name = "SPIN_ATTACK"
@@ -598,7 +630,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("13_367wx")
 }],
-"times": PackedFloat32Array(0.0416667, 0.5)
+"times": PackedFloat32Array(0, 0.5)
 }
 tracks/3/use_blend = true
 
@@ -650,6 +682,7 @@ RIGHT_HAND_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/RightHand/Area
 LEFT_HAND_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/LeftHand/Area3D")
 JUMP_ATTACK_AREA = NodePath("Mesh/Jump")
 TORSO_ATTACK_AREA = NodePath("Mesh/wrath/Armature/Skeleton3D/Torso/Area3D")
+HURT_PARTICLE_SCENE = ExtResource("22_1df88")
 DEATH_PARTICLE_SCENE = ExtResource("2_brvm4")
 BODY_MATERIAL = SubResource("ShaderMaterial_lp57m")
 HIT_SOUNDS = Array[AudioStream]([ExtResource("3_nbwf2"), ExtResource("4_1aywb"), ExtResource("5_26ndu")])
@@ -678,14 +711,14 @@ bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.359535, 0.0106007, 0.152414, 0.920539)
+bones/4/rotation = Quaternion(-0.18941, 0.085631, 0.344916, 0.915327)
 bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325445, 0.887213)
 bones/6/rotation = Quaternion(-0.0822429, 0.000622969, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.114974, -2.79969e-08, -6.39776e-08, 0.993369)
+bones/7/rotation = Quaternion(-0.29291, -2.6859e-14, -6.98353e-08, 0.95614)
 bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.24812, 0.000525553, -0.14623, 0.957629)
+bones/9/rotation = Quaternion(-0.18941, -0.085631, -0.344916, 0.915327)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325445, 0.887213)
 bones/10/scale = Vector3(1, 1, 1)
@@ -695,7 +728,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_lp57m")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.653425, 0.0696915, -0.753776, 0.732639, -0.192318, -0.652882, -0.190465, -0.978855, 0.0746064, -2.23058, 2.65431, -0.610168)
+transform = Transform3D(-0.924673, -0.00872175, -0.380663, 0.348245, -0.423631, -0.836219, -0.153967, -0.905793, 0.394757, -2.01091, 1.84788, -0.0583957)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -709,7 +742,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.685293, 0.149883, 0.712677, -0.722862, -0.259, -0.640617, 0.0885656, -0.954177, 0.285835, 2.5137, 2.56799, -0.234136)
+transform = Transform3D(-0.924673, 0.0087219, 0.380663, -0.348245, -0.423631, -0.836219, 0.153967, -0.905793, 0.394757, 2.01091, 1.84788, -0.0583956)
 bone_name = "hand_r"
 bone_idx = 11
 

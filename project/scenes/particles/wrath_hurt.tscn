@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0ifk8wbwkr3w"]
+
+[ext_resource type="Texture2D" uid="uid://bgteof0ua1pk6" path="res://textures/kenney free particles/scorch_02.png" id="1_t453h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4vjc"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.832911, 0.817433, 0.667476, 1)
+albedo_texture = ExtResource("1_t453h")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_olvgd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_fp1e8"]
+curve = SubResource("Curve_olvgd")
+
+[sub_resource type="Curve" id="Curve_kc6k6"]
+_data = [Vector2(0, 0), 0.0, 36.65, 0, 0, Vector2(0.0314136, 0.241758), 0.0, 0.0, 0, 0, Vector2(0.0837696, 0.142857), -0.239874, -0.239874, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wb6gv"]
+curve = SubResource("Curve_kc6k6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qo0m2"]
+direction = Vector3(1, 1, 1)
+spread = 126.925
+initial_velocity_max = 5.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_wb6gv")
+alpha_curve = SubResource("CurveTexture_fp1e8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_odbhm"]
+
+[sub_resource type="Animation" id="Animation_gh1vd"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pkdcb"]
+resource_name = "lifetime"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12k5t"]
+_data = {
+"RESET": SubResource("Animation_gh1vd"),
+"lifetime": SubResource("Animation_pkdcb")
+}
+
+[node name="Wrath" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_c4vjc")
+amount = 64
+lifetime = 0.75
+one_shot = true
+preprocess = 0.18
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qo0m2")
+draw_pass_1 = SubResource("QuadMesh_odbhm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_12k5t")
+}
+autoplay = "lifetime"
