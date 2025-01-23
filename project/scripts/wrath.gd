@@ -32,6 +32,13 @@ extends CharacterBody3D
 @export var MUSIC: Node
 @export var HIT_SOUNDS: Array[AudioStream] = []
 @export var SLAM_SOUNDS: Array[AudioStream] = []
+@export var BRICK_SOUNDS: Array[AudioStream] = []
+func play_slam_sound() -> void:
+	if SLAM_SOUNDS.size() > 0:
+		Audio.play_2d_sound(SLAM_SOUNDS[randi() % SLAM_SOUNDS.size()], 0.9, 1.1)
+func play_brick_sound() -> void:
+	if BRICK_SOUNDS.size() > 0:
+		Audio.play_2d_sound(BRICK_SOUNDS[randi() % BRICK_SOUNDS.size()], 0.9, 1.1, -8, -8)
 
 var health = MAX_HEALTH
 var triggered = false;
@@ -49,9 +56,6 @@ func track_towards_direction(delta: float) -> void:
 	MESH.global_transform.basis = interpolated_basis.orthonormalized()
 func unlock_progression() -> void:
 	PROGRESSION_AREA.monitoring = true
-func play_SLAM_sound() -> void:
-	if SLAM_SOUNDS.size() > 0:
-		Audio.play_2d_sound(SLAM_SOUNDS[randi() % SLAM_SOUNDS.size()], 0.9, 1.1)
 func dissolve_body(speed: float, amount: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(BODY_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)

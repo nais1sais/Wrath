@@ -38,4 +38,3 @@ void fragment() {
 	ALPHA_SCISSOR_THRESHOLD = dissolve_amount;
 
 }
-

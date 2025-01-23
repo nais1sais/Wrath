@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_jf58a"]
 [ext_resource type="AudioStream" uid="uid://f6q46g68fwt7" path="res://audio/sfx/menu/Menu_Hover.wav" id="2_ndaih"]
 [ext_resource type="FontFile" uid="uid://37oytj1gs160" path="res://textures/fonts/OldLondon.ttf" id="2_qgafp"]
-[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/menu_style.tres" id="3_vw818"]
+[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="3_vw818"]
 [ext_resource type="AudioStream" uid="uid://bxy8idshrtel0" path="res://audio/sfx/menu/Menu_Press.wav" id="4_2c34c"]
 
-[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "restart_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "restart_button", "new_game_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
 process_mode = 3
 script = ExtResource("1_jf58a")
 hover_sound_player = NodePath("Hovered")
@@ -16,6 +16,7 @@ press_sound = ExtResource("4_2c34c")
 main_menu = NodePath("CenterContainer/Main")
 resume_button = NodePath("CenterContainer/Main/Resume")
 restart_button = NodePath("CenterContainer/Main/Restart")
+new_game_button = NodePath("CenterContainer/Main/NewGame")
 options_button = NodePath("CenterContainer/Main/Options")
 controls_button = NodePath("CenterContainer/Main/Controls")
 credits_button = NodePath("CenterContainer/Main/Credits")
@@ -67,6 +68,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_vw818")
 text = "RESTART"
+icon_alignment = 1
+
+[node name="NewGame" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "NEW GAME"
 icon_alignment = 1
 
 [node name="Options" type="Button" parent="CenterContainer/Main"]

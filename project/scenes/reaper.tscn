@@ -6,11 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://5n5whpag62f2" path="res://audio/sfx/player/Spawn_New.wav" id="3_2tmqw"]
 [ext_resource type="PackedScene" uid="uid://xbs1vkc0kdgm" path="res://models/blender/reaper.blend" id="3_k4avc"]
 [ext_resource type="Texture2D" uid="uid://81lvolbdi6bv" path="res://textures/reaper/cloak_color.png" id="3_vg54h"]
-[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/menu_style.tres" id="3_xeyp1"]
+[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="3_xeyp1"]
 [ext_resource type="AudioStream" uid="uid://cv08lxjw3rypc" path="res://audio/sfx/player/Jump.wav" id="4_i3uf6"]
-[ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/bar_under_style.tres" id="4_nq6uo"]
+[ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/ui/base_bar_background.tres" id="4_nq6uo"]
 [ext_resource type="AudioStream" uid="uid://cxfh7l5kksro3" path="res://audio/sfx/player/Land.wav" id="5_7kpka"]
-[ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/bar_progress.tres" id="5_k7wi7"]
+[ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/ui/base_bar_fill.tres" id="5_k7wi7"]
 [ext_resource type="AudioStream" uid="uid://cww02b50taw61" path="res://audio/sfx/player/Step_1.wav" id="7_erto2"]
 [ext_resource type="AudioStream" uid="uid://bt0ejti1ku0n4" path="res://audio/sfx/player/Step_2.wav" id="8_wxf0g"]
 [ext_resource type="AudioStream" uid="uid://boh8nmwkjx2sf" path="res://audio/sfx/player/Step_3.wav" id="9_rg8br"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cawtjrru8ho7x" path="res://audio/sfx/player/Hurt.wav" id="15_tgmjc"]
 [ext_resource type="Shader" path="res://shaders/disolve.gdshader" id="18_dtcwh"]
 [ext_resource type="AudioStream" uid="uid://dlwicer3j08q8" path="res://audio/sfx/player/Spawn_Void.wav" id="20_5d6ad"]
+[ext_resource type="StyleBox" uid="uid://ctb0me4nui0ud" path="res://shaders/ui/stamina_fill.tres" id="20_gpejb"]
 [ext_resource type="AudioStream" uid="uid://bbwub6xco4f00" path="res://audio/sfx/ambience/Wind.wav" id="22_ogp31"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nd5qn"]
@@ -215,6 +216,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hurt_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kk21r"]
 resource_name = "Idle"
@@ -408,7 +423,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_w2nfg"]
 resource_name = "RUN"
-length = 0.666671
+length = 0.500005
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "animation"
@@ -428,7 +443,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.291667, 0.625),
+"times": PackedFloat32Array(0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -729,19 +744,6 @@ size = Vector3(15.0551, 13.757, 60)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jko3"]
 size = Vector3(32.832, 1.29297, 1.20326)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m0od"]
-bg_color = Color(0.321569, 0.321569, 0.321569, 1)
-border_width_top = 4
-border_width_bottom = 4
-border_color = Color(0.13, 0.13, 0.13, 0.898039)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.686275)
-anti_aliasing = false
-
 [node name="Reaper" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA", "MESH", "PIVOT", "ATTACK_AREA", "LOCK_ON_AREA", "ANIM", "COLLISON_SHAPE", "STAMINA_BAR", "HEALTH_BAR", "SPAWN_PLAYER")]
 rotation_edit_mode = 1
 collision_layer = 2
@@ -819,64 +821,65 @@ omni_range = 30.0
 [node name="reaper" parent="Mesh" instance=ExtResource("3_k4avc")]
 
 [node name="Skeleton3D" parent="Mesh/reaper/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.707089, -0.00501628, 0.00501628, 0.707089)
+bones/0/position = Vector3(1.62165e-11, -0.00113917, 0.243165)
+bones/0/rotation = Quaternion(-0.708143, -0.00500879, 0.00502375, 0.706033)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/position = Vector3(0.0121782, 0.195052, 0.858267)
-bones/1/rotation = Quaternion(0.705385, 0.000345159, -0.0117293, 0.708727)
+bones/1/rotation = Quaternion(0.664698, 0.00529997, -0.00471554, 0.747079)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(0.00128346, -0.0278493, -0.00330524, 0.999606)
-bones/3/position = Vector3(-0.0765236, 0.0849118, -0.000162835)
-bones/3/rotation = Quaternion(-0.143415, 0.0118975, 0.812964, 0.564253)
-bones/4/rotation = Quaternion(-0.476791, 0.465393, -0.652315, 0.361337)
+bones/2/rotation = Quaternion(-0.00968664, 1.19431e-07, -3.03822e-08, 0.999953)
+bones/3/position = Vector3(-0.134822, 0.052576, -0.0037891)
+bones/3/rotation = Quaternion(-0.0790404, -0.241478, 0.808524, 0.530782)
+bones/4/rotation = Quaternion(-0.686711, 0.150063, -0.326329, 0.631996)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.0473696, 0.0194545, 0.0298013, 0.998243)
+bones/5/rotation = Quaternion(-0.106005, -0.0843837, 0.0754515, 0.987902)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.071445, -0.0219776, -0.0768057, 0.99424)
+bones/6/rotation = Quaternion(-0.645197, -0.369968, -0.17571, 0.644957)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(0.0900698, 0.26233, 0.000120991)
-bones/7/rotation = Quaternion(0.000372494, 0.0340038, -0.426222, 0.903979)
+bones/7/position = Vector3(0.0950236, 0.298836, -0.0378841)
+bones/7/rotation = Quaternion(-0.0880253, 0.319577, -0.443777, 0.832577)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(0.0666963, 0.334367, 0.00268122)
-bones/8/rotation = Quaternion(-0.0176332, 0.00657349, -0.0911358, 0.995661)
+bones/8/position = Vector3(0.0402784, 0.373751, 0.01925)
+bones/8/rotation = Quaternion(-0.590165, -0.329685, -0.328786, 0.659479)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.0053527, 0.372689, 0.00574173, 0.927923)
+bones/9/rotation = Quaternion(0.047472, -0.0020346, -0.0002166, 0.998871)
 bones/10/position = Vector3(0.0739062, 0.0863639, 9.17119e-09)
-bones/10/rotation = Quaternion(0.0107384, -0.220578, -0.704527, 0.674442)
+bones/10/rotation = Quaternion(-0.113526, -0.0393654, -0.859647, 0.496557)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.447431, -0.496873, 0.34906, 0.656567)
+bones/11/rotation = Quaternion(-0.447847, -0.406106, 0.0790233, 0.792633)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.0556451, 0.0365384, -0.032735, 0.997245)
+bones/12/rotation = Quaternion(-0.0341438, 0.0398289, 0.140836, 0.988642)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.0729207, 0.00868104, 0.0597107, 0.995511)
-bones/14/position = Vector3(-0.0897244, 0.256109, -0.00180258)
-bones/14/rotation = Quaternion(-0.00639234, 0.00312616, 0.414688, 0.909936)
+bones/13/rotation = Quaternion(-0.680775, 0.0647394, -0.215597, 0.697046)
+bones/14/position = Vector3(0.00970235, 0.14449, -0.0938517)
+bones/14/rotation = Quaternion(-0.498519, -8.95895e-05, 0.259607, 0.827093)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/position = Vector3(-0.0680093, 0.328651, 0.00212311)
-bones/15/rotation = Quaternion(-0.00578885, 0.0250474, 0.0883315, 0.995759)
+bones/15/position = Vector3(-0.104507, 0.226166, -0.0265586)
+bones/15/rotation = Quaternion(-0.396715, 0.383495, -0.189197, 0.812252)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/position = Vector3(-0.0745593, -0.0469273, -3.35051e-08)
-bones/16/rotation = Quaternion(0.0271781, -0.151372, 0.98527, -0.0747751)
+bones/16/rotation = Quaternion(0.0101714, -0.178497, 0.983723, 0.0180085)
 bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.0335726, 0.00650982, -2.66054e-05, 0.999415)
+bones/17/rotation = Quaternion(0.0352937, 0.00345592, 0.00317678, 0.999366)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(-0.702932, 0.000108851, 0.00128098, 0.711256)
+bones/18/rotation = Quaternion(-0.61167, 0.00253309, 0.000890113, 0.791109)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/position = Vector3(0.0745593, -0.0469273, -3.34458e-08)
-bones/19/rotation = Quaternion(-0.000463162, 0.0167985, 0.999734, -0.0157891)
+bones/19/rotation = Quaternion(-0.0130198, 0.0932549, 0.995432, -0.0157792)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.331089, -0.0256913, -0.0793695, 0.939904)
+bones/20/rotation = Quaternion(0.0330015, -0.00244017, -0.00183278, 0.999451)
 bones/20/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(-0.707958, -0.000486099, -2.9427e-05, 0.706255)
+bones/21/rotation = Quaternion(-0.789759, 0.000890246, -0.00221419, 0.613413)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(0.448948, 0.572884, 1.1269)
-bones/22/rotation = Quaternion(-0.135562, -0.119504, -0.830788, 0.526434)
+bones/22/position = Vector3(0.131184, 0.475904, 1.0359)
+bones/22/rotation = Quaternion(0.56909, -0.374084, 0.138877, 0.718965)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="cloak" parent="Mesh/reaper/Armature/Skeleton3D" index="1"]
 material_override = SubResource("ShaderMaterial_jjsp8")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.41392, 0.906227, 0.0861525, 0.345231, 0.0687012, 0.936, 0.84231, 0.417171, -0.341294, 0.432915, 1.13316, -0.322884)
+transform = Transform3D(0.671605, -0.635544, -0.380828, 0.706245, 0.704523, 0.0697488, 0.223974, -0.315802, 0.922011, 0.116473, 1.0351, -0.235833)
 bone_name = "staff_2"
 bone_idx = 22
 
@@ -891,12 +894,11 @@ disabled = true
 [node name="Stamina" type="ProgressBar" parent="."]
 texture_filter = 1
 offset_left = 14.0
-offset_top = 32.0
+offset_top = 1034.0
 offset_right = 137.0
-offset_bottom = 41.0
+offset_bottom = 1043.0
 theme = ExtResource("3_xeyp1")
-theme_override_styles/background = ExtResource("4_nq6uo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2m0od")
+theme_override_styles/fill = ExtResource("20_gpejb")
 value = 50.0
 rounded = true
 show_percentage = false
@@ -904,9 +906,9 @@ show_percentage = false
 [node name="Health" type="ProgressBar" parent="."]
 texture_filter = 1
 offset_left = 14.0
-offset_top = 13.0
+offset_top = 1055.0
 offset_right = 138.0
-offset_bottom = 22.0
+offset_bottom = 1064.0
 theme = ExtResource("3_xeyp1")
 theme_override_styles/background = ExtResource("4_nq6uo")
 theme_override_styles/fill = ExtResource("5_k7wi7")

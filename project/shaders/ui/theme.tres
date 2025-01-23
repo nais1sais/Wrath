@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bty2q8m8jwn5t"]
+
+[ext_resource type="StyleBox" uid="uid://dumtrjg77ixmn" path="res://shaders/ui/base_bar_background.tres" id="1_3rhje"]
+[ext_resource type="StyleBox" uid="uid://bl4mgs7p5gjoc" path="res://shaders/ui/base_bar_fill.tres" id="2_y7pp0"]
+[ext_resource type="FontFile" uid="uid://cg3g6bx1v1c8l" path="res://textures/fonts/Seagram tfb.ttf" id="3_knrq7"]
+
+[resource]
+default_font = ExtResource("3_knrq7")
+default_font_size = 16
+Button/colors/font_color = Color(0.71213, 0.712129, 0.712129, 1)
+Label/colors/font_color = Color(0.713726, 0.713726, 0.713726, 1)
+ProgressBar/styles/background = ExtResource("1_3rhje")
+ProgressBar/styles/fill = ExtResource("2_y7pp0")

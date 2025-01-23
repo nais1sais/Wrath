@@ -18,6 +18,7 @@ func play_press_sound() -> void:
 @export var main_menu: Control
 @export var resume_button: Button
 @export var restart_button: Button
+@export var new_game_button: Button
 @export var options_button: Button
 @export var controls_button: Button
 @export var credits_button: Button
@@ -33,6 +34,8 @@ func pause() -> void:
 	Engine.time_scale = 0
 	get_tree().paused = true
 func restart() -> void:
+	get_tree().reload_current_scene()
+func new_game() -> void:
 	Save.data = {}
 	Save.save_game()
 	get_tree().reload_current_scene()
@@ -54,6 +57,9 @@ func init_main_menu() -> void:
 	if restart_button: 
 		restart_button.connect("pressed", Callable(self, "restart"))
 		restart_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
+	if new_game_button: 
+		new_game_button.connect("pressed", Callable(self, "new_game"))
+		new_game_button.connect("mouse_entered", Callable(self, "play_hover_sound"))
 	if options_button: 
 		options_button.connect("pressed", Callable(self, "options"))
 		options_button.connect("mouse_entered", Callable(self, "play_hover_sound"))

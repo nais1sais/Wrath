@@ -28,10 +28,17 @@ extends CharacterBody3D
 @export var ZONES: Node
 @export var CLOAK_MATERIAL: ShaderMaterial
 
-@export_group("Hud")
+@export_group("UI")
 @export var STAMINA_BAR: ProgressBar
 @export var HEALTH_BAR: ProgressBar
-@export var BAR_PIXEL_WIDTH = 2
+@export var BAR_PIXEL_WIDTH = 4
+func update_ui():
+	STAMINA_BAR.size.x = MAX_STAMINA * BAR_PIXEL_WIDTH
+	HEALTH_BAR.size.x = MAX_HEALTH * BAR_PIXEL_WIDTH
+	STAMINA_BAR.max_value = MAX_STAMINA
+	HEALTH_BAR.max_value = MAX_HEALTH
+	STAMINA_BAR.value = stamina
+	HEALTH_BAR.value = health
 
 @export_group("Sounds")
 @export var NEW_GAME_SPAWN_SOUND: AudioStream
@@ -43,6 +50,15 @@ extends CharacterBody3D
 @export var FOOTSTEP_SOUNDS: Array[AudioStream] = []
 @export var SPIN_SOUNDS: Array[AudioStream] = []
 @export var HURT_SOUNDS: Array[AudioStream] = []
+func play_spin_sound() -> void:
+	if SPIN_SOUNDS.size() > 0:
+		Audio.play_2d_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
+func play_footstep_sound() -> void:
+	if FOOTSTEP_SOUNDS.size() > 0:
+		Audio.play_2d_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
+func play_hurt_sound() -> void:
+	if HURT_SOUNDS.size() > 0:
+		Audio.play_2d_sound(HURT_SOUNDS[randi() % HURT_SOUNDS.size()], 0.9, 1.1, -10, -10)
 
 var mouse_delta = Vector2.ZERO
 var health = MAX_HEALTH
@@ -57,20 +73,13 @@ var lock_on_target: CharacterBody3D
 func dissolve_cloak(speed: float, amount: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
-func play_spin_sound() -> void:
-	if SPIN_SOUNDS.size() > 0:
-		Audio.play_2d_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
-func play_footstep_sound() -> void:
-	if FOOTSTEP_SOUNDS.size() > 0:
-		Audio.play_2d_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 func damage(_amount: float) -> void:
 	ANIM.play("HURT")
 	CAMERA.shake += 3
-	if HURT_SOUNDS.size() > 0:
-		Audio.play_2d_sound(HURT_SOUNDS[randi() % HURT_SOUNDS.size()], 0.9, 1.1)
 	if (health <= 0):
 		death()	
 func death() -> void:
@@ -135,13 +144,11 @@ func _ready() -> void:
 	if Save.data.has("checkpoint_rotation_y"):
 		rotation.y = Save.data["checkpoint_rotation_y"]	
 	if Save.data.has("max_health"):
-		HEALTH_BAR.max_value = Save.data["max_health"]
 		MAX_HEALTH = Save.data["max_health"]
 		health = MAX_HEALTH
 	else:
 		Save.data["max_health"] = MAX_HEALTH
 	if Save.data.has("max_stamina"):
-		STAMINA_BAR.max_value = Save.data["max_stamina"]
 		MAX_STAMINA = Save.data["max_stamina"]
 		stamina = MAX_STAMINA
 	else:
@@ -157,20 +164,16 @@ func _ready() -> void:
 		Save.save_game()
 	SPAWN_PLAYER.play()
 	
-	STAMINA_BAR.size.x = MAX_STAMINA * BAR_PIXEL_WIDTH
-	HEALTH_BAR.size.x = MAX_HEALTH * BAR_PIXEL_WIDTH
-	STAMINA_BAR.max_value = MAX_STAMINA
-	STAMINA_BAR.value = stamina
-	HEALTH_BAR.max_value = MAX_HEALTH
-	HEALTH_BAR.value = health
-	
 	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	if ATTACK_AREA: ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	if LOCK_ON_AREA: LOCK_ON_AREA.connect("body_entered", Callable(self, "_on_lock_on_area_body_entered"))
 	dissolve_cloak(0,0)
+	update_ui()
 	
 func _physics_process(delta: float) -> void:
+	
+	update_ui()
 	
 	if not was_on_floor and is_on_floor() and has_been_on_floor:
 		if LAND_SOUNDS.size() > 0:
@@ -180,8 +183,6 @@ func _physics_process(delta: float) -> void:
 	
 	if ANIM.current_animation in "ESCAPE": return
 
-	HEALTH_BAR.value = health
-	
 	if Input.is_action_just_pressed("attack"): # ATTACK
 		if is_on_floor():
 			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"]:
