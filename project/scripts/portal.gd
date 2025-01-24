@@ -6,11 +6,13 @@ extends Node3D
 
 func _play_end_cutscene()-> void:
 	REAPER.global_transform = PLAYER_SPOT.global_transform
+	REAPER.global_transform = PLAYER_SPOT.global_transform
+	REAPER.MESH.transform = Transform3D.IDENTITY
+	REAPER.MESH_ANIM.playback_default_blend_time = 0
 	REAPER.ANIM.play("ESCAPE")
 	
 func _on_body_entered(body: Node) -> void:
 	if not body == REAPER: return
-	REAPER.position = Vector3(0, 0, 0)
 	REAPER.global_transform.origin = PLAYER_SPOT.global_transform.origin
 	CUTSCENE_PLAYER.play("ESCAPE")
 	
