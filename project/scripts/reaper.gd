@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export_group("Movement")
-@export var SPEED = 5.3
-@export var SPRINT_MULTIPLIER = 2.0
+@export var SPEED = 5.35
+@export var SPRINT_MULTIPLIER = 2.1
 @export var MAX_STAMINA = 10.0
 @export var MAX_HEALTH = 10.0
 @export var STAMINA_RECOVERY_SPEED = 20.0
@@ -24,6 +24,7 @@ extends CharacterBody3D
 @export var ATTACK_AREA: Area3D
 @export var LOCK_ON_AREA: Area3D
 @export var ANIM: AnimationPlayer
+@export var MESH_ANIM: AnimationPlayer
 @export var COLLISON_SHAPE: CollisionShape3D
 @export var ZONES: Node
 @export var CLOAK_MATERIAL: ShaderMaterial
@@ -73,7 +74,6 @@ var lock_on_target: CharacterBody3D
 func dissolve_cloak(speed: float, amount: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
@@ -92,22 +92,26 @@ func fall_death() -> void:
 	Save.save_game()	
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "WINDOWN":
-		ANIM.play("IDLE", 0, 1, false)
+		ANIM.play("IDLE", 0.0, 1, false)
 		ANIM.seek(0, true)
+		MESH_ANIM.playback_default_blend_time = 0.2
 
 	if animation_name == "SPIN":
 		if Input.is_action_pressed("attack") and stamina > 0:
-			ANIM.play("SPIN", 0, 1, false)
+			MESH_ANIM.playback_default_blend_time = 0.0
+			ANIM.play("SPIN", 0.0, 1, false)
 			ANIM.seek(0, true)
 			stamina -= 10
 			STAMINA_BAR.value = stamina
 			
 		else:
-			ANIM.play("WINDOWN", 0, 1, false)
+			MESH_ANIM.playback_default_blend_time = 0.0
+			ANIM.play("WINDOWN", 0.0, 1, false)
 			ANIM.seek(0, true) 
 	
 	if animation_name == "WINDUP":
-		ANIM.play("SPIN", 0, 1, false)
+		MESH_ANIM.playback_default_blend_time = 0.0
+		ANIM.play("SPIN", 0.0, 1, false)
 		ANIM.seek(0, true) 
 		stamina -= 10
 		STAMINA_BAR.value = stamina

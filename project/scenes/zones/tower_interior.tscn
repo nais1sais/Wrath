@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ds3o48mieqb"]
+[gd_scene load_steps=11 format=3 uid="uid://6ds3o48mieqb"]
 
+[ext_resource type="Material" uid="uid://u5kuempg7ino" path="res://shaders/bricks/brick_4.tres" id="1_sjc2t"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="3_ygqaf"]
-[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/brick.tres" id="7_1o4cr"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="7_1o4cr"]
 [ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/door.tscn" id="10_0tr1y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
@@ -60,16 +61,17 @@ navigation_mesh = SubResource("NavigationMesh_jc5vn")
 [node name="Lights" type="Node3D" parent="NavigationRegion3D"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
-transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926107, 0.383837, 0.921889, -0.0528203, 6.96341, 5.13863, -1.43818)
-light_color = Color(0.74, 0.54279, 0.4366, 1)
-light_energy = 80.0
+transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926108, 0.383837, 0.921889, -0.0528203, 6.96341, 10.1386, -1.43818)
+light_color = Color(0.599608, 0.41908, 0.321029, 1)
+light_energy = 100.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
-omni_range = 102.0
+light_specular = 0.2
+omni_range = 101.01
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -30)
-material_override = ExtResource("7_1o4cr")
+material_override = ExtResource("1_sjc2t")
 operation = 1
 snap = 0.25
 use_collision = true
@@ -94,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9064, -7.71782, 28.0207)
 HEALTH = false
 
 [node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("10_0tr1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23, -10, 1.00536e-06)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
 NEW_POSITION_PATH = "TowerEast/NewPosition"
 AREA = NodePath("Area3D")

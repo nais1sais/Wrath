@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
 [ext_resource type="PackedScene" uid="uid://2c3tbvl0nxe1" path="res://scenes/bosses/lust.tscn" id="4_j0a1p"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="4_ynkt0"]
-[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/brick.tres" id="5_ct7j2"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="5_ct7j2"]
 [ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="6_4l1cq"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="7_c1476"]
 [ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/door.tscn" id="8_5d645"]
@@ -339,16 +339,17 @@ MUSIC = NodePath("../WrathMusic")
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(-0.0153838, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
+transform = Transform3D(-0.0153839, -0.598632, -0.800877, -0.294615, -0.762699, 0.575754, -0.955492, 0.244808, -0.164633, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
-light_energy = 4.0
+light_energy = 3.0
 
 [node name="Lust" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.1764, -13.2506, -2.63919)
-light_color = Color(0.82, 0.6724, 0.6724, 1)
-light_energy = 40.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.8213, -13.2506, -2.63919)
+light_color = Color(0.82, 0.5576, 0.5576, 1)
+light_energy = 30.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
+light_specular = 0.0
 omni_range = 40.285
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -558,7 +559,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7362, -10.7115, -37.4971)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.5284, -18.9186, -2.35139)
 
 [node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -14.329, -2.41369)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -12.9049, -2.41369)
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
 NEW_POSITION_PATH = "TowerEast/NewPosition"
 AREA = NodePath("Area3D")
@@ -572,7 +573,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
 shape = SubResource("BoxShape3D_y4nq3")
 
 [node name="NewPosition" type="Node3D" parent="TowerEast"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5959e-07, 1.5, -6.20785)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.38419e-07, 0.404855, -6.20785)
 
 [node name="Archway" parent="." instance=ExtResource("10_mfui3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267229, -0.318179, -34.8064)
