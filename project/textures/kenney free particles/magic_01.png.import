@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmjtpb2mq1sfs"
 path.s3tc="res://.godot/imported/magic_01.png-1394c61e80fe35b8957eda157ceb3696.s3tc.ctex"
+path.etc2="res://.godot/imported/magic_01.png-1394c61e80fe35b8957eda157ceb3696.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/kenney free particles/magic_01.png"
-dest_files=["res://.godot/imported/magic_01.png-1394c61e80fe35b8957eda157ceb3696.s3tc.ctex"]
+dest_files=["res://.godot/imported/magic_01.png-1394c61e80fe35b8957eda157ceb3696.s3tc.ctex", "res://.godot/imported/magic_01.png-1394c61e80fe35b8957eda157ceb3696.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://df5pb5jnggr1m"
 path.s3tc="res://.godot/imported/star_04.png-22f69402a35fca0b343cd5a7dc103340.s3tc.ctex"
+path.etc2="res://.godot/imported/star_04.png-22f69402a35fca0b343cd5a7dc103340.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/kenney free particles/star_04.png"
-dest_files=["res://.godot/imported/star_04.png-22f69402a35fca0b343cd5a7dc103340.s3tc.ctex"]
+dest_files=["res://.godot/imported/star_04.png-22f69402a35fca0b343cd5a7dc103340.s3tc.ctex", "res://.godot/imported/star_04.png-22f69402a35fca0b343cd5a7dc103340.etc2.ctex"]
 
 [params]
 

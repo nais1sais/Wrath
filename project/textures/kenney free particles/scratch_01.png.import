@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://7jelhqh46wlj"
 path.s3tc="res://.godot/imported/scratch_01.png-88d325d5aba728922290a36140f457ae.s3tc.ctex"
+path.etc2="res://.godot/imported/scratch_01.png-88d325d5aba728922290a36140f457ae.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/kenney free particles/scratch_01.png"
-dest_files=["res://.godot/imported/scratch_01.png-88d325d5aba728922290a36140f457ae.s3tc.ctex"]
+dest_files=["res://.godot/imported/scratch_01.png-88d325d5aba728922290a36140f457ae.s3tc.ctex", "res://.godot/imported/scratch_01.png-88d325d5aba728922290a36140f457ae.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c43tc53nuxr1r"
 path.s3tc="res://.godot/imported/flame_04.png-0861432443241af1e647b6be97cc21a2.s3tc.ctex"
+path.etc2="res://.godot/imported/flame_04.png-0861432443241af1e647b6be97cc21a2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/kenney free particles/flame_04.png"
-dest_files=["res://.godot/imported/flame_04.png-0861432443241af1e647b6be97cc21a2.s3tc.ctex"]
+dest_files=["res://.godot/imported/flame_04.png-0861432443241af1e647b6be97cc21a2.s3tc.ctex", "res://.godot/imported/flame_04.png-0861432443241af1e647b6be97cc21a2.etc2.ctex"]
 
 [params]
 

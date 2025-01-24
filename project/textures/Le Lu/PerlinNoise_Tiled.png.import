@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyj5iy8dyespd"
 path.s3tc="res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.s3tc.ctex"
+path.etc2="res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Le Lu/PerlinNoise_Tiled.png"
-dest_files=["res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.s3tc.ctex"]
+dest_files=["res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.s3tc.ctex", "res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.etc2.ctex"]
 
 [params]
 
