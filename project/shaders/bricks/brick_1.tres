@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dm1fml7u2mwle" path="res://textures/brick/normal_1.png" id="2_ip76l"]
 
 [resource]
-albedo_color = Color(0.18568, 0.215047, 0.222386, 1)
+albedo_color = Color(0.1955, 0.209875, 0.23, 1)
 albedo_texture = ExtResource("1_eifie")
 metallic_specular = 0.4
 roughness = 0.45
@@ -12,6 +12,6 @@ normal_enabled = true
 normal_texture = ExtResource("2_ip76l")
 ao_texture = ExtResource("1_eifie")
 ao_on_uv2 = true
-uv1_scale = Vector3(-0.175, -0.175, -0.175)
+uv1_scale = Vector3(-0.15, -0.15, -0.15)
 uv1_triplanar = true
 uv1_world_triplanar = true

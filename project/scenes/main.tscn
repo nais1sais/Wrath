@@ -2,16 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menu.tscn" id="1_3cp27"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_5l7ei"]
-[ext_resource type="PackedScene" uid="uid://6ds3o48mieqb" path="res://scenes/zones/tower_interior.tscn" id="3_3b2ev"]
+[ext_resource type="PackedScene" uid="uid://dsdh2bite7xv4" path="res://scenes/zones/exterior.tscn" id="3_v2fpg"]
 
 [node name="Main" type="Node3D"]
 
 [node name="Menu" parent="." instance=ExtResource("1_3cp27")]
 
 [node name="Reaper" parent="." node_paths=PackedStringArray("ZONES") instance=ExtResource("2_5l7ei")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 14.1576, -9.06787, 20.5296)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -39.7908, -194.557)
 ZONES = NodePath("../Zones")
+
+[node name="Pivot" parent="Reaper" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.972606, 0.232461, 0, -0.232461, 0.972606, 0, 2.412, 0)
 
 [node name="Zones" type="Node" parent="."]
 
-[node name="Node3D" parent="Zones" instance=ExtResource("3_3b2ev")]
+[node name="Exterior" parent="Zones" instance=ExtResource("3_v2fpg")]
+
+[editable path="Reaper"]
+[editable path="Reaper/Mesh/reaper"]

@@ -32,7 +32,9 @@ func _load_new_scene() -> void:
 			var NEW_POSITION = new_zone.get_node(NEW_POSITION_PATH)
 			if NEW_POSITION:
 				REAPER.position = Vector3(0, 0, 0)
-				REAPER.global_transform.origin = NEW_POSITION.global_transform.origin
+				REAPER.MESH.global_transform.basis = REAPER.MESH.get_parent().global_transform.basis
+				REAPER.PIVOT.global_transform.basis = REAPER.MESH.get_parent().global_transform.basis
+				REAPER.global_transform = NEW_POSITION.global_transform
 			else:
 				print("Node not found at path:", NEW_POSITION_PATH)
 

@@ -11,7 +11,7 @@
 render_priority = 0
 shader = ExtResource("2_yhj2e")
 shader_parameter/Color_Intensity = 6.0
-shader_parameter/Portal_Color = Color(0.42, 0.42, 0.42, 1)
+shader_parameter/Portal_Color = Color(0.168627, 0.192157, 0.223529, 1)
 shader_parameter/scale = Vector2(0.5, 0.5)
 shader_parameter/zoom_strength = 2.995
 shader_parameter/repeat = 1.0
@@ -30,7 +30,7 @@ shader_parameter/Mask_Texture = ExtResource("3_10esi")
 script = ExtResource("1_7jlsn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.89, 0.72802, 0.6408, 1)
+light_color = Color(0.168627, 0.192157, 0.223529, 1)
 light_energy = 15.857
 omni_range = 11.4784
 

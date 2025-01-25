@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bwj8yk018l62v" path="res://textures/brick/normal_3.png" id="2_hdqqv"]
 
 [resource]
-albedo_color = Color(0.232196, 0.266758, 0.275397, 1)
+albedo_color = Color(0.196078, 0.211765, 0.231373, 1)
 albedo_texture = ExtResource("1_6w71h")
 metallic_specular = 0.4
 roughness = 0.45

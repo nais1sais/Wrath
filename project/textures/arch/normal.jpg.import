@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cea44jj0vdvk8"
-path.s3tc="res://.godot/imported/arch_normal.jpg-918c80e715eb13ff3d1291af55c49375.s3tc.ctex"
-path.etc2="res://.godot/imported/arch_normal.jpg-918c80e715eb13ff3d1291af55c49375.etc2.ctex"
+uid="uid://casb0qgjy5ppn"
+path.s3tc="res://.godot/imported/normal.jpg-be31902f4b8912524dac5b76abb4dc62.s3tc.ctex"
+path.etc2="res://.godot/imported/normal.jpg-be31902f4b8912524dac5b76abb4dc62.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/arch/arch_normal.jpg"
-dest_files=["res://.godot/imported/arch_normal.jpg-918c80e715eb13ff3d1291af55c49375.s3tc.ctex", "res://.godot/imported/arch_normal.jpg-918c80e715eb13ff3d1291af55c49375.etc2.ctex"]
+source_file="res://textures/arch/normal.jpg"
+dest_files=["res://.godot/imported/normal.jpg-be31902f4b8912524dac5b76abb4dc62.s3tc.ctex", "res://.godot/imported/normal.jpg-be31902f4b8912524dac5b76abb4dc62.etc2.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://textures/arch/arch_normal.jpg"
+roughness/src_normal="res://textures/arch/normal.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

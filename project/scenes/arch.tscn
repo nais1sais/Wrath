@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://7mrheb4oio5g"]
+
+[ext_resource type="PackedScene" uid="uid://ca68xt1knlt4" path="res://models/blender/archway.blend" id="1_2yfkb"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="2_7nqul"]
+
+[node name="Arch" type="Node3D"]
+
+[node name="Archway" parent="." instance=ExtResource("1_2yfkb")]
+
+[node name="archlow" parent="Archway" index="0"]
+transform = Transform3D(1.03862, 0, 0, 0, -4.53995e-08, -1.03862, 0, 1.03862, -4.53995e-08, 0.121099, 0, 0)
+material_override = ExtResource("2_7nqul")
+
+[editable path="Archway"]
