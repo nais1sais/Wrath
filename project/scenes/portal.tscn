@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dutvs5n1mdx4u"]
+[gd_scene load_steps=11 format=3 uid="uid://dutvs5n1mdx4u"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_7jlsn"]
 [ext_resource type="Shader" uid="uid://c5qmhn882uk5r" path="res://shaders/portal.tres" id="2_yhj2e"]
@@ -26,8 +26,31 @@ shader_parameter/Mask_Texture = ExtResource("3_10esi")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_msea1"]
 
-[node name="Portal" type="Node3D"]
+[sub_resource type="Animation" id="Animation_p64xk"]
+resource_name = "ESCAPE"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_end_cutscene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgq31"]
+_data = {
+"ESCAPE": SubResource("Animation_p64xk")
+}
+
+[node name="Portal" type="Node3D" node_paths=PackedStringArray("ANIM")]
 script = ExtResource("1_7jlsn")
+ANIM = NodePath("AnimationPlayer")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.168627, 0.192157, 0.223529, 1)
@@ -39,3 +62,8 @@ transform = Transform3D(49.9988, -0.000671707, -0.34897, -0.348963, 0.000215523,
 material_override = SubResource("ShaderMaterial_hvva7")
 mesh = SubResource("PlaneMesh_msea1")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sgq31")
+}

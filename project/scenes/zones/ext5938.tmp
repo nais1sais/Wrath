@@ -53,58 +53,72 @@ volumetric_fog_detail_spread = 0.965936
 
 [sub_resource type="Animation" id="Animation_gllqw"]
 resource_name = "ESCAPE"
-length = 68.0
-tracks/0/type = "value"
+length = 65.0
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Exterior/Cinematics/Camera3D:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Exterior/Cinematics/CinematicMusic")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 11.7333, 22.8333, 33.5667, 40.9333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-10.1883, 14.1217, 81.338), Vector3(-4.73858, 7.05343, 54.6198), Vector3(8.266, 11.477, 43.47), Vector3(-1.17755, 20.0137, 110.875), Vector3(-0.635, 18.307, 131.151)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 11.7333, 22.9333, 33.7667, 40.8333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Quaternion(-0.258726, -0.241264, -0.0669083, 0.932939), Quaternion(-0.00381493, 0.975671, -0.0170316, -0.218542), Quaternion(-0.00144056, 0.986246, 0.00860781, 0.165053), Quaternion(0.000141897, 0.999455, 0.03272, -0.00433436), Quaternion(0.000104114, 0.999703, 0.0239969, -0.00433734)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:current")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Exterior/Cinematics/CinematicMusic")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("1_ye5dk")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.1)
 }
-tracks/3/use_blend = true
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 11.7333, 22.8333, 33.5667, 40.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-10.1883, 14.1217, 81.338), Vector3(-4.73858, 7.05343, 54.6198), Vector3(8.266, 11.477, 43.47), Vector3(-1.17755, 20.0137, 110.875), Vector3(-0.635, 18.307, 131.151)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 11.7333, 22.9333, 33.7667, 40.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(-0.258726, -0.241264, -0.0669083, 0.932939), Quaternion(-0.00381493, 0.975671, -0.0170316, -0.218542), Quaternion(-0.00144056, 0.986246, 0.00860781, 0.165053), Quaternion(0.000141897, 0.999455, 0.03272, -0.00433436), Quaternion(0.000104114, 0.999703, 0.0239969, -0.00433734)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Exterior/Cinematics/Camera3D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exterior/Portal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_end_cutscene"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_vbito"]
 length = 0.001
@@ -112,7 +126,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Exterior/Cinematics/Camera3D:current")
-tracks/0/interp = 0
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -124,7 +138,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
-tracks/1/interp = 0
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
@@ -136,7 +150,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:position")
-tracks/2/interp = 0
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
@@ -199,7 +213,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rdmac"]
 resource_name = "EXITED"
-length = 3.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -207,7 +221,7 @@ tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.56667),
+"times": PackedFloat32Array(5.76667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -219,7 +233,7 @@ tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 2.06667),
+"times": PackedFloat32Array(0.0333333, 5.66667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, -60.0]
@@ -322,7 +336,7 @@ environment = SubResource("Environment_rnikm")
 bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -1.86264e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(0.87463, 0.249685, -0.415548, -1.86265e-07, 0.857168, 0.515037, 0.484792, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -343,7 +357,6 @@ shape = SubResource("BoxShape3D_15mrn")
 
 [node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA", "PROGRESSION_AREA", "MUSIC") instance=ExtResource("2_ttjtk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
-MAX_HEALTH = 5
 NAV_REGION = NodePath("../NavigationRegion3D")
 TRIGGER_AREA = NodePath("../Trigger Area")
 PROGRESSION_AREA = NodePath("../Portal/end")
@@ -861,7 +874,7 @@ EXIT_AREA = NodePath("Exit")
 
 [node name="AudioStreamPlayer2D" parent="WrathMusic" index="0"]
 stream = ExtResource("13_puej5")
-volume_db = -60.0
+volume_db = 0.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WrathMusic"]

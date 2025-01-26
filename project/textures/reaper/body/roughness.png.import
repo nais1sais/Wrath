@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpvuokdr1ciil"
-path.s3tc="res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.s3tc.ctex"
-path.etc2="res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.etc2.ctex"
+uid="uid://dwd5s8rkk7k1n"
+path.s3tc="res://.godot/imported/roughness.png-19adcfa1f26a757c0b0d07a3a1f30d07.s3tc.ctex"
+path.etc2="res://.godot/imported/roughness.png-19adcfa1f26a757c0b0d07a3a1f30d07.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/reaper/staff_color.png"
-dest_files=["res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.s3tc.ctex", "res://.godot/imported/staff_color.png-3d0dae519e998da5c219376d578619b1.etc2.ctex"]
+source_file="res://textures/reaper/body/roughness.png"
+dest_files=["res://.godot/imported/roughness.png-19adcfa1f26a757c0b0d07a3a1f30d07.s3tc.ctex", "res://.godot/imported/roughness.png-19adcfa1f26a757c0b0d07a3a1f30d07.etc2.ctex"]
 
 [params]
 

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv4plm1atp60t"
-path.s3tc="res://.godot/imported/body_color.png-010a486ce06d23c8ebd99895690c6f60.s3tc.ctex"
-path.etc2="res://.godot/imported/body_color.png-010a486ce06d23c8ebd99895690c6f60.etc2.ctex"
+uid="uid://c1qayava2cjqm"
+path.s3tc="res://.godot/imported/color.png-b3416632f20865826940d9fdc124576b.s3tc.ctex"
+path.etc2="res://.godot/imported/color.png-b3416632f20865826940d9fdc124576b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/reaper/body_color.png"
-dest_files=["res://.godot/imported/body_color.png-010a486ce06d23c8ebd99895690c6f60.s3tc.ctex", "res://.godot/imported/body_color.png-010a486ce06d23c8ebd99895690c6f60.etc2.ctex"]
+source_file="res://textures/reaper/staff/color.png"
+dest_files=["res://.godot/imported/color.png-b3416632f20865826940d9fdc124576b.s3tc.ctex", "res://.godot/imported/color.png-b3416632f20865826940d9fdc124576b.etc2.ctex"]
 
 [params]
 

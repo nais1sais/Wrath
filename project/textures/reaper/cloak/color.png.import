@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://81lvolbdi6bv"
-path.s3tc="res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.s3tc.ctex"
-path.etc2="res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.etc2.ctex"
+uid="uid://bm1u48mshqrkg"
+path.s3tc="res://.godot/imported/color.png-80a9620bae9b1a9318445013d57a5547.s3tc.ctex"
+path.etc2="res://.godot/imported/color.png-80a9620bae9b1a9318445013d57a5547.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/reaper/cloak_color.png"
-dest_files=["res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.s3tc.ctex", "res://.godot/imported/cloak_color.png-b62b84849125dcc8566b965021492c6d.etc2.ctex"]
+source_file="res://textures/reaper/cloak/color.png"
+dest_files=["res://.godot/imported/color.png-80a9620bae9b1a9318445013d57a5547.s3tc.ctex", "res://.godot/imported/color.png-80a9620bae9b1a9318445013d57a5547.etc2.ctex"]
 
 [params]
 

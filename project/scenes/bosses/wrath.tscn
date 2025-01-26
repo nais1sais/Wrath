@@ -98,7 +98,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": PackedStringArray("Death"),
-"times": PackedFloat32Array(0.133333)
+"times": PackedFloat32Array(0.0333333)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -705,21 +705,21 @@ blend_times = [&"INTRO", &"CHASE", 0.4]
 [node name="wrath" parent="Mesh" instance=ExtResource("10_h46di")]
 
 [node name="Skeleton3D" parent="Mesh/wrath/Armature" index="0"]
-bones/1/position = Vector3(-3.68086e-17, 0.0437012, 0.453434)
-bones/1/rotation = Quaternion(0.386566, -0.0359702, -0.0216111, 0.921307)
-bones/2/rotation = Quaternion(0.0405384, -0.00835834, 0.0536852, 0.9977)
-bones/3/rotation = Quaternion(-0.041653, 0.236404, 0.705468, 0.666853)
+bones/1/position = Vector3(-7.12175e-17, 0.0829432, 0.518257)
+bones/1/rotation = Quaternion(0.520187, 5.55556e-17, 9.12122e-17, 0.854052)
+bones/2/rotation = Quaternion(0.296613, 1.13845e-07, 3.5359e-08, 0.954998)
+bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.397043, -0.357172, 0.333348, 0.776958)
-bones/5/rotation = Quaternion(-0.46544, -0.148213, 0.00210542, 0.872579)
-bones/6/rotation = Quaternion(-0.109948, 0.217889, 0.132482, 0.960669)
+bones/4/rotation = Quaternion(-0.359535, 0.0106007, 0.152414, 0.920539)
+bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325445, 0.887213)
+bones/6/rotation = Quaternion(-0.0822429, 0.000622969, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.183248, -0.00360745, -0.00978264, 0.983011)
-bones/8/rotation = Quaternion(-0.00861093, -0.00579553, -0.782421, 0.622664)
+bones/7/rotation = Quaternion(0.114974, -2.79969e-08, -6.39776e-08, 0.993369)
+bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.239544, 0.0892306, -0.300265, 0.918966)
+bones/9/rotation = Quaternion(-0.24812, 0.000525553, -0.14623, 0.957629)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.447896, 0.0829059, 0.107015, 0.883778)
+bones/10/rotation = Quaternion(-0.455173, 0.0679145, -0.0325445, 0.887213)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 
@@ -727,7 +727,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_lp57m")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.715613, 0.0767597, -0.694266, 0.612609, -0.408539, -0.676614, -0.335572, -0.909507, 0.245332, -2.22733, 1.11601, -2.70202)
+transform = Transform3D(-0.653425, 0.0696915, -0.753776, 0.732639, -0.192318, -0.652882, -0.190465, -0.978855, 0.0746064, -2.23058, 2.65431, -0.610168)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -741,7 +741,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.705196, 0.0682123, 0.705723, -0.587752, -0.612937, -0.528069, 0.396543, -0.787182, 0.472332, 2.04818, 1.116, -2.51077)
+transform = Transform3D(-0.685293, 0.149883, 0.712677, -0.722862, -0.259, -0.640617, 0.0885656, -0.954177, 0.285835, 2.5137, 2.56799, -0.234136)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -755,7 +755,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.990128, -0.102157, -0.0959676, 0.139955, 0.75792, 0.637158, 0.00764544, -0.644299, 0.764736, 0.021382, 0.624202, -0.290176)
+transform = Transform3D(1, 2.13163e-14, 2.38419e-07, 2.9874e-08, 0.992119, -0.125301, -2.3654e-07, 0.125301, 0.992119, 5.16274e-24, 1, 0.100295)
 bone_name = "torso"
 bone_idx = 2
 
@@ -771,7 +771,7 @@ disabled = true
 [node name="AnimationPlayer" parent="Mesh/wrath" index="1"]
 root_motion_track = NodePath("Armature/Skeleton3D:root")
 callback_mode_process = 0
-playback_default_blend_time = 0.3
+playback_default_blend_time = 0.2
 
 [node name="Jump" type="Area3D" parent="Mesh"]
 collision_layer = 3
