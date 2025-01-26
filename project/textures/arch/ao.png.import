@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di2waeur7mxih"
-path.s3tc="res://.godot/imported/color.jpg-fa20a296a34edafe47c5c0dbc3d7e639.s3tc.ctex"
-path.etc2="res://.godot/imported/color.jpg-fa20a296a34edafe47c5c0dbc3d7e639.etc2.ctex"
+uid="uid://sr4b48bhqf61"
+path.s3tc="res://.godot/imported/ao.png-7f764bd8d3079fc221f6e8bc25a34a1f.s3tc.ctex"
+path.etc2="res://.godot/imported/ao.png-7f764bd8d3079fc221f6e8bc25a34a1f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/arch/color.jpg"
-dest_files=["res://.godot/imported/color.jpg-fa20a296a34edafe47c5c0dbc3d7e639.s3tc.ctex", "res://.godot/imported/color.jpg-fa20a296a34edafe47c5c0dbc3d7e639.etc2.ctex"]
+source_file="res://textures/arch/ao.png"
+dest_files=["res://.godot/imported/ao.png-7f764bd8d3079fc221f6e8bc25a34a1f.s3tc.ctex", "res://.godot/imported/ao.png-7f764bd8d3079fc221f6e8bc25a34a1f.etc2.ctex"]
 
 [params]
 
