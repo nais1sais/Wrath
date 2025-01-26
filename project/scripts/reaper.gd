@@ -77,6 +77,7 @@ func dissolve_cloak(speed: float, amount: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
+
 func damage(_amount: float) -> void:
 	ANIM.play("HURT")
 	CAMERA.shake += 3
@@ -175,7 +176,7 @@ func _ready() -> void:
 	dissolve_cloak(0,0)
 	update_ui()
 	
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	update_ui()
 	
@@ -222,6 +223,11 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("lock_on"):
 		lock_on_activated = !lock_on_activated
+	
+	var look_left_right = Input.get_axis("look_left", "look_right")
+	var look_up_down = Input.get_axis("look_down", "look_up")
+	mouse_delta.x += look_left_right * MOUSE_SENSITIVITY * 3000
+	mouse_delta.y -= look_up_down * MOUSE_SENSITIVITY * 3000
 		
 	if lock_on_activated:
 		if lock_on_target and is_instance_valid(lock_on_target):
@@ -235,6 +241,7 @@ func _physics_process(delta: float) -> void:
 			mouse_delta = Vector2.ZERO
 
 	if mouse_delta.length() > 0:
+		
 		var y_rot = Quaternion(Vector3.UP, -mouse_delta.x * MOUSE_SENSITIVITY)
 		var x_rot = Quaternion($Pivot.transform.basis.x.normalized(), -mouse_delta.y * MOUSE_SENSITIVITY)
 		$Pivot.transform.basis = Basis(y_rot) * Basis(x_rot) * $Pivot.transform.basis
@@ -247,10 +254,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			ANIM.play("JUMP")
 
-	var input_direction := Input.get_vector("left", "right", "forward", "back")
-	if input_direction.length() > 0:
+	var keyboard_vector := Input.get_vector("keyboard_left", "keyboard_right", "keyboard_forward", "keyboard_back")
+	var controller_vector := Input.get_vector("controller_left", "controller_right", "controller_forward", "controller_back")
+	var input_vector := keyboard_vector + controller_vector
+	
+	if input_vector.length() > 0:
 		var mesh_direction = Vector3(0, 0, -1).rotated(Vector3.UP, MESH.rotation.y + global_transform.basis.get_euler().y)
-		if Input.is_action_pressed("sprint") and stamina > 0:
+		if (Input.is_action_pressed("sprint") or controller_vector.length() > 0.75) and stamina > 0:
 			if ANIM.current_animation not in ["WINDUP", "SPIN", "WINDOWN", "DEATH", "FALL_DEATH", "HURT"] and is_on_floor():
 				ANIM.play("RUN", 0.0, 1, false)
 			velocity.x = mesh_direction.x * SPEED * SPRINT_MULTIPLIER * SPEED_MULTIPLIER
@@ -261,7 +271,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = mesh_direction.x * SPEED * SPEED_MULTIPLIER
 			velocity.z = mesh_direction.z * SPEED * SPEED_MULTIPLIER
 
-		var direction = (Vector3(input_direction.x, 0, input_direction.y)).normalized()
+		var direction = (Vector3(input_vector.x, 0, input_vector.y)).normalized()
 		var target_rotation = atan2(direction.x, direction.z) + PI
 		MESH.rotation.y = lerp_angle(MESH.rotation.y, target_rotation + PIVOT.rotation.y, TURN_SPEED * TURN_MULTIPLIER * delta)
 	else:

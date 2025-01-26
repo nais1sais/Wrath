@@ -989,7 +989,7 @@ bones/22/scale = Vector3(1, 1, 1)
 material_override = SubResource("ShaderMaterial_jjsp8")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.636638, -0.662005, -0.395527, 0.703357, 0.70877, -0.0541693, 0.316198, -0.24371, 0.916856, 0.0962312, 1.0175, -0.218375)
+transform = Transform3D(0.636638, -0.662004, -0.395527, 0.703356, 0.70877, -0.0541695, 0.316198, -0.24371, 0.916855, 0.0962315, 1.01751, -0.218375)
 bone_name = "staff_2"
 bone_idx = 22
 

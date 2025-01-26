@@ -207,6 +207,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):
 		if self.visible:
 			resume()	
+			resume_button.grab_focus()
 		else :
 			play_press_sound()
 			pause()
+			resume_button.release_focus()
