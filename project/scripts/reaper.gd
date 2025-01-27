@@ -16,6 +16,8 @@ extends CharacterBody3D
 @export var COYOTE_TIME: float = .4
 @export var JUMP_BUFFER_TIME: float = .2
 @export var LOCK_ON_SPEED = 7
+@export var SQUASH_AMOUNT = .15
+@export var SQUASH_SPEED = .03
 
 @export_group("References")
 @export var CAMERA: Camera3D
@@ -71,13 +73,12 @@ var jump_buffer = 0;
 var lock_on_activated = false
 var lock_on_target: CharacterBody3D
 
-func dissolve_cloak(speed: float, amount: float) -> void:
-	var tween = create_tween()
-	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
-
+func dissolve_cloak(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
 func damage(_amount: float) -> void:
 	ANIM.play("HURT")
 	CAMERA.shake += 3
@@ -119,12 +120,10 @@ func _on_animation_finished(animation_name: String) -> void:
 		
 	if animation_name == "DEATH" or animation_name == "FALL_DEATH":
 		get_tree().call_deferred("reload_current_scene")	
-
 func _on_lock_on_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
 	lock_on_target = body
-
 func _on_attack_area_body_entered(body: Node) -> void:
 	if body == self: return
 	if body is not CharacterBody3D: return
@@ -133,6 +132,14 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	body.health -= 1;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
+func update_squash(target_squash: float, squash_speed: float, delta: float):
+	if delta == 0: return
+	var current_squash = MESH.scale.y
+	current_squash = lerp(current_squash, target_squash, (delta * squash_speed) * (1.0 / delta))
+	var squash_compensation = 1 - ((current_squash - 1) * .5)
+	MESH.scale.y = current_squash
+	MESH.scale.x = squash_compensation
+	MESH.scale.z = squash_compensation
 	
 func _ready() -> void:
 
@@ -178,10 +185,13 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	
+	update_squash(1, SQUASH_SPEED, delta)
+	
 	update_ui()
 	
 	if not was_on_floor and is_on_floor() and has_been_on_floor:
 		if LAND_SOUNDS.size() > 0:
+			update_squash(1 - SQUASH_AMOUNT, 1, delta)
 			Audio.play_2d_sound(LAND_SOUNDS[randi() % LAND_SOUNDS.size()], 0.9, 1.1)		
 	was_on_floor = is_on_floor()
 	if is_on_floor(): has_been_on_floor = true
@@ -217,6 +227,7 @@ func _process(delta: float) -> void:
 			if JUMP_SOUNDS.size() > 0:  
 				Audio.play_2d_sound(JUMP_SOUNDS[randi() % JUMP_SOUNDS.size()], 0.9, 1.1)
 			ANIM.play("JUMP")
+			update_squash(1 + SQUASH_AMOUNT, 1, delta)
 			velocity.y = JUMP_VELOCITY
 			falling = COYOTE_TIME
 			jump_buffer = 0
