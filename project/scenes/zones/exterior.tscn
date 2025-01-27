@@ -1,5 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=41 format=3 uid="uid://dsdh2bite7xv4"]
 
+[ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/weather.tscn" id="1_rvkd1"]
 [ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
 [ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
@@ -313,6 +314,8 @@ _data = {
 size = Vector3(84.0156, 70.982, 263.846)
 
 [node name="Exterior" type="Node3D"]
+
+[node name="Weather" parent="." instance=ExtResource("1_rvkd1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rnikm")
