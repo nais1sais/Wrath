@@ -31,6 +31,10 @@ extends CharacterBody3D
 @export var ZONES: Node
 @export var CLOAK_MATERIAL: ShaderMaterial
 
+@export var CLOAK_TEXTURE: Texture2D
+@export var ALTERNATIVE_CLOAK_TEXTURE: Texture2D
+
+
 @export_group("UI")
 @export var STAMINA_BAR: ProgressBar
 @export var HEALTH_BAR: ProgressBar
@@ -183,8 +187,17 @@ func _ready() -> void:
 	dissolve_cloak(0,0)
 	update_ui()
 	
-func _process(delta: float) -> void:
+var alternative_cloak = false
 	
+func _process(delta: float) -> void:
+		
+	if Input.is_action_just_pressed("debug"):
+		alternative_cloak = !alternative_cloak
+		if alternative_cloak:
+			CLOAK_MATERIAL.set_shader_parameter("base_texture", ALTERNATIVE_CLOAK_TEXTURE)
+		else:
+			CLOAK_MATERIAL.set_shader_parameter("base_texture", CLOAK_TEXTURE)
+
 	update_squash(1, SQUASH_SPEED, delta)
 	
 	update_ui()

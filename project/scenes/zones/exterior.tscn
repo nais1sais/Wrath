@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=40 format=3 uid="uid://dsdh2bite7xv4"]
 
 [ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
 [ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
 [ext_resource type="PackedScene" uid="uid://2c3tbvl0nxe1" path="res://scenes/bosses/lust.tscn" id="4_j0a1p"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/checkpoint.tscn" id="4_ynkt0"]
+[ext_resource type="Material" uid="uid://u5kuempg7ino" path="res://shaders/bricks/brick_4.tres" id="5_a0xqr"]
 [ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="5_ct7j2"]
 [ext_resource type="PackedScene" uid="uid://dutvs5n1mdx4u" path="res://scenes/portal.tscn" id="6_4l1cq"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/soul.tscn" id="7_c1476"]
@@ -648,12 +649,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.181592, -39.932, -161.949)
 
 [node name="Pride" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7641, -160.542, -101.57)
-material_override = ExtResource("5_ct7j2")
+material_override = ExtResource("5_a0xqr")
 use_collision = true
 
 [node name="Pillar" type="CSGBox3D" parent="NavigationRegion3D/Pride"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-material_override = ExtResource("5_ct7j2")
+material_override = ExtResource("5_a0xqr")
 use_collision = true
 size = Vector3(15, 244.3, 15)
 
