@@ -1,22 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://2c3tbvl0nxe1"]
+[gd_scene load_steps=4 format=3 uid="uid://2c3tbvl0nxe1"]
 
 [ext_resource type="PackedScene" uid="uid://c2wxy1j75npxh" path="res://models/blender/lust.blend" id="1_ipvtt"]
-[ext_resource type="Texture2D" uid="uid://ddvan0axx7svx" path="res://textures/brick/ao_1.png" id="2_qyhvc"]
-[ext_resource type="Material" uid="uid://ccmrqn1myaceh" path="res://shaders/bricks/brick_2.tres" id="2_vcq31"]
-[ext_resource type="Texture2D" uid="uid://bk66qcn2gx2xk" path="res://textures/brick/normal_2.png" id="3_kgh2h"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnnd4"]
-albedo_color = Color(0.238911, 0.274197, 0.283017, 1)
-metallic_specular = 0.4
-roughness = 0.61
-normal_enabled = true
-normal_scale = -2.0
-normal_texture = ExtResource("3_kgh2h")
-ao_texture = ExtResource("2_qyhvc")
-ao_on_uv2 = true
-uv1_scale = Vector3(-1.03, -1.03, -1.03)
-uv1_triplanar = true
-uv1_world_triplanar = true
+[ext_resource type="Material" uid="uid://csibvbbqy3q3e" path="res://shaders/statue.tres" id="2_oni0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6e7kf"]
 size = Vector3(1, 6, 1)
@@ -27,13 +12,13 @@ size = Vector3(1, 6, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03159, 0)
 
 [node name="lustLP" parent="lust" index="0"]
-material_override = SubResource("StandardMaterial3D_lnnd4")
+material_override = ExtResource("2_oni0w")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 size = Vector3(3, 2, 3)
-material = ExtResource("2_vcq31")
+material = ExtResource("2_oni0w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

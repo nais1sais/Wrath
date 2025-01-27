@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export_group("Difficulty")
-@export var MAX_HEALTH: int = 5
+@export var MAX_HEALTH: int = 50
 @export var SPEED = 9.0
 @export var JUMP_ATTACK_PERCENTAGE = 0.8
 @export var SLAM_ATTACK_PERCENTAGE = 2.2

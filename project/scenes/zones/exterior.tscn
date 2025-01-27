@@ -323,11 +323,13 @@ environment = SubResource("Environment_rnikm")
 [node name="Cinematics" type="Node" parent="."]
 
 [node name="CinematicMusic" type="AudioStreamPlayer2D" parent="Cinematics"]
+attenuation = 0.00728933
 bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -1.41561e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(0.87463, 0.249685, -0.415548, -2.16067e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
 rotation_edit_mode = 1
+current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
 root_node = NodePath("../../..")
@@ -347,7 +349,6 @@ shape = SubResource("BoxShape3D_15mrn")
 
 [node name="Wrath" parent="." node_paths=PackedStringArray("NAV_REGION", "TRIGGER_AREA", "PROGRESSION_AREA", "MUSIC") instance=ExtResource("2_ttjtk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.535756, 1.88324, 19)
-MAX_HEALTH = 5
 NAV_REGION = NodePath("../NavigationRegion3D")
 TRIGGER_AREA = NodePath("../Trigger Area")
 PROGRESSION_AREA = NodePath("../Portal/end")
@@ -358,7 +359,7 @@ MUSIC = NodePath("../WrathMusic")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(0.405959, 0.913203, -0.0354602, 0.44723, -0.164677, 0.879128, 0.796983, -0.372749, -0.475263, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
-light_energy = 2.3
+light_energy = 4.0
 
 [node name="General" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603172, -29.4064, -85.1052)
@@ -740,6 +741,7 @@ EXIT_AREA = NodePath("Area")
 [node name="AudioStreamPlayer2D" parent="NavigationRegion3D/Lust/StatueMusic" index="0"]
 stream = ExtResource("11_0eica")
 volume_db = -60.0
+attenuation = 1e-05
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationRegion3D/Lust/StatueMusic"]
@@ -866,6 +868,7 @@ EXIT_AREA = NodePath("Exit")
 [node name="AudioStreamPlayer2D" parent="WrathMusic" index="0"]
 stream = ExtResource("13_puej5")
 volume_db = -60.0
+attenuation = 1e-05
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WrathMusic"]
@@ -889,7 +892,8 @@ EXIT_AREA = NodePath("Area")
 
 [node name="AudioStreamPlayer2D" parent="AmbientMusic" index="0"]
 stream = ExtResource("12_mgjjb")
-volume_db = -60.0
+volume_db = 1.0
+attenuation = 1e-05
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AmbientMusic"]

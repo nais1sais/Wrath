@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://csibvbbqy3q3e"]
+
+[ext_resource type="Texture2D" uid="uid://ddvan0axx7svx" path="res://textures/brick/ao_1.png" id="1_vim6i"]
+[ext_resource type="Texture2D" uid="uid://bk66qcn2gx2xk" path="res://textures/brick/normal_2.png" id="2_akpcc"]
+
+[resource]
+albedo_color = Color(0.306438, 0.328102, 0.355188, 1)
+metallic_specular = 0.4
+roughness = 0.61
+normal_enabled = true
+normal_scale = 1.65
+normal_texture = ExtResource("2_akpcc")
+ao_texture = ExtResource("1_vim6i")
+ao_on_uv2 = true
+uv1_scale = Vector3(-0.335, -0.335, -0.335)
+uv1_triplanar = true
+uv1_world_triplanar = true

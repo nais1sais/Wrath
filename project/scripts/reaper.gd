@@ -17,7 +17,7 @@ extends CharacterBody3D
 @export var JUMP_BUFFER_TIME: float = .2
 @export var LOCK_ON_SPEED = 7
 @export var SQUASH_AMOUNT = .15
-@export var SQUASH_SPEED = .03
+@export var SQUASH_SPEED = .05
 
 @export_group("References")
 @export var CAMERA: Camera3D
