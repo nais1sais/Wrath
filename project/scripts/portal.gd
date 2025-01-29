@@ -6,7 +6,6 @@ extends Node3D
 @export var PLAYER_SPOT: Node3D
 
 func _play_end_cutscene()-> void:
-	print('test')
 	REAPER.global_transform = PLAYER_SPOT.global_transform
 	REAPER.global_transform = PLAYER_SPOT.global_transform
 	REAPER.MESH.transform = Transform3D.IDENTITY
@@ -18,6 +17,9 @@ func _on_body_entered(body: Node) -> void:
 	REAPER.global_transform.origin = PLAYER_SPOT.global_transform.origin
 	ANIM.play("ESCAPE")
 	CUTSCENE_PLAYER.play("ESCAPE")
+	
+func _return_to_title() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
 	
 func _ready() -> void:
 	

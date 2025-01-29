@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dutvs5n1mdx4u"]
+[gd_scene load_steps=13 format=3 uid="uid://dutvs5n1mdx4u"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_7jlsn"]
 [ext_resource type="Shader" uid="uid://c5qmhn882uk5r" path="res://shaders/portal.tres" id="2_yhj2e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cplh0pg6a67dx" path="res://textures/kenney free particles/smoke_08.png" id="3_10esi"]
 [ext_resource type="Texture2D" uid="uid://c7abb4v51lhdm" path="res://textures/kenney free particles/dirt_02.png" id="4_yxvae"]
 [ext_resource type="Texture2D" uid="uid://cyj5iy8dyespd" path="res://textures/Le Lu/PerlinNoise_Tiled.png" id="6_qmo6u"]
+[ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="7_mjow7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvva7"]
 render_priority = 0
@@ -28,6 +29,7 @@ shader_parameter/Mask_Texture = ExtResource("3_10esi")
 
 [sub_resource type="Animation" id="Animation_p64xk"]
 resource_name = "ESCAPE"
+length = 68.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,10 +44,67 @@ tracks/0/keys = {
 "method": &"_play_end_cutscene"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(68),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_return_to_title"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CinematicMusic")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_mjow7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(56.9333, 68),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sv02r"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgq31"]
 _data = {
-"ESCAPE": SubResource("Animation_p64xk")
+"ESCAPE": SubResource("Animation_p64xk"),
+"RESET": SubResource("Animation_sv02r")
 }
 
 [node name="Portal" type="Node3D" node_paths=PackedStringArray("ANIM")]
@@ -67,3 +126,14 @@ skeleton = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_sgq31")
 }
+autoplay = "RESET"
+
+[node name="CinematicMusic" type="AudioStreamPlayer2D" parent="."]
+attenuation = 0.00728933
+bus = &"Music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0)

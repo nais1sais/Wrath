@@ -1,7 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=42 format=3 uid="uid://dsdh2bite7xv4"]
 
+[ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_6xa6f"]
 [ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/weather.tscn" id="1_rvkd1"]
-[ext_resource type="AudioStream" uid="uid://btssfp845kee" path="res://audio/music/escape.ogg" id="1_ye5dk"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
 [ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
 [ext_resource type="PackedScene" uid="uid://2c3tbvl0nxe1" path="res://scenes/bosses/lust.tscn" id="4_j0a1p"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://5u0ecm0d8hx8" path="res://audio/music/ambience.ogg" id="12_mgjjb"]
 [ext_resource type="PackedScene" uid="uid://7mrheb4oio5g" path="res://scenes/arch.tscn" id="13_i7oar"]
 [ext_resource type="AudioStream" uid="uid://f7dwuxrh87go" path="res://audio/music/wrath.ogg" id="13_puej5"]
+[ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="18_wkoos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1oyht"]
 sky_top_color = Color(0.0470588, 0.0588235, 0.0705882, 1)
@@ -27,13 +28,13 @@ ground_curve = 0.194842
 sun_angle_max = 0.0
 sun_curve = 151.205
 
-[sub_resource type="Sky" id="Sky_0dijm"]
+[sub_resource type="Sky" id="Sky_clymx"]
 sky_material = SubResource("ProceduralSkyMaterial_1oyht")
 
 [sub_resource type="Environment" id="Environment_rnikm"]
 background_mode = 2
 background_color = Color(0.860369, 0.860369, 0.860369, 1)
-sky = SubResource("Sky_0dijm")
+sky = SubResource("Sky_clymx")
 ambient_light_source = 2
 ambient_light_color = Color(0.1296, 0.14328, 0.16, 1)
 ambient_light_energy = 7.0
@@ -59,7 +60,7 @@ length = 68.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Exterior/Cinematics/Camera3D:position")
+tracks/0/path = NodePath("Main/Cinematics/Camera3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
+tracks/1/path = NodePath("Main/Cinematics/Camera3D:quaternion")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -83,7 +84,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:current")
+tracks/2/path = NodePath("Main/Cinematics/Camera3D:current")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -92,28 +93,13 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Exterior/Cinematics/CinematicMusic")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("1_ye5dk")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vbito"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Exterior/Cinematics/Camera3D:current")
+tracks/0/path = NodePath("Main/Cinematics/Camera3D:current")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,7 +111,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Exterior/Cinematics/Camera3D:quaternion")
+tracks/1/path = NodePath("Main/Cinematics/Camera3D:quaternion")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,7 +123,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Exterior/Cinematics/Camera3D:position")
+tracks/2/path = NodePath("Main/Cinematics/Camera3D:position")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -313,7 +299,12 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd6ia"]
 size = Vector3(84.0156, 70.982, 263.846)
 
-[node name="Exterior" type="Node3D"]
+[node name="Main" type="Node3D"]
+
+[node name="Menu" parent="." instance=ExtResource("1_6xa6f")]
+
+[node name="Reaper" parent="." instance=ExtResource("18_wkoos")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -36.5086, -190)
 
 [node name="Weather" parent="." instance=ExtResource("1_rvkd1")]
 
@@ -321,10 +312,6 @@ size = Vector3(84.0156, 70.982, 263.846)
 environment = SubResource("Environment_rnikm")
 
 [node name="Cinematics" type="Node" parent="."]
-
-[node name="CinematicMusic" type="AudioStreamPlayer2D" parent="Cinematics"]
-attenuation = 0.00728933
-bus = &"Music"
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
 transform = Transform3D(0.87463, 0.249685, -0.415548, -2.16067e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
@@ -359,7 +346,7 @@ MUSIC = NodePath("../WrathMusic")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(0.405959, 0.913203, -0.0354602, 0.44723, -0.164677, 0.879128, 0.796983, -0.372749, -0.475263, 0, 29, 0)
 light_color = Color(0.51, 0.51, 0.51, 1)
-light_energy = 4.0
+light_energy = 6.0
 
 [node name="General" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603172, -29.4064, -85.1052)
@@ -808,8 +795,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7362, -10.7115, -37.4971)
 [node name="Soul6" parent="." instance=ExtResource("7_c1476")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1698, -37.4897, -102.157)
 
-[node name="TowerEast" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5054, -12.9049, -2.41369)
+[node name="TowerEast" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("8_5d645")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.1094, -12.9049, -2.41369)
+REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
 NEW_POSITION_PATH = "TowerEast/NewPosition"
 AREA = NodePath("Area3D")
@@ -825,8 +813,9 @@ shape = SubResource("BoxShape3D_y4nq3")
 [node name="NewPosition" type="Node3D" parent="TowerEast"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2.38419e-07, 0.404855, -6.20785)
 
-[node name="TowerSouth" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
+[node name="TowerSouth" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.12226, -40.127, -71.3973)
+REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
 NEW_POSITION_PATH = "TowerSouth/NewPosition"
 AREA = NodePath("Area3D")
@@ -842,8 +831,9 @@ shape = SubResource("BoxShape3D_y4nq3")
 [node name="NewPosition" type="Node3D" parent="TowerSouth"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0.127018, -6.20785)
 
-[node name="TowerWest" parent="." node_paths=PackedStringArray("AREA") instance=ExtResource("8_5d645")]
+[node name="TowerWest" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("8_5d645")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.0826, -12.8662, -24.5036)
+REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
 NEW_POSITION_PATH = "TowerWest/NewPosition"
 AREA = NodePath("Area3D")

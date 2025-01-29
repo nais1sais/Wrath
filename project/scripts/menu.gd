@@ -34,11 +34,17 @@ func pause() -> void:
 	Engine.time_scale = 0
 	get_tree().paused = true
 func restart() -> void:
-	get_tree().reload_current_scene()
+	if Save.data.has("checkpoint_scene_path"): 
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
+	else: 
+		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
 func new_game() -> void:
 	Save.data = {}
 	Save.save_game()
-	get_tree().reload_current_scene()
+	if Save.data.has("checkpoint_scene_path"): 
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
+	else: 
+		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
 func options() -> void:
 	main_menu.visible = false
 	options_menu.visible = true
@@ -49,7 +55,8 @@ func credits() -> void:
 	main_menu.visible = false
 	credits_menu.visible = true
 func quit() -> void:
-	get_tree().quit()
+	
+	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
 func init_main_menu() -> void:
 	if resume_button: 
 		resume_button.connect("pressed", Callable(self, "resume"))

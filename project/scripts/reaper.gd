@@ -92,10 +92,20 @@ func death() -> void:
 	ANIM.play("DEATH")
 	Save.data["death_type"] = "regular"
 	Save.save_game()
+
+	if Save.data.has("checkpoint_scene_path"): 
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
+	else: 
+		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
 func fall_death() -> void:
 	ANIM.play("FALL_DEATH")	
 	Save.data["death_type"] = "fall"
-	Save.save_game()	
+	Save.save_game()
+	
+	if Save.data.has("checkpoint_scene_path"): 
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
+	else: 
+		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "WINDOWN":
 		ANIM.play("IDLE", 0.0, 1, false)
@@ -147,18 +157,34 @@ func update_squash(target_squash: float, squash_speed: float, delta: float):
 	
 func _ready() -> void:
 
-	if Save.data.has("checkpoint_scene_path"): # loads checkpoint like door
-		var new_scene = ResourceLoader.load(Save.data["checkpoint_scene_path"])
-		if new_scene and new_scene is PackedScene:
-			var new_zone = new_scene.instantiate()
-			ZONES.add_child(new_zone)
-		var children = ZONES.get_children()
-		for i in range(len(children) - 1):  # Exclude the new added zone
-			children[i].queue_free()
-	if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
-		position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
-	if Save.data.has("checkpoint_rotation_y"):
-		rotation.y = Save.data["checkpoint_rotation_y"]	
+	if Save.data.has("door"):		
+		var NEW_POSITION = get_tree().get_root().get_node('Main/' + Save.data["door"])
+		if NEW_POSITION:
+			position = Vector3(0, 0, 0)
+			MESH.global_transform.basis = MESH.get_parent().global_transform.basis
+			PIVOT.global_transform.basis = MESH.get_parent().global_transform.basis
+			global_transform = NEW_POSITION.global_transform
+		Save.data.erase("door")
+		Save.save_game()
+		
+	else:
+		
+		if Save.data.has("death_type"):
+			if Save.data["death_type"] == "fall":
+				SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
+			else:
+				SPAWN_PLAYER.stream = SPAWN_SOUND
+		else:
+			SPAWN_PLAYER.stream = NEW_GAME_SPAWN_SOUND
+			Save.data["death_type"] = "regular"
+			Save.save_game()
+		
+		if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
+			position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
+		
+		if Save.data.has("checkpoint_rotation_y"):
+			rotation.y = Save.data["checkpoint_rotation_y"]	
+	
 	if Save.data.has("max_health"):
 		MAX_HEALTH = Save.data["max_health"]
 		health = MAX_HEALTH
@@ -169,15 +195,7 @@ func _ready() -> void:
 		stamina = MAX_STAMINA
 	else:
 		Save.data["max_stamina"] = MAX_STAMINA
-	if Save.data.has("death_type"):
-		if Save.data["death_type"] == "fall":
-			SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
-		else:
-			SPAWN_PLAYER.stream = SPAWN_SOUND
-	else:
-		SPAWN_PLAYER.stream = NEW_GAME_SPAWN_SOUND
-		Save.data["death_type"] = "regular"
-		Save.save_game()
+	
 	SPAWN_PLAYER.play()
 	
 	ANIM.play("IDLE")

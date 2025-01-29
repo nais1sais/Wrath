@@ -1,8 +1,6 @@
 extends Node3D
-@export var REAPER: CharacterBody3D
-
-func _ready() -> void:
-	REAPER = get_tree().root.get_node("Main/Reaper")
 
 func _process(_delta) -> void:
-	global_transform.origin = REAPER.global_transform.origin
+	var active_camera = get_viewport().get_camera_3d()
+	if active_camera and is_instance_valid(active_camera):
+		global_transform.origin = active_camera.global_transform.origin

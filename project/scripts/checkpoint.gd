@@ -11,7 +11,7 @@ func _on_body_entered(body: Node) -> void:
 	   (Save.data.has("checkpoint_y") and Save.data["checkpoint_y"] == CHECKPOINT_NODE.global_transform.origin.y) and \
 	   (Save.data.has("checkpoint_z") and Save.data["checkpoint_z"] == CHECKPOINT_NODE.global_transform.origin.z) and \
 	   (Save.data.has("checkpoint_rotation_y") and Save.data["checkpoint_rotation_y"] == CHECKPOINT_NODE.global_transform.basis.get_euler().y) and \
-	   (Save.data.has("checkpoint_scene_path") and Save.data["checkpoint_scene_path"] == CHECKPOINT_SCENE_PATH):
+	   (Save.data.has("checkpoint_scene_path") and Save.data["checkpoint_scene_path"] == get_tree().current_scene.scene_file_path):
 		return  # Skip if all checkpoint data is already saved
 	
 	ANIM.play("ACQUIRED")  
@@ -19,7 +19,7 @@ func _on_body_entered(body: Node) -> void:
 	Save.data["checkpoint_y"] = CHECKPOINT_NODE.global_transform.origin.y
 	Save.data["checkpoint_z"] = CHECKPOINT_NODE.global_transform.origin.z
 	Save.data["checkpoint_rotation_y"] = CHECKPOINT_NODE.global_transform.basis.get_euler().y
-	Save.data["checkpoint_scene_path"] = CHECKPOINT_SCENE_PATH
+	Save.data["checkpoint_scene_path"] = get_tree().current_scene.scene_file_path
 	Save.save_game()
 	
 func _ready() -> void:
