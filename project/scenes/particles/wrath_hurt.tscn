@@ -6,7 +6,7 @@
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.832911, 0.817433, 0.667476, 1)
+albedo_color = Color(0.965061, 0.652625, 0.620399, 1)
 albedo_texture = ExtResource("1_t453h")
 billboard_mode = 1
 billboard_keep_scale = true

@@ -14,6 +14,10 @@ uniform float glow_intensitiy = 1.77;
 uniform float glow_border_width: hint_range(0.0, 0.25) = 0.018;
 uniform float glow_border_smoothness: hint_range(0.0, 0.1) = 0.003;
 
+uniform sampler2D normal_texture;
+uniform float normal_strength : hint_range(0.0, 2.0) = 1.0;
+
+
 void fragment() {
 	float dissolve_noise = texture(noise_texture, UV).r;
 
@@ -36,5 +40,7 @@ void fragment() {
 	EMISSION = surface_emisson * glow_intensitiy;
 	ALPHA = dissolve_noise;
 	ALPHA_SCISSOR_THRESHOLD = dissolve_amount;
+
+	NORMAL_MAP = texture(normal_texture, UV).xyz;
 
 }

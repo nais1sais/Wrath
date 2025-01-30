@@ -56,10 +56,14 @@ func update_ui():
 @export var LAND_SOUNDS: Array[AudioStream] = []
 @export var FOOTSTEP_SOUNDS: Array[AudioStream] = []
 @export var SPIN_SOUNDS: Array[AudioStream] = []
+@export var WINDOWN_SOUNDS: Array[AudioStream] = []
 @export var HURT_SOUNDS: Array[AudioStream] = []
 func play_spin_sound() -> void:
 	if SPIN_SOUNDS.size() > 0:
 		Audio.play_2d_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
+func play_windown_sound() -> void:
+	if WINDOWN_SOUNDS.size() > 0:
+		Audio.play_2d_sound(WINDOWN_SOUNDS[randi() % WINDOWN_SOUNDS.size()], 0.9, 1.1)
 func play_footstep_sound() -> void:
 	if FOOTSTEP_SOUNDS.size() > 0:
 		Audio.play_2d_sound(FOOTSTEP_SOUNDS[randi() % FOOTSTEP_SOUNDS.size()], 0.9, 1.1)
@@ -88,24 +92,24 @@ func damage(_amount: float) -> void:
 	CAMERA.shake += 3
 	if (health <= 0):
 		death()	
+
+func reload_checkpoint() -> void:
+	if Save.data.has("checkpoint_scene_path"): 
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])	
+	else: 
+		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")	
+	
+		
 func death() -> void:
 	ANIM.play("DEATH")
 	Save.data["death_type"] = "regular"
 	Save.save_game()
 
-	if Save.data.has("checkpoint_scene_path"): 
-		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
-	else: 
-		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
 func fall_death() -> void:
 	ANIM.play("FALL_DEATH")	
 	Save.data["death_type"] = "fall"
 	Save.save_game()
-	
-	if Save.data.has("checkpoint_scene_path"): 
-		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
-	else: 
-		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")
+
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "WINDOWN":
 		ANIM.play("IDLE", 0.0, 1, false)
