@@ -57,6 +57,7 @@ volumetric_fog_detail_spread = 0.965936
 [sub_resource type="Animation" id="Animation_gllqw"]
 resource_name = "ESCAPE"
 length = 68.0
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,10 +65,10 @@ tracks/0/path = NodePath("Main/Cinematics/Camera3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 11.7333, 22.8333, 33.5667, 40.9333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 26.5, 63),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-10.1883, 14.1217, 81.338), Vector3(-4.73858, 7.05343, 54.6198), Vector3(8.266, 11.477, 43.47), Vector3(-1.17755, 20.0137, 110.875), Vector3(-0.635, 18.307, 131.151)]
+"values": [Vector3(-93.1809, 39.794, -17.6708), Vector3(8.2688, 12.8773, 62.641), Vector3(-0.00105062, 2.3212, 124.202)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,10 +77,10 @@ tracks/1/path = NodePath("Main/Cinematics/Camera3D:quaternion")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 11.7333, 22.9333, 33.7667, 40.8333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 26.5, 63),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Quaternion(-0.258726, -0.241264, -0.0669083, 0.932939), Quaternion(-0.00381493, 0.975671, -0.0170316, -0.218542), Quaternion(-0.00144056, 0.986246, 0.00860781, 0.165053), Quaternion(0.000141897, 0.999455, 0.03272, -0.00433436), Quaternion(0.000104114, 0.999703, 0.0239969, -0.00433734)]
+"values": [Quaternion(0.0515715, 0.919771, 0.129265, -0.36695), Quaternion(-0.0337633, 0.964978, 0.157157, 0.207314), Quaternion(-5.72165e-10, 0.999914, 0.0130896, 4.37077e-08)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -88,10 +89,10 @@ tracks/2/path = NodePath("Main/Cinematics/Camera3D:current")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.708333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_vbito"]
@@ -314,8 +315,9 @@ environment = SubResource("Environment_rnikm")
 [node name="Cinematics" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -1.86265e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(-0.995147, 0.0234801, -0.0955558, -0.00741072, 0.95047, 0.310728, 0.0981189, 0.309928, -0.945683, -37.6974, 25.6258, 23.2996)
 rotation_edit_mode = 1
+current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
 root_node = NodePath("../../..")

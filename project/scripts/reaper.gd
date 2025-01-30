@@ -28,12 +28,23 @@ extends CharacterBody3D
 @export var ANIM: AnimationPlayer
 @export var MESH_ANIM: AnimationPlayer
 @export var COLLISON_SHAPE: CollisionShape3D
-@export var ZONES: Node
-@export var CLOAK_MATERIAL: ShaderMaterial
 
+@export_group("Material")
 @export var CLOAK_TEXTURE: Texture2D
 @export var ALTERNATIVE_CLOAK_TEXTURE: Texture2D
-
+@export var CLOAK_MATERIAL: ShaderMaterial
+@export var BODY_MATERIAL: ShaderMaterial
+@export var STAFF_MATERIAL: ShaderMaterial
+func dissolve_cloak(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
+func dissolve_body(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(BODY_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
+func dissolve_staff(speed: float, amount: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(STAFF_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
+var alternative_cloak = false
 
 @export_group("UI")
 @export var STAMINA_BAR: ProgressBar
@@ -84,9 +95,6 @@ var lock_on_target: CharacterBody3D
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
-func dissolve_cloak(speed: float, amount: float) -> void:
-	var tween = create_tween()
-	tween.tween_property(CLOAK_MATERIAL, "shader_parameter/dissolve_amount", amount, speed)
 func damage(_amount: float) -> void:
 	ANIM.play("HURT")
 	CAMERA.shake += 3
@@ -207,9 +215,9 @@ func _ready() -> void:
 	if ATTACK_AREA: ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	if LOCK_ON_AREA: LOCK_ON_AREA.connect("body_entered", Callable(self, "_on_lock_on_area_body_entered"))
 	dissolve_cloak(0,0)
+	dissolve_body(0,0)
+	dissolve_staff(0,0)
 	update_ui()
-	
-var alternative_cloak = false
 	
 func _process(delta: float) -> void:
 		

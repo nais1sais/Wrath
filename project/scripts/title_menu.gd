@@ -3,6 +3,7 @@ extends Node3D
 func _ready() -> void:
 	get_tree().paused = false 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$AnimationPlayer.play("FADE_IN")
 
 func _on_play_pressed() -> void:
 	if Save.data.has("checkpoint_scene_path"): 
