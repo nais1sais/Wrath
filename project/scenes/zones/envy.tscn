@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnli3nh320v2f"]
+[gd_scene load_steps=13 format=3 uid="uid://bnli3nh320v2f"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_rxbw7"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_c5jgk"]
 [ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="4_ti37w"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/structures/soul.tscn" id="5_hwa41"]
 [ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/structures/door.tscn" id="6_2bcko"]
+[ext_resource type="PackedScene" uid="uid://ct16v3d62ahyk" path="res://models/blender/chain_ceiling.blend" id="7_bbyat"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/structures/checkpoint.tscn" id="7_yrqvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r6g78"]
@@ -80,10 +81,10 @@ material_override = ExtResource("4_ti37w")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0601807, 9.93213, -0.0490699)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96857, 9.93213, -0.0490699)
 snap = 0.25
 flip_faces = true
-size = Vector3(46, 20, 30)
+size = Vector3(33.9425, 20, 30)
 
 [node name="EnvyTower" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("6_2bcko")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
@@ -110,5 +111,8 @@ REAPER = NodePath("../Reaper")
 CHECKPOINT_SCENE_PATH = "res://scenes/zones/envy.tscn"
 
 [node name="Envy Soul" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("5_hwa41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0604, -6.42492, -0.62185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1552, -6.42492, -0.62185)
 REAPER = NodePath("../Reaper")
+
+[node name="chain_ceiling" parent="." instance=ExtResource("7_bbyat")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56517, -15.9073, -0.547886)
