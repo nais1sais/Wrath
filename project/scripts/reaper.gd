@@ -167,8 +167,9 @@ func update_squash(target_squash: float, squash_speed: float, delta: float):
 	MESH.scale.x = squash_compensation
 	MESH.scale.z = squash_compensation
 	
-func _ready() -> void:
-
+	
+func _delayed_setup() -> void:
+	
 	if Save.data.has("door"):		
 		var NEW_POSITION = get_tree().get_root().get_node('Main/' + Save.data["door"])
 		if NEW_POSITION:
@@ -176,10 +177,16 @@ func _ready() -> void:
 			MESH.global_transform.basis = MESH.get_parent().global_transform.basis
 			PIVOT.global_transform.basis = MESH.get_parent().global_transform.basis
 			global_transform = NEW_POSITION.global_transform
+		$FadeIn.play("DOOR_FADE_IN")
 		Save.data.erase("door")
 		Save.save_game()
 		
 	else:
+		
+		if Save.data.has("checkpoint_scene_path"):
+			if get_tree().current_scene and get_tree().current_scene.scene_file_path != Save.data["checkpoint_scene_path"]:
+				get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])	
+				return
 		
 		if Save.data.has("death_type"):
 			if Save.data["death_type"] == "fall":
@@ -218,6 +225,9 @@ func _ready() -> void:
 	dissolve_body(0,0)
 	dissolve_staff(0,0)
 	update_ui()
+	
+func _ready() -> void:
+	call_deferred("_delayed_setup")
 	
 func _process(delta: float) -> void:
 		

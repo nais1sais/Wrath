@@ -25,7 +25,7 @@ func _teleport_player_to_cutscene_spot() -> void:
 	REAPER.MESH_ANIM.playback_default_blend_time = 0
 	
 func _return_to_title() -> void:
-	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
+	get_tree().change_scene_to_file("res://scenes/zones/home.tscn")
 	
 func _ready() -> void:
 	

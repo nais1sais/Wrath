@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://esdlc3hcvx57"]
 
-[ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_6g24h"]
-[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="2_v8fja"]
-[ext_resource type="FontFile" uid="uid://37oytj1gs160" path="res://textures/fonts/OldLondon.ttf" id="3_xtljv"]
+[ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_eebs8"]
+[ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="2_ahmig"]
+[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="2_ojw5x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iough"]
 sky_top_color = Color(0.0470588, 0.0588235, 0.0705882, 1)
@@ -91,51 +91,31 @@ _data = {
 "RESET": SubResource("Animation_ktmds")
 }
 
-[node name="TitleScreen" type="Node3D"]
+[node name="Home" type="Node3D"]
 process_mode = 3
-script = ExtResource("1_6g24h")
+script = ExtResource("1_eebs8")
+
+[node name="Menu" parent="." instance=ExtResource("2_ahmig")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7tcvk")
 
 [node name="Label" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -241.0
-offset_top = -51.5
-offset_right = 241.0
-offset_bottom = 51.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_v8fja")
-theme_override_fonts/font = ExtResource("3_xtljv")
-theme_override_font_sizes/font_size = 128
-text = "WRATH"
-
-[node name="Play" type="Button" parent="."]
-offset_left = 926.0
-offset_top = 616.0
-offset_right = 982.0
-offset_bottom = 647.0
-theme = ExtResource("2_v8fja")
-text = "PLAY"
-
-[node name="Exit" type="Button" parent="."]
-offset_left = 926.0
-offset_top = 652.0
-offset_right = 987.0
-offset_bottom = 683.0
-theme = ExtResource("2_v8fja")
-text = "EXIT"
+offset_left = 587.0
+offset_top = 450.0
+offset_right = 1299.0
+offset_bottom = 641.0
+theme = ExtResource("2_ojw5x")
+theme_override_font_sizes/font_size = 61
+text = "Thank You
+For Playing!"
+horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.76953, 11.2628)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -147,6 +127,3 @@ libraries = {
 "": SubResource("AnimationLibrary_661j4")
 }
 autoplay = "FADE_IN"
-
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

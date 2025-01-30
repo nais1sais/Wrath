@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://4vyuq1vruu4o"]
+
+[ext_resource type="PackedScene" uid="uid://dsepp0h76athb" path="res://models/blender/lamp.blend" id="1_g7emc"]
+
+[node name="Lamp" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00894153, 1.42107, 0.0273599)
+light_color = Color(0.476173, 0.229988, 0.0129941, 1)
+light_energy = 32.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+omni_range = 4.356
+omni_attenuation = 1.5
+
+[node name="lamp" parent="." instance=ExtResource("1_g7emc")]

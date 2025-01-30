@@ -36,7 +36,6 @@ func _on_body_entered(body: Node) -> void:
 		Save.save_game()
 
 func _ready() -> void:
-	REAPER = get_tree().root.get_node("Main/Reaper")
 	
 	if Save.data.has(self.name) and Save.data[self.name] == true:
 		queue_free()

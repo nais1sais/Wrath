@@ -55,8 +55,7 @@ func credits() -> void:
 	main_menu.visible = false
 	credits_menu.visible = true
 func quit() -> void:
-	
-	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
+	get_tree().quit()
 func init_main_menu() -> void:
 	if resume_button: 
 		resume_button.connect("pressed", Callable(self, "resume"))
