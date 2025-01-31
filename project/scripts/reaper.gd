@@ -96,8 +96,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta += event.relative
 func damage(_amount: float) -> void:
-	ANIM.play("HURT")
-	CAMERA.shake += 3
+	if health > 0:
+		ANIM.play("HURT")
+		CAMERA.shake += 3
 	if (health <= 0):
 		death()	
 
@@ -107,13 +108,14 @@ func reload_checkpoint() -> void:
 	else: 
 		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")	
 	
-		
 func death() -> void:
+	if ANIM.current_animation == "DEATH": return
 	ANIM.play("DEATH")
 	Save.data["death_type"] = "regular"
 	Save.save_game()
 
 func fall_death() -> void:
+	if ANIM.current_animation == "FALL_DEATH": return
 	ANIM.play("FALL_DEATH")	
 	Save.data["death_type"] = "fall"
 	Save.save_game()
@@ -166,7 +168,6 @@ func update_squash(target_squash: float, squash_speed: float, delta: float):
 	MESH.scale.y = current_squash
 	MESH.scale.x = squash_compensation
 	MESH.scale.z = squash_compensation
-	
 	
 func _delayed_setup() -> void:
 	

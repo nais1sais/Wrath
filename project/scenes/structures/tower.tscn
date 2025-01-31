@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmilvpidsi3sd"]
+
+[ext_resource type="PackedScene" uid="uid://cwwpt1hxo5oph" path="res://models/blender/spiral pillar.blend" id="1_ttb6p"]
+[ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="2_wjpqx"]
+
+[node name="Pillar" type="Node3D"]
+
+[node name="spiral pillar" parent="." instance=ExtResource("1_ttb6p")]
+
+[node name="square_tover" parent="spiral pillar" index="0"]
+material_override = ExtResource("2_wjpqx")
+
+[node name="cone_tower" parent="spiral pillar" index="1"]
+material_override = ExtResource("2_wjpqx")
+
+[node name="square_tover_001" parent="spiral pillar" index="2"]
+material_override = ExtResource("2_wjpqx")
+
+[node name="square_tover_002" parent="spiral pillar" index="3"]
+material_override = ExtResource("2_wjpqx")
+
+[editable path="spiral pillar"]

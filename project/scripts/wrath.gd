@@ -114,6 +114,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+	if REAPER.health < 0:
+		MUSIC._connect_exit_queue_free()
+
 	root_motion()
 	if health > 0: 
 		move_and_slide()
@@ -125,6 +128,10 @@ func _physics_process(delta: float) -> void:
 	if REAPER.health <= 0: MUSIC._connect_exit_queue_free()
 	track_towards_direction(delta)
 	target_direction = (REAPER.global_transform.origin - global_transform.origin).normalized()
+
+	if REAPER.health <= 0:
+		MUSIC._connect_exit_queue_free()
+		return
 
 	if ANIM.current_animation == "CHASE" and global_transform.origin.distance_to(REAPER.global_transform.origin) > 2.0:
 		NAV_AGENT.target_position = REAPER.global_transform.origin
