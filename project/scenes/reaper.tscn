@@ -1169,7 +1169,7 @@ material_override = SubResource("ShaderMaterial_ckevw")
 material_override = SubResource("ShaderMaterial_py1jt")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.636638, -0.662005, -0.395527, 0.703357, 0.70877, -0.0541693, 0.316198, -0.24371, 0.916856, 0.0958226, 1.04482, -0.215987)
+transform = Transform3D(0.636638, -0.662006, -0.395526, 0.703357, 0.708769, -0.0541692, 0.316197, -0.24371, 0.916856, 0.095823, 1.04481, -0.215987)
 bone_name = "staff_2"
 bone_idx = 22
 

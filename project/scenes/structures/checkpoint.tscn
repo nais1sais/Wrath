@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://1jc5rm2ln3av"]
+[gd_scene load_steps=9 format=3 uid="uid://1jc5rm2ln3av"]
 
 [ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_jmg87"]
 [ext_resource type="Material" uid="uid://ds136vafqn70x" path="res://shaders/bricks/brick_3.tres" id="2_nelei"]
 [ext_resource type="AudioStream" uid="uid://bijkgqifxmt1t" path="res://audio/sfx/door/checkpoint.wav" id="3_7pdu5"]
+[ext_resource type="PackedScene" uid="uid://b7b68t7b3u76m" path="res://models/blender/checkpoint.blend" id="4_ltl5t"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0sglt"]
 height = 0.5
@@ -76,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
 material_override = ExtResource("2_nelei")
 use_collision = true
 radius = 2.0
@@ -97,3 +99,6 @@ light_energy = 0.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 omni_range = 30.0
+
+[node name="checkpoint" parent="." instance=ExtResource("4_ltl5t")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
