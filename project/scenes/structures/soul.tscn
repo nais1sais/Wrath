@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1gqd40t6mj76"]
+[gd_scene load_steps=17 format=3 uid="uid://b1gqd40t6mj76"]
 
 [ext_resource type="Texture2D" uid="uid://bgteof0ua1pk6" path="res://textures/kenney free particles/scorch_02.png" id="1_2wo61"]
 [ext_resource type="Script" path="res://scripts/soul.gd" id="1_3nx18"]
 [ext_resource type="AudioStream" uid="uid://dia2v1hr7kneb" path="res://audio/sfx/enemy/Cry_2.wav" id="3_hr1o2"]
+[ext_resource type="PackedScene" uid="uid://wij2tlh0hh7j" path="res://scenes/particles/soul_level_up.tscn" id="3_l4wdj"]
 [ext_resource type="AudioStream" uid="uid://bg0vbvw67fmg3" path="res://audio/sfx/ambience/Soul.wav" id="3_mtlnc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij2o8"]
@@ -92,6 +93,7 @@ _data = {
 script = ExtResource("1_3nx18")
 AREA = NodePath("Area3D")
 COLLECTION_SOUNDS = Array[AudioStream]([ExtResource("3_hr1o2")])
+COLLECTED_PARTICLES = ExtResource("3_l4wdj")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_ij2o8")

@@ -15,14 +15,14 @@ billboard_keep_scale = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
-[sub_resource type="CurveTexture" id="CurveTexture_fp1e8"]
+[sub_resource type="CurveTexture" id="CurveTexture_wtfvh"]
 curve = SubResource("Curve_olvgd")
 
 [sub_resource type="Curve" id="Curve_kc6k6"]
 _data = [Vector2(0, 0), 0.0, 36.65, 0, 0, Vector2(0.0314136, 0.241758), 0.0, 0.0, 0, 0, Vector2(0.0837696, 0.142857), -0.239874, -0.239874, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_wb6gv"]
+[sub_resource type="CurveTexture" id="CurveTexture_x7qws"]
 curve = SubResource("Curve_kc6k6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qo0m2"]
@@ -32,8 +32,8 @@ initial_velocity_max = 5.0
 gravity = Vector3(0, -5, 0)
 scale_min = 0.0
 scale_max = 5.0
-scale_curve = SubResource("CurveTexture_wb6gv")
-alpha_curve = SubResource("CurveTexture_fp1e8")
+scale_curve = SubResource("CurveTexture_x7qws")
+alpha_curve = SubResource("CurveTexture_wtfvh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_odbhm"]
 
@@ -87,7 +87,9 @@ _data = {
 "lifetime": SubResource("Animation_pkdcb")
 }
 
-[node name="Wrath" type="GPUParticles3D"]
+[node name="Node3D" type="Node3D"]
+
+[node name="Wrath" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_c4vjc")
 amount = 64
 lifetime = 0.75
@@ -97,7 +99,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qo0m2")
 draw_pass_1 = SubResource("QuadMesh_odbhm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrath"]
 libraries = {
 "": SubResource("AnimationLibrary_12k5t")
 }

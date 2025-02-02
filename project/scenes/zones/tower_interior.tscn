@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://6ds3o48mieqb"]
+[gd_scene load_steps=13 format=3 uid="uid://6ds3o48mieqb"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_bnod8"]
-[ext_resource type="Material" uid="uid://u5kuempg7ino" path="res://shaders/bricks/brick_4.tres" id="1_sjc2t"]
 [ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/structures/soul.tscn" id="3_ygqaf"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="5_piso4"]
 [ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="7_1o4cr"]
@@ -83,7 +82,7 @@ omni_range = 101.01
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -30)
-material_override = ExtResource("1_sjc2t")
+material_override = ExtResource("7_1o4cr")
 operation = 1
 snap = 0.25
 use_collision = true

@@ -197,7 +197,7 @@ layout_mode = 2
 theme = ExtResource("3_vw818")
 bbcode_enabled = true
 text = "[center] [color=#ececec]Goal[/color][color=#858585]- Escape limbo and regain life by defeating sin incarnate[/color]
-[color=#ececec]Wasd / Arrows / Mouse / Space [/color][color=#858585]- Move / Spring / Look / Jump [/color]
+[color=#ececec]Wasd / Arrows / Mouse / Space [/color][color=#858585]- Move / Sprint / Look / Jump [/color]
 [color=#ececec]Hold Mouse [/color][color=#858585]- Spin Attack  [/color]
 [color=#ececec]Middle Mouse[/color][color=#858585]- Camera lock on [/color]
 [/center] "

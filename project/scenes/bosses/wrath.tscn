@@ -729,7 +729,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_y1py8")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.785664, 0.601202, -0.145905, -0.457661, -0.406127, 0.790953, 0.416267, 0.688198, 0.594226, -1.36656, 4.70211, 2.77206)
+transform = Transform3D(-0.785664, 0.601203, -0.145905, -0.457662, -0.406126, 0.790953, 0.416267, 0.688199, 0.594226, -1.36656, 4.7021, 2.77207)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -743,7 +743,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.393051, -0.740706, 0.544854, 0.907201, -0.215721, 0.36118, -0.149991, 0.636254, 0.756758, 0.937782, 4.27661, 3.5254)
+transform = Transform3D(-0.393052, -0.740705, 0.544854, 0.907201, -0.215724, 0.361178, -0.149988, 0.636254, 0.756759, 0.937783, 4.2766, 3.52541)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -757,7 +757,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.997977, 0.00876796, -0.0629664, -0.0380637, 0.875705, -0.481344, 0.0509196, 0.482767, 0.874267, 0.01703, 1.49399, 0.614458)
+transform = Transform3D(0.997977, 0.00876794, -0.0629665, -0.0380638, 0.875704, -0.481346, 0.0509196, 0.482769, 0.874266, 0.0170299, 1.49399, 0.614459)
 bone_name = "torso"
 bone_idx = 2
 

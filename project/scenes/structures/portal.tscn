@@ -12,14 +12,14 @@
 render_priority = 0
 shader = ExtResource("2_yhj2e")
 shader_parameter/Color_Intensity = 6.0
-shader_parameter/Portal_Color = Color(0.168627, 0.192157, 0.223529, 1)
+shader_parameter/Portal_Color = Color(0.280203, 0.314155, 0.359431, 1)
 shader_parameter/scale = Vector2(0.5, 0.5)
 shader_parameter/zoom_strength = 2.995
 shader_parameter/repeat = 1.0
 shader_parameter/Speed = Vector2(-0.1, 0.1)
-shader_parameter/portal_weight = 0.78
+shader_parameter/portal_weight = 0.389
 shader_parameter/Alpha = 0.755
-shader_parameter/mask_weight = 0.85
+shader_parameter/mask_weight = 0.83
 shader_parameter/Portal_Texture2 = ExtResource("6_qmo6u")
 shader_parameter/Portal_Texture1 = ExtResource("4_yxvae")
 shader_parameter/Mask_Texture2 = ExtResource("3_5oy5y")
@@ -114,6 +114,7 @@ _data = {
 }
 
 [node name="Portal" type="Node3D" node_paths=PackedStringArray("ANIM")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 script = ExtResource("1_7jlsn")
 ANIM = NodePath("AnimationPlayer")
 

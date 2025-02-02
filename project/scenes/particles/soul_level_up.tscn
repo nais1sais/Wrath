@@ -1,13 +1,99 @@
-[gd_scene load_steps=13 format=3 uid="uid://wij2tlh0hh7j"]
+[gd_scene load_steps=24 format=3 uid="uid://wij2tlh0hh7j"]
 
+[ext_resource type="Texture2D" uid="uid://bgteof0ua1pk6" path="res://textures/kenney free particles/scorch_02.png" id="1_liq8m"]
 [ext_resource type="Shader" uid="uid://dydavnuhpkpw7" path="res://shaders/soul_level_up.tres" id="1_xrw6e"]
 [ext_resource type="Texture2D" uid="uid://cplh0pg6a67dx" path="res://textures/kenney free particles/smoke_08.png" id="2_qbj35"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbavn"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.301961, 0.321569, 0.34902, 1)
+albedo_texture = ExtResource("1_liq8m")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_h2r2q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_fp1e8"]
+curve = SubResource("Curve_h2r2q")
+
+[sub_resource type="Curve" id="Curve_7jo0y"]
+_data = [Vector2(0, 0), 0.0, 36.65, 0, 0, Vector2(0.0314136, 0.241758), 0.0, 0.0, 0, 0, Vector2(0.0837696, 0.142857), -0.239874, -0.239874, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wb6gv"]
+curve = SubResource("Curve_7jo0y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hbmwj"]
+direction = Vector3(1, 1, 1)
+spread = 126.925
+initial_velocity_max = 5.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_wb6gv")
+alpha_curve = SubResource("CurveTexture_fp1e8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ggo44"]
+
+[sub_resource type="Animation" id="Animation_gh1vd"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pkdcb"]
+resource_name = "lifetime"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12k5t"]
+_data = {
+"RESET": SubResource("Animation_gh1vd"),
+"lifetime": SubResource("Animation_pkdcb")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_it0yu"]
 render_priority = 0
 shader = ExtResource("1_xrw6e")
-shader_parameter/Pan_Speed = 1.0
-shader_parameter/Alpha = 12.25
+shader_parameter/Pan_Speed = -0.51
+shader_parameter/Alpha = 6.92
 shader_parameter/Texture2DParameter = ExtResource("2_qbj35")
 
 [sub_resource type="Curve" id="Curve_qo84o"]
@@ -92,7 +178,26 @@ _data = {
 "auto_free": SubResource("Animation_6ck62")
 }
 
-[node name="Soul Level Up" type="GPUParticles3D"]
+[node name="Node3D" type="Node3D"]
+
+[node name="Embers" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_kbavn")
+amount = 64
+lifetime = 0.75
+one_shot = true
+preprocess = 0.18
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hbmwj")
+draw_pass_1 = SubResource("QuadMesh_ggo44")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Embers"]
+libraries = {
+"": SubResource("AnimationLibrary_12k5t")
+}
+autoplay = "lifetime"
+
+[node name="Shockwave" type="GPUParticles3D" parent="."]
+visible = false
 material_override = SubResource("ShaderMaterial_it0yu")
 cast_shadow = 0
 amount = 1
@@ -103,7 +208,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_4hkbg")
 draw_pass_1 = SubResource("CylinderMesh_whlm1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
 libraries = {
 "": SubResource("AnimationLibrary_qkv7x")
 }

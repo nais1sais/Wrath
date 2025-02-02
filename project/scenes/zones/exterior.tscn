@@ -321,7 +321,7 @@ environment = SubResource("Environment_rnikm")
 [node name="Cinematics" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -1.2666e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(0.87463, 0.249685, -0.415548, -1.11759e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -703,7 +703,7 @@ use_collision = true
 
 [node name="Pillar" type="CSGBox3D" parent="NavigationRegion3D/Pride"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-material_override = ExtResource("5_a0xqr")
+material_override = ExtResource("5_ct7j2")
 use_collision = true
 size = Vector3(15, 244.3, 15)
 
@@ -1053,7 +1053,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.09, -138.491, -305.461)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -58.5945, 144.008)
 
 [node name="portal" parent="portal_frame" index="0"]
-transform = Transform3D(10.6848, 0, 0, 0, -4.67046e-07, -10.6848, 0, 10.6848, -4.67046e-07, 0, -12.4124, 0)
+transform = Transform3D(10.6848, 0, 0, 0, -4.67046e-07, -10.6848, 0, 10.6848, -4.67046e-07, 0, -14.544, 0)
 material_override = ExtResource("21_dasuu")
 
 [editable path="NavigationRegion3D/Lust/StatueMusic"]

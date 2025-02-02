@@ -106,7 +106,7 @@ shape = SubResource("BoxShape3D_8x7wd")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117285, 0.53226, 8.1402)
 
 [node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("7_yrqvj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.82072, -9.30084, -0.360989)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.82072, -9.13993, -0.360989)
 REAPER = NodePath("../Reaper")
 CHECKPOINT_SCENE_PATH = "res://scenes/zones/envy.tscn"
 

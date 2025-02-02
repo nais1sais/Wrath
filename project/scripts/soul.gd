@@ -30,8 +30,8 @@ func _on_body_entered(body: Node) -> void:
 		
 	if COLLECTED_PARTICLES:
 		var particles = COLLECTED_PARTICLES.instantiate()
-		particles.global_transform.origin = REAPER.global_transform.origin
 		get_parent().add_child(particles)
+		particles.global_transform = global_transform
 
 		Save.save_game()
 
