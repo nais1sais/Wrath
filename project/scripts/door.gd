@@ -20,6 +20,7 @@ func _freeze_player(freeze: float) -> void:
 
 func _load_new_scene() -> void:
 	Save.data["door"] = NEW_POSITION_PATH
+	Save.data["current_scene_path"] = DESTINATION_SCENE_PATH
 	Save.save_game()
 	get_tree().change_scene_to_file(DESTINATION_SCENE_PATH)
 

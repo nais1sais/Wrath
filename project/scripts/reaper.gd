@@ -100,25 +100,28 @@ func damage(_amount: float) -> void:
 		ANIM.play("HURT")
 		CAMERA.shake += 3
 	if (health <= 0):
-		death()	
-
-func reload_checkpoint() -> void:
-	if Save.data.has("checkpoint_scene_path"): 
-		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])	
-	else: 
-		get_tree().change_scene_to_file("res://scenes/zones/exterior.tscn")	
-	
+		death()		
 func death() -> void:
 	if ANIM.current_animation == "DEATH": return
 	ANIM.play("DEATH")
 	Save.data["death_type"] = "regular"
 	Save.save_game()
-
 func fall_death() -> void:
 	if ANIM.current_animation == "FALL_DEATH": return
 	ANIM.play("FALL_DEATH")	
 	Save.data["death_type"] = "fall"
 	Save.save_game()
+func reload_checkpoint() -> void:
+	if Save.data.has("checkpoint_scene_path"): 
+		Save.data["current_scene_path"] = Save.data["checkpoint_scene_path"]
+		Save.data["current_x"] = Save.data["checkpoint_x"]
+		Save.data["current_y"] = Save.data["checkpoint_y"]
+		Save.data["current_z"] = Save.data["checkpoint_z"]
+		Save.data["current_rotation_y"] = Save.data["checkpoint_rotation_y"]
+		Save.data.erase("cam_rotation_x")
+		Save.data.erase("cam_rotation_y")
+		Save.save_game()
+	Save.load_game(Save.game_file_name)
 
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "WINDOWN":
@@ -169,8 +172,55 @@ func update_squash(target_squash: float, squash_speed: float, delta: float):
 	MESH.scale.x = squash_compensation
 	MESH.scale.z = squash_compensation
 	
-func _delayed_setup() -> void:
+func _auto_save() -> void: 
+	#print("saved")
+	Save.data["current_x"] = position.x
+	Save.data["current_y"] = position.y
+	Save.data["current_z"] = position.z
+	Save.data["current_scene_path"] = get_tree().current_scene.scene_file_path
+	Save.data["current_rotation_y"] = MESH.global_rotation.y
+	Save.data["cam_rotation_x"] = PIVOT.global_rotation.x
+	Save.data["cam_rotation_y"] = PIVOT.global_rotation.y
+	Save.save_game()
 	
+func _load() -> void: 	
+
+	if Save.data.has("current_scene_path"):
+		if get_tree().current_scene and get_tree().current_scene.scene_file_path != Save.data["current_scene_path"]:
+			#print(Save.data["current_scene_path"])
+			#print(get_tree().current_scene.scene_file_path)
+			get_tree().call_deferred("change_scene_to_file", Save.data["current_scene_path"])
+			return
+		
+	if Save.data.has("current_x") and Save.data.has("current_y") and Save.data.has("current_z"):
+		position = Vector3(Save.data["current_x"], Save.data["current_y"], Save.data["current_z"])	
+			
+	if not Save.data.has("checkpoint_x") or not Save.data.has("checkpoint_y") or not Save.data.has("checkpoint_z"):
+		Save.data["checkpoint_x"] = global_transform.origin.x
+		Save.data["checkpoint_y"] = global_transform.origin.y
+		Save.data["checkpoint_z"] = global_transform.origin.z
+		Save.data["checkpoint_rotation_y"] = global_rotation.y
+		Save.data["checkpoint_scene_path"] = get_tree().current_scene.scene_file_path
+		Save.save_game()
+	
+	if not Save.data.has("current_rotation_y"):	
+		Save.data["current_rotation_y"] = global_rotation.y
+	if Save.data.has("current_rotation_y"):
+		global_rotation.y = Save.data["current_rotation_y"]
+	
+	if Save.data.has("cam_rotation_x") and Save.data.has("cam_rotation_y"):
+		PIVOT.global_rotation.x = Save.data["cam_rotation_x"]
+		PIVOT.global_rotation.y = Save.data["cam_rotation_y"]
+
+	if Save.data.has("max_health"):
+		MAX_HEALTH = Save.data["max_health"]
+		health = MAX_HEALTH
+	if Save.data.has("max_stamina"):
+		MAX_STAMINA = Save.data["max_stamina"]
+		stamina = MAX_STAMINA
+	Save.data["max_health"] = MAX_HEALTH
+	Save.data["max_stamina"] = MAX_STAMINA	
+		
 	if Save.data.has("door"):		
 		var NEW_POSITION = get_tree().get_root().get_node('Main/' + Save.data["door"])
 		if NEW_POSITION:
@@ -181,44 +231,25 @@ func _delayed_setup() -> void:
 		$FadeIn.play("DOOR_FADE_IN")
 		Save.data.erase("door")
 		Save.save_game()
+		return
 		
-	else:
-		
-		if Save.data.has("checkpoint_scene_path"):
-			if get_tree().current_scene and get_tree().current_scene.scene_file_path != Save.data["checkpoint_scene_path"]:
-				get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])	
-				return
-		
-		if Save.data.has("death_type"):
-			if Save.data["death_type"] == "fall":
-				SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
-			else:
-				SPAWN_PLAYER.stream = SPAWN_SOUND
+	if Save.data.has("death_type"):
+		if Save.data["death_type"] == "fall":
+			SPAWN_PLAYER.stream = FALL_SPAWN_SOUND
 		else:
-			SPAWN_PLAYER.stream = NEW_GAME_SPAWN_SOUND
-			Save.data["death_type"] = "regular"
-			Save.save_game()
-		
-		if Save.data.has("checkpoint_x") and Save.data.has("checkpoint_y") and Save.data.has("checkpoint_z"):
-			position = Vector3(Save.data["checkpoint_x"], Save.data["checkpoint_y"], Save.data["checkpoint_z"])
-		
-		if Save.data.has("checkpoint_rotation_y"):
-			rotation.y = Save.data["checkpoint_rotation_y"]	
+			SPAWN_PLAYER.stream = SPAWN_SOUND
+	else:
+		SPAWN_PLAYER.stream = NEW_GAME_SPAWN_SOUND
+		Save.data["death_type"] = "regular"
+		Save.save_game()	
+
+
+func _ready() -> void:
 	
-	if Save.data.has("max_health"):
-		MAX_HEALTH = Save.data["max_health"]
-		health = MAX_HEALTH
-	else:
-		Save.data["max_health"] = MAX_HEALTH
-	if Save.data.has("max_stamina"):
-		MAX_STAMINA = Save.data["max_stamina"]
-		stamina = MAX_STAMINA
-	else:
-		Save.data["max_stamina"] = MAX_STAMINA
+	_load()
 	
 	SPAWN_PLAYER.play()
 	
-	ANIM.play("IDLE")
 	ANIM.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	if ATTACK_AREA: ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	if LOCK_ON_AREA: LOCK_ON_AREA.connect("body_entered", Callable(self, "_on_lock_on_area_body_entered"))
@@ -227,12 +258,16 @@ func _delayed_setup() -> void:
 	dissolve_staff(0,0)
 	update_ui()
 	
-func _ready() -> void:
-	call_deferred("_delayed_setup")
-	
 func _process(delta: float) -> void:
 		
+	if Save.data.has("play_time"):
+		Save.data["play_time"] += delta	
+	else:
+		Save.data["play_time"] = delta	
+		
 	if Input.is_action_just_pressed("debug"):
+		print(rad_to_deg(MESH.global_rotation.y), " ", rad_to_deg(Save.data["checkpoint_rotation_y"]))
+		
 		alternative_cloak = !alternative_cloak
 		if alternative_cloak:
 			CLOAK_MATERIAL.set_shader_parameter("base_texture", ALTERNATIVE_CLOAK_TEXTURE)

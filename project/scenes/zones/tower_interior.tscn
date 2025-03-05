@@ -164,5 +164,5 @@ shape = SubResource("BoxShape3D_ye8ka")
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.172693, 0.121539, -7.37892)
 
 [node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("7_2pu8s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8704, -9.30084, -21.1828)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 19.8704, -9.10206, -21.1828)
 REAPER = NodePath("../Reaper")

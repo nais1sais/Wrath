@@ -707,21 +707,21 @@ blend_times = [&"INTRO", &"CHASE", 0.4]
 [node name="wrath" parent="Mesh" instance=ExtResource("10_h46di")]
 
 [node name="Skeleton3D" parent="Mesh/wrath/Armature" index="0"]
-bones/1/position = Vector3(0.0117443, -0.238521, 0.926797)
-bones/1/rotation = Quaternion(0.569839, 0.000540211, -0.00143199, 0.821755)
-bones/2/rotation = Quaternion(0.41748, -0.0258307, -0.0159483, 0.908179)
-bones/3/rotation = Quaternion(-0.206605, 0.493101, 0.668505, 0.516978)
+bones/1/position = Vector3(0.000544624, -0.719415, 1.00111)
+bones/1/rotation = Quaternion(0.25735, 8.11288e-17, 7.05286e-17, 0.966318)
+bones/2/rotation = Quaternion(0.347629, 1.11774e-07, 4.14406e-08, 0.937632)
+bones/3/rotation = Quaternion(0.101092, 0.18125, 0.763867, 0.611094)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.562914, -0.816024, -0.0861681, 0.0990364)
-bones/5/rotation = Quaternion(-0.836841, -0.13583, -0.10761, 0.519294)
-bones/6/rotation = Quaternion(-0.303761, 0.0354876, 0.0215523, 0.951843)
+bones/4/rotation = Quaternion(0.133097, 0.385149, 0.190128, 0.893195)
+bones/5/rotation = Quaternion(-0.455173, -0.0679145, 0.0325446, 0.887213)
+bones/6/rotation = Quaternion(-0.0822429, 0.000622982, 0.134669, 0.987472)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.221464, -0.0278609, -0.0199366, 0.974567)
-bones/8/rotation = Quaternion(0.329479, 0.421343, -0.624846, 0.568754)
+bones/7/rotation = Quaternion(-0.136309, -2.93099e-14, -3.24986e-08, 0.990666)
+bones/8/rotation = Quaternion(0.101092, -0.18125, -0.763867, 0.611094)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.605481, 0.447429, 0.139594, 0.643206)
+bones/9/rotation = Quaternion(0.18255, -0.0376967, -0.180838, 0.965687)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.575675, 0.0235796, 0.272118, 0.77071)
+bones/10/rotation = Quaternion(-0.239191, 0.243902, -0.292818, 0.893061)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 
@@ -729,7 +729,7 @@ bones/11/rotation = Quaternion(-0.0822429, -0.000622975, -0.134669, 0.987472)
 material_override = SubResource("ShaderMaterial_y1py8")
 
 [node name="LeftHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.785664, 0.601203, -0.145905, -0.457662, -0.406126, 0.790953, 0.416267, 0.688199, 0.594226, -1.36656, 4.7021, 2.77207)
+transform = Transform3D(-0.923684, -0.195082, -0.329773, 0.0905008, -0.947409, 0.306963, -0.372313, 0.253692, 0.892762, -2.21283, 2.30924, 1.0905)
 bone_name = "hand_l"
 bone_idx = 6
 
@@ -743,7 +743,7 @@ shape = SubResource("CapsuleShape3D_d1l46")
 disabled = true
 
 [node name="RightHand" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.393052, -0.740705, 0.544854, 0.907201, -0.215724, 0.361178, -0.149988, 0.636254, 0.756759, 0.937783, 4.2766, 3.52541)
+transform = Transform3D(-0.699442, 0.46057, -0.546495, -0.405411, -0.885417, -0.22733, -0.588577, 0.0625508, 0.806018, 2.21334, 2.23925, 1.16608)
 bone_name = "hand_r"
 bone_idx = 11
 
@@ -757,7 +757,7 @@ shape = SubResource("CapsuleShape3D_86b8h")
 disabled = true
 
 [node name="Torso" type="BoneAttachment3D" parent="Mesh/wrath/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.997977, 0.00876794, -0.0629665, -0.0380638, 0.875704, -0.481346, 0.0509196, 0.482769, 0.874266, 0.0170299, 1.49399, 0.614459)
+transform = Transform3D(1, -2.98303e-13, 2.38418e-07, -7.9544e-08, 0.942703, 0.333634, -2.24757e-07, -0.333634, 0.942703, 0.000544624, 0.786503, 0.175042)
 bone_name = "torso"
 bone_idx = 2
 

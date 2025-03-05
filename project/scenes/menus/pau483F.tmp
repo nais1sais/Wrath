@@ -1,0 +1,297 @@
+[gd_scene load_steps=6 format=3 uid="uid://duevw8ikxn5kj"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_jf58a"]
+[ext_resource type="AudioStream" uid="uid://f6q46g68fwt7" path="res://audio/sfx/menu/Menu_Hover.wav" id="2_ndaih"]
+[ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="3_vw818"]
+[ext_resource type="AudioStream" uid="uid://bxy8idshrtel0" path="res://audio/sfx/menu/Menu_Press.wav" id="4_2c34c"]
+[ext_resource type="FontFile" uid="uid://37oytj1gs160" path="res://textures/fonts/OldLondon.ttf" id="5_txjj8"]
+
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "restart_button", "new_game_button", "options_button", "controls_button", "credits_button", "quit_button", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
+process_mode = 3
+script = ExtResource("1_jf58a")
+hover_sound_player = NodePath("Hovered")
+press_sound_player = NodePath("Pressed")
+hover_sound = ExtResource("2_ndaih")
+press_sound = ExtResource("4_2c34c")
+main_menu = NodePath("CenterContainer/Main")
+resume_button = NodePath("CenterContainer/Main/Resume")
+restart_button = NodePath("CenterContainer/Main/Restart")
+new_game_button = NodePath("CenterContainer/Main/NewGame")
+options_button = NodePath("CenterContainer/Main/Options")
+controls_button = NodePath("CenterContainer/Main/Controls")
+credits_button = NodePath("CenterContainer/Main/Credits")
+quit_button = NodePath("CenterContainer/Main/Quit")
+options_menu = NodePath("CenterContainer/Options")
+options_master_slider = NodePath("CenterContainer/Options/HBoxContainer/HSlider")
+options_sfx_slider = NodePath("CenterContainer/Options/HBoxContainer2/HSlider")
+options_music_slider = NodePath("CenterContainer/Options/HBoxContainer3/HSlider")
+options_display_dropdown = NodePath("CenterContainer/Options/OptionButton")
+options_back_button = NodePath("CenterContainer/Options/Back")
+controls_menu = NodePath("CenterContainer/Controls")
+controls_back_button = NodePath("CenterContainer/Controls/Back")
+credits_menu = NodePath("CenterContainer/Credits")
+credits_back_button = NodePath("CenterContainer/Credits/Back")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0509804, 0.0509804, 0.0509804, 0.913725)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Main"]
+layout_mode = 2
+theme = ExtResource("3_vw818")
+theme_override_fonts/font = ExtResource("5_txjj8")
+theme_override_font_sizes/font_size = 63
+text = "WRATH"
+
+[node name="Resume" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "RESUME"
+icon_alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "RESTART"
+icon_alignment = 1
+
+[node name="NewGame" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "NEW GAME"
+icon_alignment = 1
+
+[node name="Game" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "Game
+"
+icon_alignment = 1
+
+[node name="Options" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "OPTIONS"
+icon_alignment = 1
+
+[node name="Controls" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "CONTROLS
+"
+icon_alignment = 1
+
+[node name="Credits" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "CREDITS
+"
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "QUIT"
+icon_alignment = 1
+
+[node name="Game" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="New" type="Button" parent="CenterContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Load" type="Button" parent="CenterContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Delete" type="Button" parent="CenterContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_vw818")
+alignment = 1
+
+[node name="Master" type="Label" parent="CenterContainer/Options/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_vw818")
+text = "MASTER:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("3_vw818")
+value = 100.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_vw818")
+alignment = 1
+
+[node name="Sfx" type="Label" parent="CenterContainer/Options/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_vw818")
+text = "SFX:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("3_vw818")
+value = 100.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_vw818")
+alignment = 1
+
+[node name="Music" type="Label" parent="CenterContainer/Options/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("3_vw818")
+text = "MUSIC:"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/Options/HBoxContainer3"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("3_vw818")
+value = 100.0
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_vw818")
+selected = 0
+item_count = 2
+popup/item_0/text = "FULLSCREEN"
+popup/item_1/text = "WINDOWED"
+popup/item_1/id = 1
+
+[node name="Back" type="Button" parent="CenterContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Controls" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Controls"]
+layout_mode = 2
+theme = ExtResource("3_vw818")
+bbcode_enabled = true
+text = "[center] [color=#ececec]Goal[/color][color=#858585]- Escape limbo and regain life by defeating sin incarnate[/color]
+[color=#ececec]Wasd / Arrows / Mouse / Space [/color][color=#858585]- Move / Sprint / Look / Jump [/color]
+[color=#ececec]Hold Mouse [/color][color=#858585]- Spin Attack  [/color]
+[color=#ececec]Middle Mouse[/color][color=#858585]- Camera lock on [/color]
+[/center] "
+fit_content = true
+autowrap_mode = 0
+
+[node name="Back" type="Button" parent="CenterContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Credits" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Credits"]
+layout_mode = 2
+theme = ExtResource("3_vw818")
+bbcode_enabled = true
+text = "[center] [color=#ececec] Boss Rush Jam[/color][color=#858585] - 2025 \"Spin\" Entry [/color]
+[color=#ececec]ClairdeLou[/color][color=#858585] - Music - USA [/color]
+[color=#ececec]Jcmusik08 [/color][color=#858585]- Sound Design - USA [/color]
+[color=#ececec]NaisSais[/color][color=#858585] - Modeling / Texturing - Russia [/color]
+[color=#ececec]Nemo [/color][color=#858585]- Animation / Programming - USA  [/color]
+[color=#ececec]Kenney / Le Lu / DisplacedFikaDev [/color][color=#858585]- Shaders / Free Resources  [/color]
+[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Back" type="Button" parent="CenterContainer/Credits"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("3_vw818")
+text = "BACK
+"
+icon_alignment = 1
+
+[node name="Hovered" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Pressed" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

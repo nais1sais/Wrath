@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bxy8idshrtel0" path="res://audio/sfx/menu/Menu_Press.wav" id="4_2c34c"]
 [ext_resource type="FontFile" uid="uid://37oytj1gs160" path="res://textures/fonts/OldLondon.ttf" id="5_txjj8"]
 
-[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "options_button", "controls_button", "credits_button", "quit_button", "game_menu", "load_menu", "delete_menu", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "credits_menu")]
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "restart_button", "new_game_button", "options_button", "controls_button", "credits_button", "quit_button", "game_menu", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "controls_back_button", "credits_menu", "credits_back_button")]
 process_mode = 3
 script = ExtResource("1_jf58a")
 hover_sound_player = NodePath("Hovered")
@@ -15,14 +15,13 @@ hover_sound = ExtResource("2_ndaih")
 press_sound = ExtResource("4_2c34c")
 main_menu = NodePath("CenterContainer/Main")
 resume_button = NodePath("CenterContainer/Main/Resume")
+restart_button = NodePath("CenterContainer/Main/Restart")
+new_game_button = NodePath("CenterContainer/Main/NewGame")
 options_button = NodePath("CenterContainer/Main/Options")
 controls_button = NodePath("CenterContainer/Main/Controls")
 credits_button = NodePath("CenterContainer/Main/Credits")
 quit_button = NodePath("CenterContainer/Main/Quit")
 game_menu = NodePath("CenterContainer/Game")
-load_menu = NodePath("CenterContainer/Load")
-delete_menu = NodePath("CenterContainer/Delete")
-save_theme = ExtResource("3_vw818")
 options_menu = NodePath("CenterContainer/Options")
 options_master_slider = NodePath("CenterContainer/Options/HBoxContainer/HSlider")
 options_sfx_slider = NodePath("CenterContainer/Options/HBoxContainer2/HSlider")
@@ -30,7 +29,9 @@ options_music_slider = NodePath("CenterContainer/Options/HBoxContainer3/HSlider"
 options_display_dropdown = NodePath("CenterContainer/Options/OptionButton")
 options_back_button = NodePath("CenterContainer/Options/Back")
 controls_menu = NodePath("CenterContainer/Controls")
+controls_back_button = NodePath("CenterContainer/Controls/Back")
 credits_menu = NodePath("CenterContainer/Credits")
+credits_back_button = NodePath("CenterContainer/Credits/Back")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -58,10 +59,24 @@ text = "WRATH"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-focus_neighbor_top = NodePath("../Quit")
-focus_neighbor_bottom = NodePath("../Game")
 theme = ExtResource("3_vw818")
 text = "RESUME"
+icon_alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "RESTART"
+icon_alignment = 1
+
+[node name="NewGame" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_vw818")
+text = "NEW GAME"
 icon_alignment = 1
 
 [node name="Game" type="Button" parent="CenterContainer/Main"]
@@ -111,14 +126,6 @@ icon_alignment = 1
 visible = false
 layout_mode = 2
 
-[node name="Restart" type="Button" parent="CenterContainer/Game"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_vw818")
-text = "RESTART FROM CHECKPOINT"
-icon_alignment = 1
-
 [node name="New" type="Button" parent="CenterContainer/Game"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -155,22 +162,11 @@ text = "BACK
 "
 icon_alignment = 1
 
-[node name="Load" type="VBoxContainer" parent="CenterContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Back" type="Button" parent="CenterContainer/Load"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = ExtResource("3_vw818")
-text = "BACK
-"
-icon_alignment = 1
-
 [node name="Delete" type="VBoxContainer" parent="CenterContainer"]
 visible = false
 layout_mode = 2
+
+[node name="Saves" type="Node" parent="CenterContainer/Delete"]
 
 [node name="Back" type="Button" parent="CenterContainer/Delete"]
 layout_mode = 2
@@ -201,7 +197,6 @@ text = "MASTER:"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("3_vw818")
-step = 10.0
 value = 100.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Options"]
@@ -219,9 +214,7 @@ text = "SFX:"
 [node name="HSlider" type="HSlider" parent="CenterContainer/Options/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 8
 theme = ExtResource("3_vw818")
-step = 10.0
 value = 100.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Options"]
@@ -239,7 +232,6 @@ text = "MUSIC:"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("3_vw818")
-step = 10.0
 value = 100.0
 
 [node name="OptionButton" type="OptionButton" parent="CenterContainer/Options"]
@@ -315,83 +307,18 @@ text = "BACK
 icon_alignment = 1
 
 [node name="Hovered" type="AudioStreamPlayer2D" parent="."]
-attenuation = 1e-05
 bus = &"SFX"
 
 [node name="Pressed" type="AudioStreamPlayer2D" parent="."]
-attenuation = 1e-05
 bus = &"SFX"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
-[connection signal="focus_entered" from="CenterContainer/Main/Resume" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Resume" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Main/Resume" to="." method="_on_resume_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Main/Resume" to="CenterContainer/Main/Resume" method="grab_focus"]
-[connection signal="focus_entered" from="CenterContainer/Main/Game" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Game" to="." method="_play_hover_sound"]
 [connection signal="pressed" from="CenterContainer/Main/Game" to="." method="_on_game_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Main/Options" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Options" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Main/Options" to="." method="_on_options_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Main/Controls" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Controls" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Main/Controls" to="." method="_on_controls_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Main/Credits" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Credits" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Main/Credits" to="." method="_on_credits_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Main/Quit" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Main/Quit" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Main/Quit" to="." method="_on_quit_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Game/Restart" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Game/Restart" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Game/Restart" to="." method="_on_game_restart_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Game/Restart" to="CenterContainer/Game/Restart" method="grab_focus"]
-[connection signal="focus_entered" from="CenterContainer/Game/New" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Game/New" to="." method="_play_hover_sound"]
+[connection signal="mouse_entered" from="CenterContainer/Game/New" to="." method="_on_game_new_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/Game/New" to="." method="_on_game_new_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Game/Load" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Game/Load" to="." method="_play_hover_sound"]
+[connection signal="mouse_entered" from="CenterContainer/Game/Load" to="." method="_on_game_load_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/Game/Load" to="." method="_on_game_load_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Game/Delete" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Game/Delete" to="." method="_play_hover_sound"]
+[connection signal="mouse_entered" from="CenterContainer/Game/Delete" to="." method="_on_game_delete_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/Game/Delete" to="." method="_on_game_delete_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Game/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Game/Back" to="." method="_play_hover_sound"]
+[connection signal="mouse_entered" from="CenterContainer/Game/Back" to="." method="_on_game_back_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/Game/Back" to="." method="_on_game_back_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Load/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Load/Back" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Load/Back" to="." method="_on_load_back_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Load/Back" to="CenterContainer/Load/Back" method="grab_focus"]
-[connection signal="focus_entered" from="CenterContainer/Delete/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Delete/Back" to="." method="_play_hover_sound"]
 [connection signal="pressed" from="CenterContainer/Delete/Back" to="." method="_on_delete_back_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Delete/Back" to="CenterContainer/Delete/Back" method="grab_focus"]
-[connection signal="mouse_entered" from="CenterContainer/Options/HBoxContainer" to="." method="_play_hover_sound"]
-[connection signal="visibility_changed" from="CenterContainer/Options/HBoxContainer" to="CenterContainer/Options/HBoxContainer" method="grab_focus"]
-[connection signal="focus_entered" from="CenterContainer/Options/HBoxContainer/HSlider" to="." method="_play_hover_sound"]
-[connection signal="value_changed" from="CenterContainer/Options/HBoxContainer/HSlider" to="." method="_on_master_changed"]
-[connection signal="visibility_changed" from="CenterContainer/Options/HBoxContainer/HSlider" to="CenterContainer/Options/HBoxContainer/HSlider" method="grab_focus"]
-[connection signal="mouse_entered" from="CenterContainer/Options/HBoxContainer2" to="." method="_play_hover_sound"]
-[connection signal="focus_entered" from="CenterContainer/Options/HBoxContainer2/HSlider" to="." method="_play_hover_sound"]
-[connection signal="value_changed" from="CenterContainer/Options/HBoxContainer2/HSlider" to="." method="_on_sfx_changed"]
-[connection signal="mouse_entered" from="CenterContainer/Options/HBoxContainer3" to="." method="_play_hover_sound"]
-[connection signal="focus_entered" from="CenterContainer/Options/HBoxContainer3/HSlider" to="." method="_play_hover_sound"]
-[connection signal="value_changed" from="CenterContainer/Options/HBoxContainer3/HSlider" to="." method="_on_music_changed"]
-[connection signal="focus_entered" from="CenterContainer/Options/OptionButton" to="." method="_play_hover_sound"]
-[connection signal="item_selected" from="CenterContainer/Options/OptionButton" to="." method="_on_window_mode_changed"]
-[connection signal="mouse_entered" from="CenterContainer/Options/OptionButton" to="." method="_play_hover_sound"]
-[connection signal="focus_entered" from="CenterContainer/Options/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Options/Back" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Options/Back" to="." method="_on_options_back_pressed"]
-[connection signal="focus_entered" from="CenterContainer/Controls/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Controls/Back" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Controls/Back" to="." method="_on_controls_back_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Controls/Back" to="CenterContainer/Controls/Back" method="grab_focus"]
-[connection signal="focus_entered" from="CenterContainer/Credits/Back" to="." method="_play_hover_sound"]
-[connection signal="mouse_entered" from="CenterContainer/Credits/Back" to="." method="_play_hover_sound"]
-[connection signal="pressed" from="CenterContainer/Credits/Back" to="." method="_on_credits_back_pressed"]
-[connection signal="visibility_changed" from="CenterContainer/Credits/Back" to="CenterContainer/Credits/Back" method="grab_focus"]
-[connection signal="timeout" from="Timer" to="." method="_check_for_window_changes"]
