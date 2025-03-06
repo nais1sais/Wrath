@@ -204,7 +204,7 @@ func _ready() -> void:
 	dissolve_staff(0,0)
 	update_ui()
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 		
 	if Save.data.has("play_time"):
 		Save.data["play_time"] += delta	
