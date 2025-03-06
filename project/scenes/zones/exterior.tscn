@@ -321,7 +321,7 @@ environment = SubResource("Environment_rnikm")
 [node name="Cinematics" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -1.86265e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(0.87463, 0.249685, -0.415548, -8.19564e-08, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
@@ -887,7 +887,7 @@ REAPER = NodePath("../Reaper")
 transform = Transform3D(2.36434e-07, 0, -1, 0, 1, 0, 1, 0, 2.36434e-07, -59.8268, -10.171, -135.273)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "StartDoor/NewPosition"
+NEW_POSITION_PATH = "/root/Main/StartDoor/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="RoofDoor"]
@@ -905,7 +905,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170965, -6.20786)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0782509, -40.302, -200.38)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "RoofDoor/NewPosition"
+NEW_POSITION_PATH = "/root/Main/RoofDoor/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="StartDoor"]
@@ -923,7 +923,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.302017, -6.20786)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.7555, -40.4065, -134.982)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/envy.tscn"
-NEW_POSITION_PATH = "EnvyTower/NewPosition"
+NEW_POSITION_PATH = "/root/Main/EnvyTower/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="EnvyTower"]
@@ -941,7 +941,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406483, -6.20785)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.1094, -12.9049, -2.41369)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
-NEW_POSITION_PATH = "TowerEast/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerEast/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerEast"]
@@ -959,7 +959,7 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2.38419e
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.12226, -40.127, -71.3973)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
-NEW_POSITION_PATH = "TowerSouth/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerSouth/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerSouth"]
@@ -977,7 +977,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0.127018, -6.207
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.0826, -12.8662, -24.5036)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/tower_interior.tscn"
-NEW_POSITION_PATH = "TowerWest/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerWest/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerWest"]

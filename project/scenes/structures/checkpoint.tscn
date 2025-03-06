@@ -102,3 +102,5 @@ omni_range = 30.0
 
 [node name="checkpoint" parent="." instance=ExtResource("4_ltl5t")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -157,18 +157,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:SPAWN_SOUND_INDEX")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
 
 [sub_resource type="Animation" id="Animation_fm33p"]
 resource_name = "ESCAPE"
@@ -311,18 +299,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:SPAWN_SOUND_INDEX")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_3l6eq"]
@@ -602,18 +578,6 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath(".:SPAWN_SOUND_INDEX")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_w2nfg"]
@@ -1146,7 +1110,7 @@ omni_attenuation = 1.5
 [node name="Skeleton3D" parent="Mesh/reaper/Armature" index="0"]
 bones/0/rotation = Quaternion(-0.707089, -0.00501628, 0.00501628, 0.707089)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0121782, 0.195052, 0.858267)
+bones/1/position = Vector3(0.0118417, 0.194507, 0.855521)
 bones/1/rotation = Quaternion(0.666525, 0.00528841, -0.00472851, 0.745449)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(1.86264e-09, 1.21443e-07, -1.86265e-09, 1)
@@ -1163,7 +1127,7 @@ bones/7/rotation = Quaternion(-0.0880253, 0.319577, -0.443777, 0.832577)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/position = Vector3(0.0402783, 0.37375, 0.0192499)
 bones/8/rotation = Quaternion(-0.590165, -0.329685, -0.328786, 0.659479)
-bones/9/rotation = Quaternion(0.0699408, -1.50209e-12, 1.66969e-08, 0.997551)
+bones/9/rotation = Quaternion(0.0650143, 0.000273054, -0.00165561, 0.997883)
 bones/10/position = Vector3(0.0739062, 0.0863639, 2.37346e-08)
 bones/10/rotation = Quaternion(-0.115372, -0.050699, -0.859753, 0.494917)
 bones/10/scale = Vector3(1, 1, 1)
@@ -1190,7 +1154,7 @@ bones/19/scale = Vector3(1, 1, 1)
 bones/20/rotation = Quaternion(0.0230632, -0.00015751, -0.0032335, 0.999729)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.792553, 0.0020302, -0.00182285, 0.609797)
-bones/22/position = Vector3(0.110637, 0.465987, 1.04335)
+bones/22/position = Vector3(0.113369, 0.465459, 1.03669)
 bones/22/rotation = Quaternion(0.602369, -0.40178, 0.123678, 0.678548)
 bones/22/scale = Vector3(1, 1, 1)
 
@@ -1204,7 +1168,7 @@ material_override = SubResource("ShaderMaterial_ckevw")
 material_override = SubResource("ShaderMaterial_py1jt")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/reaper/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.636638, -0.662005, -0.395527, 0.703357, 0.70877, -0.0541693, 0.316198, -0.24371, 0.916856, 0.0958226, 1.04482, -0.215987)
+transform = Transform3D(0.636638, -0.662006, -0.395526, 0.703357, 0.708769, -0.0541692, 0.316197, -0.24371, 0.916856, 0.0986492, 1.03819, -0.215459)
 bone_name = "staff_2"
 bone_idx = 22
 
@@ -1268,9 +1232,5 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.00728933
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
-[connection signal="body_entered" from="Pivot/LockOnArea" to="." method="_on_lock_on_area_body_entered"]
-[connection signal="body_entered" from="Mesh/reaper/Armature/Skeleton3D/BoneAttachment3D/Area3D" to="." method="_on_attack_area_body_entered"]
 
 [editable path="Mesh/reaper"]

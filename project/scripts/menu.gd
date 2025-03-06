@@ -94,13 +94,7 @@ func _on_load_save_pressed(file_name: String) -> void:
 	populate_menu_with_saves(load_menu, _on_load_save_pressed)
 func _on_game_restart_pressed() -> void:
 	if Save.data.has("checkpoint_scene_path"): 
-		Save.data["current_scene_path"] = Save.data["checkpoint_scene_path"]
-		Save.data["current_x"] = Save.data["checkpoint_x"]
-		Save.data["current_y"] = Save.data["checkpoint_y"]
-		Save.data["current_z"] = Save.data["checkpoint_z"]
-		Save.data["current_rotation_y"] = Save.data["checkpoint_rotation_y"]
-		Save.save_game()
-	get_tree().reload_current_scene()
+		get_tree().change_scene_to_file(Save.data["checkpoint_scene_path"])
 func _on_game_new_pressed() -> void:
 	Save.load_game()
 func _on_game_load_pressed() -> void:

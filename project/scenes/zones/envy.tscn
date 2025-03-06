@@ -90,7 +90,7 @@ size = Vector3(33.9425, 20, 30)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "EnvyTower/NewPosition"
+NEW_POSITION_PATH = "/root/Main/EnvyTower/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="EnvyTower"]

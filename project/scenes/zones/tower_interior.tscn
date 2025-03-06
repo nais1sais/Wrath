@@ -112,7 +112,7 @@ HEALTH = false
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "TowerEast/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerEast/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerEast"]
@@ -131,7 +131,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -0.282448, -29.5036)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "TowerWest/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerWest/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerWest"]
@@ -149,7 +149,7 @@ transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 5.72205e
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -9.18941, 23.4964)
 REAPER = NodePath("../Reaper")
 DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "TowerSouth/NewPosition"
+NEW_POSITION_PATH = "/root/Main/TowerSouth/NewPosition"
 AREA = NodePath("Area3D")
 
 [node name="Area3D" type="Area3D" parent="TowerSouth"]
