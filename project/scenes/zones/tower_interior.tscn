@@ -84,7 +84,6 @@ omni_range = 101.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -30)
 material_override = ExtResource("7_1o4cr")
 operation = 1
-snap = 0.25
 use_collision = true
 size = Vector3(21, 10, 11)
 
@@ -94,7 +93,6 @@ use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0601807, 9.93213, -2.54907)
-snap = 0.25
 flip_faces = true
 size = Vector3(46, 20, 65)
 

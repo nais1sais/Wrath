@@ -149,6 +149,10 @@ func _physics_process(delta: float) -> void:
 		attack_likelihood *= delta 
 		attack_likelihood *= (1 / delta)
 		if randf() < attack_likelihood:
+			
+			# Avoids 3 Animations being played at the same time I think was leading to visual bug with blending. Waits till only 1 animation is playing. Not sure if this is truly the issue tho
+			if ANIM.get_current_animation_length() - ANIM.get_current_animation_position() < ANIM.get_playing_speed() * ANIM.get_blend_time(ANIM.current_animation, ATTACK_ANIMATION[i]): return
+
 			ANIM.play(ATTACK_ANIMATION[i])
 			break
 		

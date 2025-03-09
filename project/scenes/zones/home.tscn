@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://esdlc3hcvx57"]
 
-[ext_resource type="Script" path="res://scripts/title_menu.gd" id="1_eebs8"]
+[ext_resource type="Script" uid="uid://b3jes2o6kgcap" path="res://scripts/title_menu.gd" id="1_eebs8"]
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="2_ahmig"]
 [ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="2_ojw5x"]
 
@@ -87,8 +87,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_661j4"]
 _data = {
-"FADE_IN": SubResource("Animation_o6qbx"),
-"RESET": SubResource("Animation_ktmds")
+&"FADE_IN": SubResource("Animation_o6qbx"),
+&"RESET": SubResource("Animation_ktmds")
 }
 
 [node name="Home" type="Node3D"]

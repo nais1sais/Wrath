@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://b1gqd40t6mj76"]
 
 [ext_resource type="Texture2D" uid="uid://bgteof0ua1pk6" path="res://textures/kenney free particles/scorch_02.png" id="1_2wo61"]
-[ext_resource type="Script" path="res://scripts/soul.gd" id="1_3nx18"]
+[ext_resource type="Script" uid="uid://8jat2fr0tbh3" path="res://scripts/soul.gd" id="1_3nx18"]
 [ext_resource type="AudioStream" uid="uid://dia2v1hr7kneb" path="res://audio/sfx/enemy/Cry_2.wav" id="3_hr1o2"]
 [ext_resource type="PackedScene" uid="uid://wij2tlh0hh7j" path="res://scenes/particles/soul_level_up.tscn" id="3_l4wdj"]
 [ext_resource type="AudioStream" uid="uid://bg0vbvw67fmg3" path="res://audio/sfx/ambience/Soul.wav" id="3_mtlnc"]
@@ -27,7 +27,7 @@ point_count = 4
 curve = SubResource("Curve_eu71s")
 
 [sub_resource type="Curve" id="Curve_6r500"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.105263, 2.49077), 0.0, 0.0, 0, 0, Vector2(0.282895, 2.07916), -12.0317, -12.0317, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
@@ -83,8 +83,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jaru"]
 _data = {
-"RESET": SubResource("Animation_ub0yu"),
-"particles": SubResource("Animation_4p5wv")
+&"RESET": SubResource("Animation_ub0yu"),
+&"particles": SubResource("Animation_4p5wv")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6oj4k"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwyvmebwu86xs"]
 
-[ext_resource type="Script" path="res://scripts/door.gd" id="1_7q767"]
+[ext_resource type="Script" uid="uid://ci0byfa0f4mm3" path="res://scripts/door.gd" id="1_7q767"]
 [ext_resource type="PackedScene" uid="uid://c0pqtwl8b1uu4" path="res://models/blender/door.blend" id="1_kqrvq"]
 [ext_resource type="AudioStream" uid="uid://b50qiukxj6lq6" path="res://audio/sfx/door/stone_creak.wav" id="2_o7bs6"]
 
@@ -95,8 +95,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7041t"]
 _data = {
-"DOOR": SubResource("Animation_jqv7c"),
-"RESET": SubResource("Animation_t1q1y")
+&"DOOR": SubResource("Animation_jqv7c"),
+&"RESET": SubResource("Animation_t1q1y")
 }
 
 [node name="Door" type="Node3D" node_paths=PackedStringArray("MESH", "ANIM")]

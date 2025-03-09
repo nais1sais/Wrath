@@ -23,7 +23,7 @@ point_count = 4
 curve = SubResource("Curve_eu71s")
 
 [sub_resource type="Curve" id="Curve_6r500"]
-max_value = 20.0
+_limits = [0.0, 20.0, 0.0, 1.0]
 _data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -100,8 +100,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jaru"]
 _data = {
-"RESET": SubResource("Animation_ub0yu"),
-"particles": SubResource("Animation_4p5wv")
+&"RESET": SubResource("Animation_ub0yu"),
+&"particles": SubResource("Animation_4p5wv")
 }
 
 [node name="GPUParticles3D" type="GPUParticles3D"]

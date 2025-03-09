@@ -82,7 +82,6 @@ use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96857, 9.93213, -0.0490699)
-snap = 0.25
 flip_faces = true
 size = Vector3(33.9425, 20, 30)
 

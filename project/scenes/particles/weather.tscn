@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://pw71tm25g4j4"]
 
-[ext_resource type="Script" path="res://scripts/weather.gd" id="1_0yxhn"]
+[ext_resource type="Script" uid="uid://rapnapo70524" path="res://scripts/weather.gd" id="1_0yxhn"]
 [ext_resource type="Texture2D" uid="uid://d0j2b2cneovh6" path="res://textures/kenney free particles/circle_05.png" id="2_qu5wy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij2o8"]
@@ -80,8 +80,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jaru"]
 _data = {
-"RESET": SubResource("Animation_ub0yu"),
-"particles": SubResource("Animation_4p5wv")
+&"RESET": SubResource("Animation_ub0yu"),
+&"particles": SubResource("Animation_4p5wv")
 }
 
 [node name="Weather" type="Node3D"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=63 format=3 uid="uid://c63gb30rbqgem"]
 
-[ext_resource type="Script" path="res://scripts/reaper.gd" id="1_0b6a6"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="2_2s8up"]
+[ext_resource type="Script" uid="uid://ralrw8p542mu" path="res://scripts/reaper.gd" id="1_0b6a6"]
+[ext_resource type="Script" uid="uid://cfsv4t4uo4j62" path="res://scripts/camera.gd" id="2_2s8up"]
 [ext_resource type="AudioStream" uid="uid://dv38k4hi68nft" path="res://audio/sfx/player/Spawn.wav" id="2_ykn11"]
 [ext_resource type="AudioStream" uid="uid://5n5whpag62f2" path="res://audio/sfx/player/Spawn_New.wav" id="3_2tmqw"]
 [ext_resource type="Texture2D" uid="uid://bm1u48mshqrkg" path="res://textures/reaper/cloak/color.png" id="3_7534y"]
@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://0sf75mds1tdr" path="res://audio/sfx/player/Slash_2.wav" id="11_x57ir"]
 [ext_resource type="AudioStream" uid="uid://dn40xettc7puu" path="res://audio/sfx/player/Slash_3.wav" id="12_ot1qi"]
 [ext_resource type="AudioStream" uid="uid://cawtjrru8ho7x" path="res://audio/sfx/player/Hurt.wav" id="15_tgmjc"]
-[ext_resource type="Shader" path="res://shaders/disolve.gdshader" id="18_dtcwh"]
+[ext_resource type="Shader" uid="uid://kww2iajo2air" path="res://shaders/disolve.gdshader" id="18_dtcwh"]
 [ext_resource type="AudioStream" uid="uid://ca1jfg0asj5b6" path="res://audio/sfx/player/Windown.wav" id="18_pc8iq"]
 [ext_resource type="Texture2D" uid="uid://c5qhpwg8w7djb" path="res://textures/reaper/cloak/alpha.png" id="19_0hpbp"]
 [ext_resource type="Texture2D" uid="uid://b1nj6g167woes" path="res://textures/reaper/cloak/color_alternative.png" id="19_sj6eg"]
@@ -42,18 +42,18 @@ noise = SubResource("FastNoiseLite_xbltt")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_py1jt"]
 render_priority = 0
 shader = ExtResource("18_dtcwh")
+shader_parameter/base_texture = ExtResource("3_7534y")
+shader_parameter/emission_texture = ExtResource("4_0idoq")
 shader_parameter/emission_texture_intensity = 5.0
-shader_parameter/inside_color = null
+shader_parameter/inside_color = Color(0, 0, 0, 1)
 shader_parameter/dissolve_amount = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_22u42")
 shader_parameter/glow_color = Color(0.851798, 0.591134, 0.49063, 1)
 shader_parameter/glow_intensitiy = 1.77
 shader_parameter/glow_border_width = 0.018
 shader_parameter/glow_border_smoothness = 0.003
-shader_parameter/normal_strength = 1.0
-shader_parameter/base_texture = ExtResource("3_7534y")
-shader_parameter/emission_texture = ExtResource("4_0idoq")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_22u42")
 shader_parameter/normal_texture = ExtResource("5_c6gf1")
+shader_parameter/normal_strength = 1.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eoc4h"]
 
@@ -63,34 +63,34 @@ noise = SubResource("FastNoiseLite_eoc4h")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckevw"]
 render_priority = 0
 shader = ExtResource("18_dtcwh")
+shader_parameter/base_texture = ExtResource("23_6p2vh")
+shader_parameter/emission_texture = ExtResource("24_u4fmn")
 shader_parameter/emission_texture_intensity = 0.0
-shader_parameter/inside_color = null
+shader_parameter/inside_color = Color(0, 0, 0, 1)
 shader_parameter/dissolve_amount = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_mvekr")
 shader_parameter/glow_color = Color(0.85098, 0.592157, 0.490196, 1)
 shader_parameter/glow_intensitiy = 1.77
 shader_parameter/glow_border_width = 0.018
 shader_parameter/glow_border_smoothness = 0.003
-shader_parameter/normal_strength = 1.0
-shader_parameter/base_texture = ExtResource("23_6p2vh")
-shader_parameter/emission_texture = ExtResource("24_u4fmn")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_mvekr")
 shader_parameter/normal_texture = ExtResource("24_fp8ht")
+shader_parameter/normal_strength = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ybm87"]
 render_priority = 0
 shader = ExtResource("18_dtcwh")
+shader_parameter/base_texture = ExtResource("27_ecunr")
+shader_parameter/emission_texture = ExtResource("4_0idoq")
 shader_parameter/emission_texture_intensity = 4.13
-shader_parameter/inside_color = null
+shader_parameter/inside_color = Color(0, 0, 0, 1)
 shader_parameter/dissolve_amount = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_22u42")
 shader_parameter/glow_color = Color(0.851798, 0.591134, 0.49063, 1)
 shader_parameter/glow_intensitiy = 1.77
 shader_parameter/glow_border_width = 0.018
 shader_parameter/glow_border_smoothness = 0.003
-shader_parameter/normal_strength = 1.0
-shader_parameter/base_texture = ExtResource("27_ecunr")
-shader_parameter/emission_texture = ExtResource("4_0idoq")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_22u42")
 shader_parameter/normal_texture = ExtResource("5_c6gf1")
+shader_parameter/normal_strength = 1.0
 
 [sub_resource type="Animation" id="Animation_bx4xs"]
 resource_name = "DEATH"
@@ -953,19 +953,19 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2cvw"]
 _data = {
-"DEATH": SubResource("Animation_bx4xs"),
-"ESCAPE": SubResource("Animation_fm33p"),
-"FALL": SubResource("Animation_7aqcu"),
-"FALL_DEATH": SubResource("Animation_y5607"),
-"HURT": SubResource("Animation_3l6eq"),
-"IDLE": SubResource("Animation_kk21r"),
-"JUMP": SubResource("Animation_wfofs"),
-"RESET": SubResource("Animation_2to1h"),
-"RUN": SubResource("Animation_w2nfg"),
-"SPIN": SubResource("Animation_376u0"),
-"WALK": SubResource("Animation_4nekk"),
-"WINDOWN": SubResource("Animation_od6d7"),
-"WINDUP": SubResource("Animation_qldqy")
+&"DEATH": SubResource("Animation_bx4xs"),
+&"ESCAPE": SubResource("Animation_fm33p"),
+&"FALL": SubResource("Animation_7aqcu"),
+&"FALL_DEATH": SubResource("Animation_y5607"),
+&"HURT": SubResource("Animation_3l6eq"),
+&"IDLE": SubResource("Animation_kk21r"),
+&"JUMP": SubResource("Animation_wfofs"),
+&"RESET": SubResource("Animation_2to1h"),
+&"RUN": SubResource("Animation_w2nfg"),
+&"SPIN": SubResource("Animation_376u0"),
+&"WALK": SubResource("Animation_4nekk"),
+&"WINDOWN": SubResource("Animation_od6d7"),
+&"WINDUP": SubResource("Animation_qldqy")
 }
 
 [sub_resource type="Animation" id="Animation_b2psf"]
@@ -1045,9 +1045,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_48hq2"]
 _data = {
-"DOOR_FADE_IN": SubResource("Animation_b2psf"),
-"FADE_IN": SubResource("Animation_vfhrj"),
-"RESET": SubResource("Animation_vjm2n")
+&"DOOR_FADE_IN": SubResource("Animation_b2psf"),
+&"FADE_IN": SubResource("Animation_vfhrj"),
+&"RESET": SubResource("Animation_vjm2n")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qswe2"]
@@ -1096,13 +1096,13 @@ DEATH_SOUNDS = Array[AudioStream]([ExtResource("25_8i186")])
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_b2cvw")
+&"": SubResource("AnimationLibrary_b2cvw")
 }
 autoplay = "IDLE"
 
 [node name="FadeIn" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_48hq2")
+&"": SubResource("AnimationLibrary_48hq2")
 }
 autoplay = "FADE_IN"
 

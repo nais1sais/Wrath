@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_6xa6f"]
 [ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/particles/weather.tscn" id="1_rvkd1"]
 [ext_resource type="PackedScene" uid="uid://b3urcqmix8s8g" path="res://scenes/bosses/wrath.tscn" id="2_ttjtk"]
-[ext_resource type="Script" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
+[ext_resource type="Script" uid="uid://cbt6ac0ptuq16" path="res://scripts/kill_volume.gd" id="3_fqvjh"]
 [ext_resource type="PackedScene" uid="uid://2c3tbvl0nxe1" path="res://scenes/bosses/lust.tscn" id="4_j0a1p"]
 [ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/structures/checkpoint.tscn" id="4_ynkt0"]
 [ext_resource type="Material" uid="uid://u5kuempg7ino" path="res://shaders/bricks/brick_4.tres" id="5_a0xqr"]
@@ -140,8 +140,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_msoko"]
 _data = {
-"ESCAPE": SubResource("Animation_gllqw"),
-"RESET": SubResource("Animation_vbito")
+&"ESCAPE": SubResource("Animation_gllqw"),
+&"RESET": SubResource("Animation_vbito")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_15mrn"]
@@ -222,8 +222,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kb3h"]
 _data = {
-"ENTERED": SubResource("Animation_vtj5q"),
-"EXITED": SubResource("Animation_rdmac")
+&"ENTERED": SubResource("Animation_vtj5q"),
+&"EXITED": SubResource("Animation_rdmac")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_egoas"]
@@ -299,8 +299,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfamd"]
 _data = {
-"ENTERED": SubResource("Animation_t7qrg"),
-"EXITED": SubResource("Animation_vbbts")
+&"ENTERED": SubResource("Animation_t7qrg"),
+&"EXITED": SubResource("Animation_vbbts")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd6ia"]
@@ -321,13 +321,13 @@ environment = SubResource("Environment_rnikm")
 [node name="Cinematics" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cinematics"]
-transform = Transform3D(0.87463, 0.249685, -0.415548, -7.45058e-09, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
+transform = Transform3D(0.87463, 0.249685, -0.415548, -1.86265e-07, 0.857168, 0.515037, 0.484791, -0.450466, 0.749705, -10.1883, 14.1217, 81.338)
 rotation_edit_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cinematics"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_msoko")
+&"": SubResource("AnimationLibrary_msoko")
 }
 autoplay = "RESET"
 
@@ -480,21 +480,18 @@ size = Vector3(25, 300, 22.5)
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Wrath/Walkway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.1981, -153.75, -2.5)
 material_override = ExtResource("5_ct7j2")
-snap = 0.25
 use_collision = true
 size = Vector3(14.3962, 282.5, 20)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/Wrath/Walkway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -166.25, -65)
 material_override = ExtResource("5_ct7j2")
-snap = 0.25
 use_collision = true
 size = Vector3(5, 272.5, 5)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/Wrath/Walkway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -166.25, -65)
 material_override = ExtResource("5_ct7j2")
-snap = 0.25
 use_collision = true
 size = Vector3(5, 272.5, 5)
 
@@ -517,7 +514,6 @@ material = ExtResource("5_ct7j2")
 
 [node name="East" type="CSGPolygon3D" parent="NavigationRegion3D/Wrath/LRamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 145, -62.5)
-snap = 0.25
 use_collision = true
 polygon = PackedVector2Array(-17.5, -25, 2.5, -7.5, 2.5, -12.5, 2.5, -15, -12.5, -27.5)
 depth = 5.0
@@ -531,7 +527,6 @@ size = Vector3(5, 15, 5)
 
 [node name="East2" type="CSGPolygon3D" parent="NavigationRegion3D/Wrath/LRamp"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5, 145, -67.5)
-snap = 0.25
 use_collision = true
 polygon = PackedVector2Array(-17.5, -25, 2.5, -7.5, 2.5, -15, -12.5, -27.5)
 depth = 5.0
@@ -810,7 +805,7 @@ bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationRegion3D/Lust/StatueMusic"]
 libraries = {
-"": SubResource("AnimationLibrary_2kb3h")
+&"": SubResource("AnimationLibrary_2kb3h")
 }
 
 [node name="Area" type="Area3D" parent="NavigationRegion3D/Lust/StatueMusic"]
@@ -1006,7 +1001,7 @@ bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WrathMusic"]
 libraries = {
-"": SubResource("AnimationLibrary_2kb3h")
+&"": SubResource("AnimationLibrary_2kb3h")
 }
 
 [node name="Exit" type="Area3D" parent="WrathMusic"]
@@ -1031,7 +1026,7 @@ bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AmbientMusic"]
 libraries = {
-"": SubResource("AnimationLibrary_kfamd")
+&"": SubResource("AnimationLibrary_kfamd")
 }
 
 [node name="Area" type="Area3D" parent="AmbientMusic"]

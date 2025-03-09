@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dutvs5n1mdx4u"]
 
-[ext_resource type="Script" path="res://scripts/portal.gd" id="1_7jlsn"]
+[ext_resource type="Script" uid="uid://bmadrcdyihyn2" path="res://scripts/portal.gd" id="1_7jlsn"]
 [ext_resource type="Shader" uid="uid://c5qmhn882uk5r" path="res://shaders/portal.tres" id="2_yhj2e"]
 [ext_resource type="Texture2D" uid="uid://c83xge0ckohym" path="res://textures/Le Lu/T_VFX_CircleFit1.png" id="3_5oy5y"]
 [ext_resource type="Texture2D" uid="uid://cplh0pg6a67dx" path="res://textures/kenney free particles/smoke_08.png" id="3_10esi"]
@@ -17,13 +17,13 @@ shader_parameter/scale = Vector2(0.5, 0.5)
 shader_parameter/zoom_strength = 2.995
 shader_parameter/repeat = 1.0
 shader_parameter/Speed = Vector2(-0.1, 0.1)
-shader_parameter/portal_weight = 0.389
-shader_parameter/Alpha = 0.755
-shader_parameter/mask_weight = 0.83
 shader_parameter/Portal_Texture2 = ExtResource("6_qmo6u")
 shader_parameter/Portal_Texture1 = ExtResource("4_yxvae")
+shader_parameter/portal_weight = 0.389
+shader_parameter/Alpha = 0.755
 shader_parameter/Mask_Texture2 = ExtResource("3_5oy5y")
 shader_parameter/Mask_Texture = ExtResource("3_10esi")
+shader_parameter/mask_weight = 0.83
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_msea1"]
 
@@ -109,8 +109,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgq31"]
 _data = {
-"ESCAPE": SubResource("Animation_p64xk"),
-"RESET": SubResource("Animation_sv02r")
+&"ESCAPE": SubResource("Animation_p64xk"),
+&"RESET": SubResource("Animation_sv02r")
 }
 
 [node name="Portal" type="Node3D" node_paths=PackedStringArray("ANIM")]

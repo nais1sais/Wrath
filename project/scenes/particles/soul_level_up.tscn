@@ -85,16 +85,16 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12k5t"]
 _data = {
-"RESET": SubResource("Animation_gh1vd"),
-"lifetime": SubResource("Animation_pkdcb")
+&"RESET": SubResource("Animation_gh1vd"),
+&"lifetime": SubResource("Animation_pkdcb")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_it0yu"]
 render_priority = 0
 shader = ExtResource("1_xrw6e")
 shader_parameter/Pan_Speed = -0.51
-shader_parameter/Alpha = 6.92
 shader_parameter/Texture2DParameter = ExtResource("2_qbj35")
+shader_parameter/Alpha = 6.92
 
 [sub_resource type="Curve" id="Curve_qo84o"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.286184, 0.794195), 0.0, 0.0, 0, 0, Vector2(0.654605, 0.98285), 0.0, 0.0, 0, 0, Vector2(0.924342, 0), 0.0, 0.0, 0, 0]
@@ -104,8 +104,7 @@ point_count = 4
 curve = SubResource("Curve_qo84o")
 
 [sub_resource type="Curve" id="Curve_p5y7o"]
-min_value = 0.99
-max_value = 20.0
+_limits = [0.99, 20.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.230263, 3.86156), 4.95564, 4.95564, 0, 0, Vector2(1, 5.00266), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -174,8 +173,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qkv7x"]
 _data = {
-"RESET": SubResource("Animation_l0sac"),
-"auto_free": SubResource("Animation_6ck62")
+&"RESET": SubResource("Animation_l0sac"),
+&"auto_free": SubResource("Animation_6ck62")
 }
 
 [node name="Node3D" type="Node3D"]

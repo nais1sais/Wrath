@@ -121,11 +121,11 @@ uniform float repeat;
 uniform vec2 Speed;
 uniform sampler2D Portal_Texture2 : source_color, hint_default_black, filter_linear;
 uniform sampler2D Portal_Texture1 : source_color, hint_default_black, filter_linear;
-uniform float portal_weight : hint_range(0, 1);
+uniform float portal_weight : hint_range(0.0, 1.0);
 uniform float Alpha;
 uniform sampler2D Mask_Texture2 : source_color;
 uniform sampler2D Mask_Texture : source_color;
-uniform float mask_weight : hint_range(0, 1);
+uniform float mask_weight : hint_range(0.0, 1.0);
 
 
 

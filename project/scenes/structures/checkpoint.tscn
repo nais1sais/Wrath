@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://1jc5rm2ln3av"]
 
-[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_jmg87"]
+[ext_resource type="Script" uid="uid://bwi12jjkh4nu7" path="res://scripts/checkpoint.gd" id="1_jmg87"]
 [ext_resource type="Material" uid="uid://ds136vafqn70x" path="res://shaders/bricks/brick_3.tres" id="2_nelei"]
 [ext_resource type="AudioStream" uid="uid://bijkgqifxmt1t" path="res://audio/sfx/door/checkpoint.wav" id="3_7pdu5"]
 [ext_resource type="PackedScene" uid="uid://b7b68t7b3u76m" path="res://models/blender/checkpoint.blend" id="4_ltl5t"]
@@ -57,8 +57,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j24vx"]
 _data = {
-"ACQUIRED": SubResource("Animation_uwfnl"),
-"RESET": SubResource("Animation_rbb1v")
+&"ACQUIRED": SubResource("Animation_uwfnl"),
+&"RESET": SubResource("Animation_rbb1v")
 }
 
 [node name="Checkpoint" type="Area3D" node_paths=PackedStringArray("CHECKPOINT_NODE", "ANIM")]

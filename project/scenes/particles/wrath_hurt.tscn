@@ -83,8 +83,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12k5t"]
 _data = {
-"RESET": SubResource("Animation_gh1vd"),
-"lifetime": SubResource("Animation_pkdcb")
+&"RESET": SubResource("Animation_gh1vd"),
+&"lifetime": SubResource("Animation_pkdcb")
 }
 
 [node name="Node3D" type="Node3D"]
