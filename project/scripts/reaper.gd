@@ -16,8 +16,18 @@ extends CharacterBody3D
 @export var COYOTE_TIME: float = .4
 @export var JUMP_BUFFER_TIME: float = .2
 @export var LOCK_ON_SPEED = 7
-@export var SQUASH_AMOUNT = .15
-@export var SQUASH_SPEED = .05
+
+@export_group("Visuals")
+@export var SQUASH_AMOUNT = .23
+@export var SQUASH_SPEED = .09
+func update_squash(target_squash: float, squash_speed: float, delta: float):
+	if delta == 0: return
+	var current_squash = MESH.scale.y
+	current_squash = lerp(current_squash, target_squash, (delta * squash_speed) * (1.0 / delta))
+	var squash_compensation = 1 - ((current_squash - 1) * .5)
+	MESH.scale.y = current_squash
+	MESH.scale.x = squash_compensation
+	MESH.scale.z = squash_compensation
 
 @export_group("References")
 @export var CAMERA: Camera3D
@@ -68,6 +78,7 @@ func update_ui():
 @export var SPIN_SOUNDS: Array[AudioStream] = []
 @export var WINDOWN_SOUNDS: Array[AudioStream] = []
 @export var HURT_SOUNDS: Array[AudioStream] = []
+@export var DEATH_SOUNDS: Array[AudioStream] = []
 func play_spin_sound() -> void:
 	if SPIN_SOUNDS.size() > 0:
 		Audio.play_2d_sound(SPIN_SOUNDS[randi() % SPIN_SOUNDS.size()], 0.9, 1.1)
@@ -80,6 +91,9 @@ func play_footstep_sound() -> void:
 func play_hurt_sound() -> void:
 	if HURT_SOUNDS.size() > 0:
 		Audio.play_2d_sound(HURT_SOUNDS[randi() % HURT_SOUNDS.size()], 0.9, 1.1, -10, -10)
+func play_death_sound() -> void:
+	if DEATH_SOUNDS.size() > 0:
+		Audio.play_2d_sound(DEATH_SOUNDS[randi() % DEATH_SOUNDS.size()], 0.9, 1.1, -10, -10)
 
 var mouse_delta = Vector2.ZERO
 var health = MAX_HEALTH
@@ -150,14 +164,6 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	body.health -= 1;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
-func update_squash(target_squash: float, squash_speed: float, delta: float):
-	if delta == 0: return
-	var current_squash = MESH.scale.y
-	current_squash = lerp(current_squash, target_squash, (delta * squash_speed) * (1.0 / delta))
-	var squash_compensation = 1 - ((current_squash - 1) * .5)
-	MESH.scale.y = current_squash
-	MESH.scale.x = squash_compensation
-	MESH.scale.z = squash_compensation
 	
 func _load() -> void: 	
 

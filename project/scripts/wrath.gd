@@ -28,7 +28,7 @@ extends CharacterBody3D
 @export var HURT_PARTICLE_SCENE: PackedScene
 @export var DEATH_PARTICLE_SCENE: PackedScene
 @export var BODY_MATERIAL: ShaderMaterial
-
+	
 @export_group("Sounds")
 @export var MUSIC: Node
 @export var HIT_SOUNDS: Array[AudioStream] = []
@@ -97,7 +97,6 @@ func _on_jump_attack_area_body_entered(body: Node) -> void:
 func _ready() -> void:
 	
 	target_direction = -global_transform.basis.z.normalized()
-	REAPER = get_tree().root.get_node("Main/Reaper")
 	dissolve_body(0,1)
 	if Save.data.has("wrath_defeated") and Save.data["wrath_defeated"]:
 		queue_free()
@@ -106,11 +105,7 @@ func _ready() -> void:
 	health = MAX_HEALTH
 	HEALTH_BAR.max_value = MAX_HEALTH
 	HEALTH_BAR.value = health
-	RIGHT_HAND_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
-	LEFT_HAND_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
-	TORSO_ATTACK_AREA.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
 	TRIGGER_AREA.connect("body_entered", Callable(self, "_on_trigger_area_body_entered"))
-	JUMP_ATTACK_AREA.connect("body_entered", Callable(self, "_on_jump_attack_area_body_entered"))
 
 func _physics_process(delta: float) -> void:
 
