@@ -109,7 +109,7 @@ DOOR_SOUNDS = Array[AudioStream]([ExtResource("2_o7bs6")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7041t")
+&"": SubResource("AnimationLibrary_7041t")
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]

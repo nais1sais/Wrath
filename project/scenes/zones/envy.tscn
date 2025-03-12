@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnli3nh320v2f"]
+[gd_scene load_steps=14 format=3 uid="uid://bnli3nh320v2f"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_rxbw7"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="2_c5jgk"]
+[ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/particles/weather.tscn" id="3_88x3a"]
 [ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="4_ti37w"]
-[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/structures/soul.tscn" id="5_hwa41"]
-[ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/structures/door.tscn" id="6_2bcko"]
+[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/interactables/soul.tscn" id="5_hwa41"]
+[ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/interactables/door.tscn" id="6_2bcko"]
 [ext_resource type="PackedScene" uid="uid://ct16v3d62ahyk" path="res://models/blender/chain_ceiling.blend" id="7_bbyat"]
-[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/structures/checkpoint.tscn" id="7_yrqvj"]
+[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/interactables/checkpoint.tscn" id="7_yrqvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r6g78"]
 sky_top_color = Color(0.0470588, 0.0588235, 0.0705882, 1)
@@ -46,35 +47,76 @@ volumetric_fog_albedo = Color(0.08, 0.08, 0.08, 1)
 volumetric_fog_emission = Color(0.187176, 0.187176, 0.187176, 1)
 volumetric_fog_detail_spread = 0.965936
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8x7wd"]
 size = Vector3(7, 11, 2)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
 
 [node name="Main" type="Node3D"]
 
 [node name="Menu" parent="." instance=ExtResource("1_rxbw7")]
 
-[node name="Reaper" parent="." instance=ExtResource("2_c5jgk")]
-transform = Transform3D(-0.0916933, 0, -0.995788, 0, 1, 0, 0.995788, 0, -0.0916933, -13.0945, -7.47934, -1.63374)
+[node name="Enviroment" type="Node" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="ChainCeiling" parent="Enviroment" instance=ExtResource("7_bbyat")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56517, -15.9073, -0.547886)
+
+[node name="Weather" parent="Enviroment" instance=ExtResource("3_88x3a")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
 environment = SubResource("Environment_1hm8g")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
-navigation_mesh = SubResource("NavigationMesh_jc5vn")
+[node name="Lights" type="Node" parent="Enviroment"]
 
-[node name="Lights" type="Node3D" parent="NavigationRegion3D"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
-transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926108, 0.383837, 0.921889, -0.0528203, 6.96341, 10.1386, -1.43818)
+[node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lights"]
+transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926108, 0.383837, 0.921889, -0.0528203, 6.96341, 1.1386, -1.43818)
 light_color = Color(0.599608, 0.41908, 0.321029, 1)
 light_energy = 100.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 0.2
 omni_range = 101.01
+
+[node name="Lights" type="Node3D" parent="Enviroment/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Reaper" parent="Interactables" instance=ExtResource("2_c5jgk")]
+transform = Transform3D(-0.0916933, 0, -0.995788, 0, 1, 0, 0.995788, 0, -0.0916933, -13.0945, -7.47934, -1.63374)
+
+[node name="Checkpoint" parent="Interactables" node_paths=PackedStringArray("REAPER") instance=ExtResource("7_yrqvj")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 8.82072, -9.13993, -0.360989)
+REAPER = NodePath("../Reaper")
+CHECKPOINT_SCENE_PATH = "res://scenes/zones/envy.tscn"
+
+[node name="Envy Soul" parent="Interactables" node_paths=PackedStringArray("REAPER") instance=ExtResource("5_hwa41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.637, -6.42492, -0.374643)
+REAPER = NodePath("../Reaper")
+
+[node name="EnvyTower" parent="Interactables" node_paths=PackedStringArray("REAPER", "AREA", "START") instance=ExtResource("6_2bcko")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
+REAPER = NodePath("../Reaper")
+DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
+DESTINATION_NODE_NAME = "EnvyTower"
+AREA = NodePath("Area3D")
+START = NodePath("Start")
+
+[node name="Area3D" type="Area3D" parent="Interactables/EnvyTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/EnvyTower/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_8x7wd")
+
+[node name="Start" type="Node3D" parent="Interactables/EnvyTower"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117285, 0.53226, 8.1402)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+navigation_mesh = SubResource("NavigationMesh_jc5vn")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 material_override = ExtResource("4_ti37w")
@@ -84,34 +126,3 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96857, 9.93213, -0.0490699)
 flip_faces = true
 size = Vector3(33.9425, 20, 30)
-
-[node name="EnvyTower" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("6_2bcko")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
-REAPER = NodePath("../Reaper")
-DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "/root/Main/EnvyTower/NewPosition"
-AREA = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="EnvyTower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvyTower/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
-shape = SubResource("BoxShape3D_8x7wd")
-
-[node name="NewPosition" type="Node3D" parent="EnvyTower"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117285, 0.53226, 8.1402)
-
-[node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("7_yrqvj")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 8.82072, -9.13993, -0.360989)
-REAPER = NodePath("../Reaper")
-CHECKPOINT_SCENE_PATH = "res://scenes/zones/envy.tscn"
-
-[node name="Envy Soul" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("5_hwa41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.637, -6.42492, -0.374643)
-REAPER = NodePath("../Reaper")
-
-[node name="chain_ceiling" parent="." instance=ExtResource("7_bbyat")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56517, -15.9073, -0.547886)

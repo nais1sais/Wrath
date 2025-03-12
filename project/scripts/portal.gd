@@ -32,5 +32,4 @@ func _ready() -> void:
 	if Save.data.has("wrath_defeated") and Save.data["wrath_defeated"]:
 		AREA.monitoring = true
 
-	REAPER = get_tree().root.get_node("Main/Reaper")
 	AREA.connect("body_entered", Callable(self, "_on_body_entered"))

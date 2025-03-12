@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://6ds3o48mieqb"]
+[gd_scene load_steps=14 format=3 uid="uid://6ds3o48mieqb"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_bnod8"]
-[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/structures/soul.tscn" id="3_ygqaf"]
+[ext_resource type="PackedScene" uid="uid://b1gqd40t6mj76" path="res://scenes/interactables/soul.tscn" id="3_ygqaf"]
+[ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/particles/weather.tscn" id="4_1q80c"]
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="5_piso4"]
 [ext_resource type="Material" uid="uid://b7ndlyb5lfeuy" path="res://shaders/bricks/brick_1.tres" id="7_1o4cr"]
-[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/structures/checkpoint.tscn" id="7_2pu8s"]
-[ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/structures/door.tscn" id="10_0tr1y"]
+[ext_resource type="PackedScene" uid="uid://1jc5rm2ln3av" path="res://scenes/interactables/checkpoint.tscn" id="7_2pu8s"]
+[ext_resource type="PackedScene" uid="uid://bwyvmebwu86xs" path="res://scenes/interactables/door.tscn" id="10_0tr1y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r6g78"]
 sky_top_color = Color(0.0470588, 0.0588235, 0.0705882, 1)
@@ -45,40 +46,125 @@ volumetric_fog_albedo = Color(0.08, 0.08, 0.08, 1)
 volumetric_fog_emission = Color(0.187176, 0.187176, 0.187176, 1)
 volumetric_fog_detail_spread = 0.965936
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
-vertices = PackedVector3Array(2.06018, 0.25, -23.75, 1.81018, 0.25, -34.5, -22.1898, 0.25, -34.5, 22.5602, 0.25, 29.25, 22.5602, 0.25, -23.75, -22.1898, 0.25, 29.25, 2.81018, 10, -34.5, 2.81018, 10, -24.75, 22.5602, 10, -24.75, 22.5602, 10, -34.5, 3.06018, 0.25, -34.5, 3.06018, 0.25, -25, 22.5602, 0.25, -25, 22.5602, 0.25, -34.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11)]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8x7wd"]
 size = Vector3(7, 11, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ye8ka"]
 size = Vector3(7, 11, 2)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_jc5vn"]
+vertices = PackedVector3Array(2.06018, 0.25, -23.75, 1.81018, 0.25, -34.5, -22.1898, 0.25, -34.5, 22.5602, 0.25, 29.25, 22.5602, 0.25, -23.75, -22.1898, 0.25, 29.25, 2.81018, 10, -34.5, 2.81018, 10, -24.75, 22.5602, 10, -24.75, 22.5602, 10, -34.5, 3.06018, 0.25, -34.5, 3.06018, 0.25, -25, 22.5602, 0.25, -25, 22.5602, 0.25, -34.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11)]
+
 [node name="Main" type="Node3D"]
 
 [node name="Menu" parent="." instance=ExtResource("1_bnod8")]
 
-[node name="Reaper" parent="." instance=ExtResource("5_piso4")]
-transform = Transform3D(-0.16916, 0, 0.985589, 0, 1, 0, -0.985589, 0, -0.16916, 14, -7.47934, 20.7907)
+[node name="Enviroment" type="Node" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1hm8g")
+[node name="Weather" parent="Enviroment" instance=ExtResource("4_1q80c")]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="Lights" type="Node" parent="Enviroment"]
+
+[node name="Lights" type="Node3D" parent="Enviroment/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
-navigation_mesh = SubResource("NavigationMesh_jc5vn")
 
-[node name="Lights" type="Node3D" parent="NavigationRegion3D"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Lights"]
-transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926108, 0.383837, 0.921889, -0.0528203, 6.96341, 10.1386, -1.43818)
+[node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lights"]
+transform = Transform3D(-0.863752, 0.338228, -0.373543, -0.3265, 0.189003, 0.926108, 0.383837, 0.921889, -0.0528203, 6.96341, 1.1386, -1.43818)
 light_color = Color(0.599608, 0.41908, 0.321029, 1)
 light_energy = 100.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 0.2
 omni_range = 101.01
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_1hm8g")
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Reaper" parent="Interactables" instance=ExtResource("5_piso4")]
+transform = Transform3D(-0.16916, 0, 0.985589, 0, 1, 0, -0.985589, 0, -0.16916, 14, -7.47934, 20.7907)
+
+[node name="Wisps" type="Node" parent="Interactables"]
+
+[node name="Soul2" parent="Interactables/Wisps" node_paths=PackedStringArray("REAPER") instance=ExtResource("3_ygqaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08563, 2.71911, -29.3764)
+REAPER = NodePath("../../Reaper")
+HEALTH = false
+
+[node name="Soul4" parent="Interactables/Wisps" node_paths=PackedStringArray("REAPER") instance=ExtResource("3_ygqaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9064, -7.71782, 28.0207)
+REAPER = NodePath("../../Reaper")
+HEALTH = false
+
+[node name="Doors" type="Node" parent="Interactables"]
+
+[node name="TowerEast" parent="Interactables/Doors" node_paths=PackedStringArray("REAPER", "AREA", "START") instance=ExtResource("10_0tr1y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
+REAPER = NodePath("../../Reaper")
+DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
+DESTINATION_NODE_NAME = "TowerEast"
+AREA = NodePath("Area3D")
+START = NodePath("Start")
+
+[node name="Area3D" type="Area3D" parent="Interactables/Doors/TowerEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Doors/TowerEast/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_8x7wd")
+
+[node name="Start" type="Node3D" parent="Interactables/Doors/TowerEast"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117285, 1, 8.1402)
+
+[node name="TowerWest" parent="Interactables/Doors" node_paths=PackedStringArray("REAPER", "AREA", "START") instance=ExtResource("10_0tr1y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -0.282448, -29.5036)
+REAPER = NodePath("../../Reaper")
+DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
+DESTINATION_NODE_NAME = "TowerWest"
+AREA = NodePath("Area3D")
+START = NodePath("Start")
+
+[node name="Area3D" type="Area3D" parent="Interactables/Doors/TowerWest"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Doors/TowerWest/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_ye8ka")
+
+[node name="Start" type="Node3D" parent="Interactables/Doors/TowerWest"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 5.72205e-06, 0.366223, -7.37892)
+
+[node name="TowerSouth" parent="Interactables/Doors" node_paths=PackedStringArray("REAPER", "AREA", "START") instance=ExtResource("10_0tr1y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -9.18941, 23.4964)
+REAPER = NodePath("../../Reaper")
+DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
+DESTINATION_NODE_NAME = "TowerSouth"
+AREA = NodePath("Area3D")
+START = NodePath("Start")
+
+[node name="Area3D" type="Area3D" parent="Interactables/Doors/TowerSouth"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Doors/TowerSouth/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
+shape = SubResource("BoxShape3D_ye8ka")
+
+[node name="Start" type="Node3D" parent="Interactables/Doors/TowerSouth"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.172693, 0.121539, -7.37892)
+
+[node name="Checkpoint" parent="Interactables" node_paths=PackedStringArray("REAPER") instance=ExtResource("7_2pu8s")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 19.8704, -9.10206, -21.1828)
+REAPER = NodePath("../Reaper")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+navigation_mesh = SubResource("NavigationMesh_jc5vn")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -30)
@@ -95,72 +181,3 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0601807, 9.93213, -2.54907)
 flip_faces = true
 size = Vector3(46, 20, 65)
-
-[node name="Soul2" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("3_ygqaf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08563, 2.71911, -29.3764)
-REAPER = NodePath("../Reaper")
-HEALTH = false
-
-[node name="Soul4" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("3_ygqaf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9064, -7.71782, 28.0207)
-REAPER = NodePath("../Reaper")
-HEALTH = false
-
-[node name="TowerEast" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("10_0tr1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5156, -9.60013, 1.00536e-06)
-REAPER = NodePath("../Reaper")
-DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "/root/Main/TowerEast/NewPosition"
-AREA = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="TowerEast"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TowerEast/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
-shape = SubResource("BoxShape3D_8x7wd")
-
-[node name="NewPosition" type="Node3D" parent="TowerEast"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.117285, 1, 8.1402)
-
-[node name="TowerWest" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("10_0tr1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -0.282448, -29.5036)
-REAPER = NodePath("../Reaper")
-DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "/root/Main/TowerWest/NewPosition"
-AREA = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="TowerWest"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TowerWest/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
-shape = SubResource("BoxShape3D_ye8ka")
-
-[node name="NewPosition" type="Node3D" parent="TowerWest"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 5.72205e-06, 0.366223, -7.37892)
-
-[node name="TowerSouth" parent="." node_paths=PackedStringArray("REAPER", "AREA") instance=ExtResource("10_0tr1y")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.9699, -9.18941, 23.4964)
-REAPER = NodePath("../Reaper")
-DESTINATION_SCENE_PATH = "res://scenes/zones/exterior.tscn"
-NEW_POSITION_PATH = "/root/Main/TowerSouth/NewPosition"
-AREA = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="TowerSouth"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TowerSouth/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57746e-08, 5, -0.5)
-shape = SubResource("BoxShape3D_ye8ka")
-
-[node name="NewPosition" type="Node3D" parent="TowerSouth"]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.172693, 0.121539, -7.37892)
-
-[node name="Checkpoint" parent="." node_paths=PackedStringArray("REAPER") instance=ExtResource("7_2pu8s")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 19.8704, -9.10206, -21.1828)
-REAPER = NodePath("../Reaper")

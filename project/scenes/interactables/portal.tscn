@@ -131,7 +131,7 @@ skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_sgq31")
+&"": SubResource("AnimationLibrary_sgq31")
 }
 autoplay = "RESET"
 

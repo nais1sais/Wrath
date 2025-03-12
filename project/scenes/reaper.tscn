@@ -1107,7 +1107,6 @@ libraries = {
 autoplay = "FADE_IN"
 
 [node name="Spawn" type="AudioStreamPlayer2D" parent="."]
-autoplay = true
 bus = &"SFX"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

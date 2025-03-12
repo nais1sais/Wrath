@@ -10,7 +10,7 @@ func _ready():
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.frequency = 2.0
 
-func _process(delta):
+func _physics_process(delta):
 	rotation_degrees -= shake_offset # Remove previous frame's shake
 	if shake > 0.0:
 		shake -= decay_rate * delta

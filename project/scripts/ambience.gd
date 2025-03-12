@@ -7,6 +7,7 @@ var inside = false
 var queued_free = false
 
 func _on_body_entered(body: Node) -> void:
+	
 	if body != REAPER: return
 	if inside == true: return
 	inside = true
@@ -31,6 +32,5 @@ func _connect_exit_queue_free() -> void:
 			queued_free = true
 
 func _ready() -> void:
-	REAPER = get_tree().root.get_node("Main/Reaper")
 	if ENTER_AREA: ENTER_AREA.connect("body_entered", Callable(self, "_on_body_entered"))
 	if EXIT_AREA: EXIT_AREA.connect("body_exited", Callable(self, "_on_body_exited"))

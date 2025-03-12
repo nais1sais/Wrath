@@ -164,7 +164,15 @@ func _on_attack_area_body_entered(body: Node) -> void:
 	body.health -= 1;
 	if body.health > 0: return
 	if body.has_method("death"): body.death()
-	
+
+func find_node_by_name(target_name: String) -> Node:
+	var stack = [get_tree().get_root()]
+	while stack.size() > 0:
+		var node = stack.pop_back()
+		if node.name == target_name:
+			return node
+		stack += node.get_children()
+	return null
 func _load() -> void: 	
 
 	if not Save.data.has("deaths"):
@@ -179,11 +187,11 @@ func _load() -> void:
 	Save.data["max_health"] = MAX_HEALTH
 	Save.data["max_stamina"] = MAX_STAMINA	
 
-	if Save.data.has("door_node_path"):		
-		var door_node = get_node_or_null(Save.data["door_node_path"])
-		if door_node: global_transform = door_node.global_transform
+	if Save.data.has("door_node_name"):		
+		var door_node = find_node_by_name(Save.data["door_node_name"])
+		if door_node: if door_node.START: global_transform = door_node.START.global_transform
 		$FadeIn.play("DOOR_FADE_IN")
-		Save.data.erase("door_node_path")
+		Save.data.erase("door_node_name")
 		Save.save_game()
 		return
 	
