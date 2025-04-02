@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://f6q46g68fwt7" path="res://audio/sfx/menu/Menu_Hover.wav" id="2_ndaih"]
 [ext_resource type="Theme" uid="uid://bty2q8m8jwn5t" path="res://shaders/ui/theme.tres" id="3_vw818"]
 [ext_resource type="AudioStream" uid="uid://bxy8idshrtel0" path="res://audio/sfx/menu/Menu_Press.wav" id="4_2c34c"]
-[ext_resource type="FontFile" uid="uid://37oytj1gs160" path="res://textures/fonts/OldLondon.ttf" id="5_txjj8"]
+[ext_resource type="Texture2D" uid="uid://diukhpkqrxh07" path="res://textures/Logo.png" id="6_vibko"]
 
 [node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("hover_sound_player", "press_sound_player", "main_menu", "resume_button", "options_button", "controls_button", "credits_button", "quit_button", "game_menu", "load_menu", "delete_menu", "options_menu", "options_master_slider", "options_sfx_slider", "options_music_slider", "options_display_dropdown", "options_back_button", "controls_menu", "credits_menu")]
 process_mode = 3
@@ -47,12 +47,10 @@ grow_vertical = 2
 [node name="Main" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Main"]
-layout_mode = 2
-theme = ExtResource("3_vw818")
-theme_override_fonts/font = ExtResource("5_txjj8")
-theme_override_font_sizes/font_size = 63
-text = "WRATH"
+[node name="Logo" type="Sprite2D" parent="CenterContainer/Main"]
+position = Vector2(53, -38)
+scale = Vector2(0.136935, 0.136935)
+texture = ExtResource("6_vibko")
 
 [node name="Resume" type="Button" parent="CenterContainer/Main"]
 layout_mode = 2
