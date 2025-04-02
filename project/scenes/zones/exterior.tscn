@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dsdh2bite7xv4"]
+[gd_scene load_steps=46 format=3 uid="uid://dsdh2bite7xv4"]
 
 [ext_resource type="PackedScene" uid="uid://duevw8ikxn5kj" path="res://scenes/menus/pause.tscn" id="1_6xa6f"]
 [ext_resource type="PackedScene" uid="uid://pw71tm25g4j4" path="res://scenes/particles/weather.tscn" id="1_rvkd1"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c63gb30rbqgem" path="res://scenes/reaper.tscn" id="18_wkoos"]
 [ext_resource type="PackedScene" uid="uid://cqe5q7mqxorow" path="res://models/blender/portal_frame.blend" id="20_a5ief"]
 [ext_resource type="Material" uid="uid://deqgvck7b0oqx" path="res://shaders/bricks/distant_bricks.tres" id="21_dasuu"]
+[ext_resource type="Material" uid="uid://csibvbbqy3q3e" path="res://shaders/statue.tres" id="21_eksj1"]
 
 [sub_resource type="Animation" id="Animation_gllqw"]
 resource_name = "ESCAPE"
@@ -742,8 +743,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, -37.5, -102.5)
 [node name="Lust" parent="NavigationRegion3D/LustStatue" instance=ExtResource("4_j0a1p")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
 
+[node name="lustLP" parent="NavigationRegion3D/LustStatue/Lust/lust/Rig/Skeleton3D" index="0"]
+material_override = ExtResource("21_eksj1")
+
 [editable path="Interactables/Wrath/WrathMusic"]
 [editable path="Interactables/Music/StatueMusic"]
 [editable path="Interactables/Music/AmbientMusic"]
 [editable path="Interactables/Portal/portal_frame"]
 [editable path="NavigationRegion3D/Level"]
+[editable path="NavigationRegion3D/LustStatue/Lust"]
+[editable path="NavigationRegion3D/LustStatue/Lust/lust"]
