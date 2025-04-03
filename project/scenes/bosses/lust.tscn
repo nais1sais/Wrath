@@ -11,7 +11,7 @@ size = Vector3(1, 6, 1)
 [node name="lust" parent="." instance=ExtResource("1_ipvtt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03159, 0)
 
-[node name="lustLP" parent="lust" index="0"]
+[node name="lustLP" parent="lust/Rig/Skeleton3D" index="0"]
 material_override = ExtResource("2_oni0w")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]

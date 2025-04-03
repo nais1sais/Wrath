@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sdqt3t4hufqe"
-path.s3tc="res://.godot/imported/_albedo000.png-680754241623f1836f55237a377ec39e.s3tc.ctex"
-path.etc2="res://.godot/imported/_albedo000.png-680754241623f1836f55237a377ec39e.etc2.ctex"
+uid="uid://degml03bvddt4"
+path.s3tc="res://.godot/imported/emisson.png-533d7ca864ca85085a6a4ec358013f8e.s3tc.ctex"
+path.etc2="res://.godot/imported/emisson.png-533d7ca864ca85085a6a4ec358013f8e.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/blender/textures/_albedo000.png"
-dest_files=["res://.godot/imported/_albedo000.png-680754241623f1836f55237a377ec39e.s3tc.ctex", "res://.godot/imported/_albedo000.png-680754241623f1836f55237a377ec39e.etc2.ctex"]
+source_file="res://textures/lust/emisson.png"
+dest_files=["res://.godot/imported/emisson.png-533d7ca864ca85085a6a4ec358013f8e.s3tc.ctex", "res://.godot/imported/emisson.png-533d7ca864ca85085a6a4ec358013f8e.etc2.ctex"]
 
 [params]
 

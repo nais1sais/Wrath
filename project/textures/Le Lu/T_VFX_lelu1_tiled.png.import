@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r506owuesv8d"
-path.s3tc="res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.s3tc.ctex"
-path.etc2="res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.etc2.ctex"
+path.s3tc="res://.godot/imported/T_VFX_lelu1_tiled.png-3cdff856b14e194d21c155533745e4b3.s3tc.ctex"
+path.etc2="res://.godot/imported/T_VFX_lelu1_tiled.png-3cdff856b14e194d21c155533745e4b3.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Le Lu/T_VFX_lelu1_tiled.png"
-dest_files=["res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.s3tc.ctex", "res://.godot/imported/T_VFX_lelu1_tiled.png-448f5ee693c1b11250f66590f7a50fef.etc2.ctex"]
+source_file="res://textures/le lu/T_VFX_lelu1_tiled.png"
+dest_files=["res://.godot/imported/T_VFX_lelu1_tiled.png-3cdff856b14e194d21c155533745e4b3.s3tc.ctex", "res://.godot/imported/T_VFX_lelu1_tiled.png-3cdff856b14e194d21c155533745e4b3.etc2.ctex"]
 
 [params]
 

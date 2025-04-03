@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boca0q32y0vy0"
-path.s3tc="res://.godot/imported/default_normal.png-4097070e24e9226439f58466c4076cd3.s3tc.ctex"
-path.etc2="res://.godot/imported/default_normal.png-4097070e24e9226439f58466c4076cd3.etc2.ctex"
+uid="uid://cwm4kdw3rghh5"
+path.s3tc="res://.godot/imported/default_emision.png-43c687aae297e24619c68f31da932a23.s3tc.ctex"
+path.etc2="res://.godot/imported/default_emision.png-43c687aae297e24619c68f31da932a23.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/default_normal.png"
-dest_files=["res://.godot/imported/default_normal.png-4097070e24e9226439f58466c4076cd3.s3tc.ctex", "res://.godot/imported/default_normal.png-4097070e24e9226439f58466c4076cd3.etc2.ctex"]
+source_file="res://textures/defaults/default_emision.png"
+dest_files=["res://.godot/imported/default_emision.png-43c687aae297e24619c68f31da932a23.s3tc.ctex", "res://.godot/imported/default_emision.png-43c687aae297e24619c68f31da932a23.etc2.ctex"]
 
 [params]
 

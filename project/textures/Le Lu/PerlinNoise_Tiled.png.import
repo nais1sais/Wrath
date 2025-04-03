@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyj5iy8dyespd"
-path.s3tc="res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.s3tc.ctex"
-path.etc2="res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.etc2.ctex"
+path.s3tc="res://.godot/imported/PerlinNoise_Tiled.png-a6d29018121d6213bb97e041373d95ae.s3tc.ctex"
+path.etc2="res://.godot/imported/PerlinNoise_Tiled.png-a6d29018121d6213bb97e041373d95ae.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Le Lu/PerlinNoise_Tiled.png"
-dest_files=["res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.s3tc.ctex", "res://.godot/imported/PerlinNoise_Tiled.png-c01b0a523583f1a5947bd190c9ee2256.etc2.ctex"]
+source_file="res://textures/le lu/PerlinNoise_Tiled.png"
+dest_files=["res://.godot/imported/PerlinNoise_Tiled.png-a6d29018121d6213bb97e041373d95ae.s3tc.ctex", "res://.godot/imported/PerlinNoise_Tiled.png-a6d29018121d6213bb97e041373d95ae.etc2.ctex"]
 
 [params]
 

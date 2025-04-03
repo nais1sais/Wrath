@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjmgd1c67i6lu"
-path.s3tc="res://.godot/imported/_albedo000.png-ff9c468d5b0659e8498e8ff9f8d189da.s3tc.ctex"
-path.etc2="res://.godot/imported/_albedo000.png-ff9c468d5b0659e8498e8ff9f8d189da.etc2.ctex"
+uid="uid://dvuf8ehhkbdwi"
+path.s3tc="res://.godot/imported/albedo.png-30a3a3133ce97833cf951253a49518f3.s3tc.ctex"
+path.etc2="res://.godot/imported/albedo.png-30a3a3133ce97833cf951253a49518f3.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/_albedo000.png"
-dest_files=["res://.godot/imported/_albedo000.png-ff9c468d5b0659e8498e8ff9f8d189da.s3tc.ctex", "res://.godot/imported/_albedo000.png-ff9c468d5b0659e8498e8ff9f8d189da.etc2.ctex"]
+source_file="res://textures/lust/albedo.png"
+dest_files=["res://.godot/imported/albedo.png-30a3a3133ce97833cf951253a49518f3.s3tc.ctex", "res://.godot/imported/albedo.png-30a3a3133ce97833cf951253a49518f3.etc2.ctex"]
 
 [params]
 

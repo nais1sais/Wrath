@@ -108,8 +108,9 @@ func _ready() -> void:
 	TRIGGER_AREA.connect("body_entered", Callable(self, "_on_trigger_area_body_entered"))
 
 func _physics_process(delta: float) -> void:
+	
 
-	if REAPER.health < 0:
+	if REAPER and REAPER.health < 0:
 		MUSIC._connect_exit_queue_free()
 
 	root_motion()
